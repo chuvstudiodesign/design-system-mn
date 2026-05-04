@@ -54,8 +54,8 @@ export default function AccordionPage() {
             <Typography as="p" variant="h3" className="text-foreground">
               Demo básica
             </Typography>
-            <div className="ds-card w-full max-w-3xl">
-              <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
+            <div className="ds-card !p-[30px] w-full max-w-3xl">
+              <Accordion defaultValue={["item-1"]} className="w-full">
                 <AccordionItem value="item-1">
                   <AccordionTrigger>O que é este componente?</AccordionTrigger>
                   <AccordionContent>
@@ -79,7 +79,7 @@ export default function AccordionPage() {
           </div>
 
           <div className="flex flex-col gap-6">
-            <div className="ds-card">
+            <div className="ds-card !p-[30px]">
               <Typography
                 as="p"
                 variant="label"
@@ -92,7 +92,7 @@ export default function AccordionPage() {
               </Typography>
             </div>
 
-            <div className="ds-card">
+            <div className="ds-card !p-[30px]">
               <Typography
                 as="p"
                 variant="label"
@@ -118,8 +118,8 @@ export default function AccordionPage() {
             <Typography as="p" variant="h3" className="text-foreground">
               Single + collapsible
             </Typography>
-            <div className="ds-card w-full max-w-3xl">
-              <Accordion type="single" collapsible defaultValue="item-1" className="w-full">
+            <div className="ds-card !p-[30px] w-full max-w-3xl">
+              <Accordion defaultValue={["item-1"]} className="w-full">
                 <AccordionItem value="item-1">
                   <AccordionTrigger>Um item aberto por vez</AccordionTrigger>
                   <AccordionContent>
@@ -140,8 +140,8 @@ export default function AccordionPage() {
             <Typography as="p" variant="h3" className="text-foreground">
               Multiple + item desabilitado
             </Typography>
-            <div className="ds-card w-full max-w-3xl">
-              <Accordion type="multiple" defaultValue={["item-1"]} className="w-full">
+            <div className="ds-card !p-[30px] w-full max-w-3xl">
+              <Accordion multiple defaultValue={["item-1"]} className="w-full">
                 <AccordionItem value="item-1">
                   <AccordionTrigger>Múltiplos itens abertos</AccordionTrigger>
                   <AccordionContent>
@@ -171,7 +171,7 @@ export default function AccordionPage() {
         subtitle="Resumo das classes e snippets mais úteis para usar o componente no projeto."
       >
         <div className="flex flex-col gap-4">
-          <div className="ds-card flex w-full max-w-md flex-col gap-1">
+          <div className="ds-card !p-[30px] flex w-full max-w-md flex-col gap-1">
             <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
               Root
             </Typography>
@@ -183,7 +183,7 @@ export default function AccordionPage() {
             </Typography>
           </div>
 
-          <div className="ds-card flex w-full max-w-md flex-col gap-1">
+          <div className="ds-card !p-[30px] flex w-full max-w-md flex-col gap-1">
             <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
               Trigger
             </Typography>
@@ -195,7 +195,7 @@ export default function AccordionPage() {
             </Typography>
           </div>
 
-          <div className="ds-card flex w-full max-w-md flex-col gap-1">
+          <div className="ds-card !p-[30px] flex w-full max-w-md flex-col gap-1">
             <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
               Content
             </Typography>
@@ -223,7 +223,7 @@ export default function AccordionPage() {
               title="Accordion em grid de conteúdo"
               code={`<section className="rounded-[10px] bg-[#ECECEC] px-[60px] py-[80px]">
   <div className="grid gap-6 xl:grid-cols-2">
-    <div className="rounded-[10px] bg-[#FFFFFF] px-[28px] py-[24px]">
+    <div className="rounded-[10px] bg-[#FFFFFF] p-[30px]">
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
           <AccordionTrigger>Detalhes</AccordionTrigger>
@@ -243,7 +243,7 @@ export default function AccordionPage() {
         subtitle="Os principais pontos de uso da API instalada no projeto."
       >
         <div className="grid gap-6 xl:grid-cols-2">
-          <div className="ds-card">
+          <div className="ds-card !p-[30px]">
             <Typography as="p" variant="h3" className="mb-4 text-foreground">
               Props principais
             </Typography>
@@ -285,7 +285,7 @@ export default function AccordionPage() {
             </div>
           </div>
 
-          <div className="ds-card">
+          <div className="ds-card !p-[30px]">
             <Typography as="p" variant="h3" className="mb-4 text-foreground">
               Acessibilidade
             </Typography>

@@ -6,7 +6,7 @@ import { Typography } from "@/components/typography";
 const cardStyles = {
   borderRadius: 10,
   background: "#ffffff",
-  padding: "24px 28px",
+  padding: "30px",
   boxShadow: "var(--shadow-card)",
 } as CSSProperties;
 
@@ -208,7 +208,7 @@ export function SectionSystemBlock({
               note: "Espaço entre uma section e a seguinte no fluxo da página.",
             },
           ].map((spec) => (
-            <div key={spec.title} className="ds-card flex w-full max-w-md flex-col gap-1">
+            <div key={spec.title} className="ds-card !p-[30px] flex w-full max-w-md flex-col gap-1">
               <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
                 {spec.title}
               </Typography>
@@ -343,7 +343,7 @@ export function SectionSystemBlock({
               note: "A primeira section usa o componente com chanfro em vez de um rounded simples.",
             },
           ].map((item) => (
-            <div key={item.title} className="ds-card flex w-full max-w-lg flex-col gap-1">
+            <div key={item.title} className="ds-card !p-[30px] flex w-full max-w-lg flex-col gap-1">
               <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
                 {item.title}
               </Typography>
@@ -530,8 +530,8 @@ export function CardSystemBlock({
             },
             {
               title: "Padding Interno",
-              value: "24px × 28px",
-              note: "Espaçamento interno base do card neste sistema.",
+              value: "30px × 30px",
+              note: "Espaçamento interno base do card em todos os lados.",
             },
             {
               title: "Gap Interno",
@@ -539,7 +539,7 @@ export function CardSystemBlock({
               note: "Faixa de espaçamento entre blocos internos, conforme a densidade do conteúdo.",
             },
           ].map((spec) => (
-            <div key={spec.title} className="ds-card flex w-full max-w-md flex-col gap-1">
+            <div key={spec.title} className="ds-card !p-[30px] flex w-full max-w-md flex-col gap-1">
               <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
                 {spec.title}
               </Typography>
@@ -625,8 +625,8 @@ export function CardSystemBlock({
             },
             {
               title: "PADDING",
-              value: 'px-[28px] py-[24px]',
-              note: "Padding interno base.",
+              value: 'p-[30px]',
+              note: "Padding interno base do card em todos os lados.",
             },
             {
               title: "GAP INTERNO",
@@ -639,7 +639,7 @@ export function CardSystemBlock({
               note: "O card sempre vive dentro da section.",
             },
           ].map((item) => (
-            <div key={item.title} className="ds-card flex w-full max-w-md flex-col gap-1">
+            <div key={item.title} className="ds-card !p-[30px] flex w-full max-w-md flex-col gap-1">
               <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
                 {item.title}
               </Typography>
@@ -654,7 +654,7 @@ export function CardSystemBlock({
           <div className="flex flex-col gap-6 pt-2">
             <ImplementationCodeBlock
               title="Card básico"
-              code={`<div className="rounded-[10px] bg-[#FFFFFF] px-[28px] py-[24px]">
+              code={`<div className="rounded-[10px] bg-[#FFFFFF] p-[30px]">
   <h3 className="text-[18px] font-semibold text-black">
     Título do card
   </h3>
@@ -667,11 +667,11 @@ export function CardSystemBlock({
               title="Cards em grid dentro de uma section"
               code={`<section className="rounded-[10px] bg-[#ECECEC] px-[60px] py-[80px]">
   <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-    <div className="rounded-[10px] bg-[#FFFFFF] px-[28px] py-[24px]">
+    <div className="rounded-[10px] bg-[#FFFFFF] p-[30px]">
       {/* card 1 */}
     </div>
 
-    <div className="rounded-[10px] bg-[#FFFFFF] px-[28px] py-[24px]">
+    <div className="rounded-[10px] bg-[#FFFFFF] p-[30px]">
       {/* card 2 */}
     </div>
   </div>

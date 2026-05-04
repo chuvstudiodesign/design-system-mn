@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { ChamferedPanel } from "@/components/chamfered-panel";
 import { Typography } from "@/components/typography";
 import { FoundationFooter, FoundationPageHeader, Section } from "./foundation-sections";
 
@@ -252,7 +253,7 @@ export default function StyleguidePage() {
       >
         <div className="flex flex-col gap-6">
           {typeScale.map((t) => (
-            <div key={t.label} className="ds-card flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-6">
+            <div key={t.label} className="ds-card !p-[30px] flex flex-col gap-6 sm:flex-row sm:items-center sm:gap-6">
               <div className="w-32 shrink-0">
                 <Typography as="p" variant="label" className="text-foreground normal-case tracking-normal">{t.label}</Typography>
                 <Typography as="p" variant="caption" className="mt-1 font-mono normal-case tracking-normal">{t.specs}</Typography>
@@ -274,34 +275,36 @@ export default function StyleguidePage() {
       >
         <div className="flex flex-col gap-6">
           {spacingTokens.map((token) => (
-            <div key={token.name} className="ds-card flex items-center gap-6">
-              <div className="w-48 shrink-0">
+            <div key={token.name} className="ds-card !p-[30px] grid gap-6 xl:grid-cols-[12rem_minmax(0,1fr)] xl:items-center">
+              <div>
                 <Typography as="p" variant="label" className="font-mono normal-case tracking-normal text-foreground">{token.name}</Typography>
                 <Typography as="p" variant="body-sm" className="mt-1">{token.usage}</Typography>
               </div>
-              <div className="flex flex-1 items-center gap-4">
-                {token.name.includes("gap") ? (
-                  <div
-                    className="flex items-center rounded-[8px] border border-black/10 bg-[#ECECEC] p-3"
-                    style={{ gap: `${token.value}px` }}
-                  >
-                    <div className="h-8 w-16 rounded-[6px] bg-white" />
-                    <div className="h-8 w-16 rounded-[6px] bg-white" />
-                  </div>
-                ) : (
-                  <div
-                    className="rounded-[8px] border border-black/10 bg-[#ECECEC]"
-                    style={{
-                      padding:
-                        token.name === "--section-padding-y"
-                          ? `${token.value}px 18px`
-                          : `${18}px ${token.value}px`,
-                    }}
-                  >
-                    <div className="min-h-8 min-w-24 rounded-[6px] bg-white" />
-                  </div>
-                )}
-                <Typography as="span" variant="caption" className="shrink-0 font-mono normal-case tracking-normal">
+              <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_auto] xl:items-center">
+                <div className="max-w-full overflow-x-auto">
+                  {token.name.includes("gap") ? (
+                    <div
+                      className="flex min-w-fit items-center rounded-[8px] border border-black/10 bg-[#ECECEC] p-3"
+                      style={{ gap: `${token.value}px` }}
+                    >
+                      <div className="h-8 w-16 rounded-[6px] bg-white" />
+                      <div className="h-8 w-16 rounded-[6px] bg-white" />
+                    </div>
+                  ) : (
+                    <div
+                      className="min-w-fit rounded-[8px] border border-black/10 bg-[#ECECEC]"
+                      style={{
+                        padding:
+                          token.name === "--section-padding-y"
+                            ? `${token.value}px 18px`
+                            : `${18}px ${token.value}px`,
+                      }}
+                    >
+                      <div className="min-h-8 min-w-24 rounded-[6px] bg-white" />
+                    </div>
+                  )}
+                </div>
+                <Typography as="span" variant="caption" className="font-mono normal-case tracking-normal xl:shrink-0">
                   {token.value}px
                 </Typography>
               </div>
@@ -309,26 +312,59 @@ export default function StyleguidePage() {
           ))}
         </div>
 
-        <div className="mt-6 grid gap-6 xl:grid-cols-2">
-          <div className="ds-card">
+        <div className="mt-6 grid gap-6 xl:grid-cols-3">
+          <div className="ds-card !p-5 sm:!p-6 xl:!p-[30px]">
             <p className="ds-label mb-2">Page Respiro</p>
             <p className="ds-body-sm mb-4 text-muted-foreground">
               O fundo global precisa manter 30px de respiro em toda a extremidade antes da primeira section e entre todas as sections.
             </p>
-            <div className="rounded-[10px] bg-[#D4D4D4] p-[30px]">
-              <div className="rounded-[10px] bg-[#ECECEC] px-[60px] py-[80px]">
-                <div className="h-14 rounded-[10px] bg-white" />
-              </div>
+            <div className="[--demo-card-pad:20px] [--demo-page-gap:20px] [--demo-section-px:20px] [--demo-section-py:28px] bg-[#D4D4D4] p-[var(--demo-page-gap)] sm:[--demo-card-pad:24px] sm:[--demo-page-gap:24px] sm:[--demo-section-px:36px] sm:[--demo-section-py:48px] xl:[--demo-card-pad:30px] xl:[--demo-page-gap:30px] xl:[--demo-section-px:60px] xl:[--demo-section-py:80px]">
+              <ChamferedPanel
+                strokeColor="#FFFFFF"
+                strokeWidth={1}
+                innerStyle={{ background: "#ECECEC", borderRadius: 10, padding: "var(--demo-section-py) var(--demo-section-px)" }}
+              >
+                <div className="rounded-[10px] bg-white p-[var(--demo-card-pad)]">
+                  <p className="ds-label mb-2">Card Interno</p>
+                  <p className="ds-body-sm text-muted-foreground">
+                    Dentro da section, o card continua com 30px em cima, baixo, esquerda e direita.
+                  </p>
+                </div>
+              </ChamferedPanel>
             </div>
           </div>
 
-          <div className="ds-card">
+          <div className="ds-card !p-5 sm:!p-6 xl:!p-[30px]">
             <p className="ds-label mb-2">Section Interna</p>
             <p className="ds-body-sm mb-4 text-muted-foreground">
               Dentro da section, o conteúdo trabalha com 60px nas laterais e 80px no topo e embaixo. Depois, entram os cards quando o conteúdo precisa ficar separado.
             </p>
-            <div className="rounded-[10px] bg-[#ECECEC] px-[60px] py-[80px]">
-              <div className="h-14 rounded-[10px] bg-white" />
+            <div className="overflow-hidden rounded-[10px] [--demo-card-pad:20px] [--demo-section-px:20px] [--demo-section-py:28px] sm:[--demo-card-pad:24px] sm:[--demo-section-px:36px] sm:[--demo-section-py:48px] xl:[--demo-card-pad:30px] xl:[--demo-section-px:60px] xl:[--demo-section-py:80px]">
+              <ChamferedPanel
+                strokeColor="#FFFFFF"
+                strokeWidth={1}
+                innerStyle={{ background: "#ECECEC", borderRadius: 10, padding: "var(--demo-section-py) var(--demo-section-px)" }}
+              >
+                <div className="rounded-[10px] bg-white p-[var(--demo-card-pad)]">
+                  <p className="ds-label mb-2">Conteúdo do Card</p>
+                  <p className="ds-body-sm text-muted-foreground">
+                    A section organiza o assunto. O card aprofunda o conteúdo com padding interno fixo de 30px.
+                  </p>
+                </div>
+              </ChamferedPanel>
+            </div>
+          </div>
+
+          <div className="ds-card !p-5 sm:!p-6 xl:!p-[30px]">
+            <p className="ds-label mb-2">Card com Padding 30</p>
+            <p className="ds-body-sm mb-4 text-muted-foreground">
+              Exemplo isolado do card como terceira camada, sempre branco e sempre com 30px em todos os lados.
+            </p>
+            <div className="rounded-[10px] bg-white p-5 shadow-[var(--shadow-card)] sm:p-6 xl:p-[30px]">
+              <p className="ds-label mb-2">Resumo</p>
+              <p className="ds-body-sm text-muted-foreground">
+                Este bloco existe para validar visualmente o padding constante do card em qualquer contexto.
+              </p>
             </div>
           </div>
         </div>
@@ -341,7 +377,7 @@ export default function StyleguidePage() {
       >
         <div className="grid grid-cols-3 gap-6 sm:grid-cols-6">
           {radiusTokens.map((token) => (
-            <div key={token.name} className="ds-card flex flex-col items-center gap-6 p-5">
+            <div key={token.name} className="ds-card !p-[30px] flex flex-col items-center gap-6">
               <div
                 className="h-14 w-14 border border-black/10"
                 style={{
@@ -362,7 +398,7 @@ export default function StyleguidePage() {
           ))}
         </div>
 
-        <div className="ds-card mt-4">
+        <div className="ds-card !p-[30px] mt-4">
           <p className="ds-label mb-2">Chanfro da marca</p>
           <p className="ds-body-sm">
             A primeira section de cada página recebe um corte diagonal de{" "}
@@ -383,7 +419,7 @@ export default function StyleguidePage() {
       >
         <div className="grid grid-cols-2 gap-6 sm:grid-cols-5">
           {shadowTokens.map((token) => (
-            <div key={token.name} className="flex flex-col items-center gap-3">
+            <div key={token.name} className="ds-card !p-[30px] flex flex-col items-center gap-4 text-center">
               <div
                 className="h-20 w-full rounded-[10px] bg-white"
                 style={{ boxShadow: token.shadow }}
@@ -422,10 +458,10 @@ export default function StyleguidePage() {
           <div>
             <h3 className="ds-h2 mb-4">Badges</h3>
             <div className="flex flex-wrap gap-3">
-              <Badge className="bg-brand-green text-black">Default</Badge>
-              <Badge variant="secondary">Secondary</Badge>
-              <Badge variant="outline">Outline</Badge>
-              <Badge variant="destructive">Destructive</Badge>
+              <Badge className="min-h-8 px-2.5 py-0 bg-brand-green text-black">Default</Badge>
+              <Badge variant="secondary" className="min-h-8 px-2.5 py-0">Secondary</Badge>
+              <Badge variant="outline" className="min-h-8 px-2.5 py-0">Outline</Badge>
+              <Badge variant="destructive" className="min-h-8 px-2.5 py-0">Destructive</Badge>
             </div>
           </div>
 
@@ -434,11 +470,11 @@ export default function StyleguidePage() {
             <h3 className="ds-h2 mb-4">Cards</h3>
             <div className="ds-grid-2">
               <Card className="rounded-[10px]" style={{ border: "none" }}>
-                <CardHeader className="pb-3">
-                  <Badge className="mb-2 w-fit">Gestão</Badge>
+                <CardHeader>
+                  <Badge className="mb-2 min-h-8 w-fit px-2.5 py-0">Gestão</Badge>
                   <CardTitle>Mentorados ativos</CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0">
+                <CardContent>
                   <p className="ds-body-sm">
                     Acompanhe o progresso dos seus mentorados com métricas em tempo real.
                   </p>
@@ -449,13 +485,13 @@ export default function StyleguidePage() {
               </Card>
 
               <Card className="rounded-[10px] bg-brand-green text-black" style={{ border: "none" }}>
-                <CardHeader className="pb-3">
-                  <Badge variant="outline" className="mb-2 w-fit border-black/20 text-black">
+                <CardHeader>
+                  <Badge variant="outline" className="mb-2 min-h-8 w-fit border-black/20 px-2.5 py-0 text-black">
                     Destaque
                   </Badge>
                   <CardTitle>Resumo financeiro</CardTitle>
                 </CardHeader>
-                <CardContent className="pt-0">
+                <CardContent>
                   <Typography as="p" variant="body-sm" className="text-black/70">
                     Controle completo das receitas, despesas e metas financeiras do mês.
                   </Typography>

@@ -64,10 +64,10 @@ export default function AlertDialogPage() {
             <Typography as="p" variant="h3" className="text-foreground">
               Demo básica
             </Typography>
-            <div className="ds-card w-full max-w-3xl">
+            <div className="ds-card !p-[30px] w-full max-w-3xl">
               <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="outline">Abrir confirmação</Button>
+                <AlertDialogTrigger render={<Button variant="outline" />}>
+                  Abrir confirmação
                 </AlertDialogTrigger>
                 <AlertDialogContent className="rounded-[10px]">
                   <AlertDialogHeader>
@@ -85,7 +85,7 @@ export default function AlertDialogPage() {
             </div>
           </div>
 
-          <div className="ds-card">
+          <div className="ds-card !p-[30px]">
             <Typography
               as="p"
               variant="label"
@@ -98,7 +98,7 @@ export default function AlertDialogPage() {
             </Typography>
           </div>
 
-          <div className="ds-card">
+          <div className="ds-card !p-[30px]">
             <Typography
               as="p"
               variant="label"
@@ -124,10 +124,10 @@ export default function AlertDialogPage() {
             <Typography as="p" variant="h3" className="text-foreground">
               Confirmação simples
             </Typography>
-            <div className="ds-card w-full max-w-3xl">
+            <div className="ds-card !p-[30px] w-full max-w-3xl">
               <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="outline">Excluir item</Button>
+                <AlertDialogTrigger render={<Button variant="outline" />}>
+                  Excluir item
                 </AlertDialogTrigger>
                 <AlertDialogContent className="rounded-[10px]">
                   <AlertDialogHeader>
@@ -149,10 +149,10 @@ export default function AlertDialogPage() {
             <Typography as="p" variant="h3" className="text-foreground">
               Com mídia de apoio
             </Typography>
-            <div className="ds-card w-full max-w-3xl">
+            <div className="ds-card !p-[30px] w-full max-w-3xl">
               <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button>Encerrar sessão</Button>
+                <AlertDialogTrigger render={<Button />}>
+                  Encerrar sessão
                 </AlertDialogTrigger>
                 <AlertDialogContent className="rounded-[10px]">
                   <AlertDialogHeader>
@@ -180,31 +180,31 @@ export default function AlertDialogPage() {
         subtitle="Resumo das classes e snippets principais para usar o alert dialog no projeto."
       >
         <div className="flex flex-col gap-4">
-          <div className="ds-card flex w-full max-w-md flex-col gap-1">
+          <div className="ds-card !p-[30px] flex w-full max-w-md flex-col gap-1">
             <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
               Content
             </Typography>
             <Typography as="p" variant="code" className="text-foreground">
-              rounded-xl bg-popover p-4 ring-1
+              rounded-xl bg-popover p-[30px] ring-1
             </Typography>
             <Typography as="p" variant="body-sm" className="text-muted-foreground">
               Estrutura principal do modal de confirmação.
             </Typography>
           </div>
 
-          <div className="ds-card flex w-full max-w-md flex-col gap-1">
+          <div className="ds-card !p-[30px] flex w-full max-w-md flex-col gap-1">
             <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
               Footer
             </Typography>
             <Typography as="p" variant="code" className="text-foreground">
-              border-t bg-muted/50 p-4
+              border-t bg-muted/50 px-[30px] py-[30px]
             </Typography>
             <Typography as="p" variant="body-sm" className="text-muted-foreground">
               Área das ações, separada visualmente do conteúdo principal.
             </Typography>
           </div>
 
-          <div className="ds-card flex w-full max-w-md flex-col gap-1">
+          <div className="ds-card !p-[30px] flex w-full max-w-md flex-col gap-1">
             <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
               Trigger
             </Typography>
@@ -265,7 +265,7 @@ export default function AlertDialogPage() {
         subtitle="Pontos principais da API instalada no projeto."
       >
         <div className="grid gap-6 xl:grid-cols-2">
-          <div className="ds-card">
+          <div className="ds-card !p-[30px]">
             <Typography as="p" variant="h3" className="mb-4 text-foreground">
               Props e peças principais
             </Typography>
@@ -307,7 +307,7 @@ export default function AlertDialogPage() {
             </div>
           </div>
 
-          <div className="ds-card">
+          <div className="ds-card !p-[30px]">
             <Typography as="p" variant="h3" className="mb-4 text-foreground">
               Acessibilidade
             </Typography>

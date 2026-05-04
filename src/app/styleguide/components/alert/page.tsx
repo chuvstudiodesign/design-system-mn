@@ -56,7 +56,7 @@ export default function AlertPage() {
             <Typography as="p" variant="h3" className="text-foreground">
               Demo básica
             </Typography>
-            <div className="ds-card w-full max-w-3xl">
+            <div className="w-full max-w-3xl">
               <Alert className="rounded-[10px]">
                 <CheckCircle2Icon />
                 <AlertTitle>Alterações salvas com sucesso</AlertTitle>
@@ -67,7 +67,7 @@ export default function AlertPage() {
             </div>
           </div>
 
-          <div className="ds-card">
+          <div className="ds-card !p-[30px]">
             <Typography
               as="p"
               variant="label"
@@ -80,7 +80,7 @@ export default function AlertPage() {
             </Typography>
           </div>
 
-          <div className="ds-card">
+          <div className="ds-card !p-[30px]">
             <Typography
               as="p"
               variant="label"
@@ -106,7 +106,7 @@ export default function AlertPage() {
               Default
             </Typography>
             <div className="grid gap-4">
-              <div className="ds-card w-full max-w-3xl">
+              <div className="w-full max-w-3xl">
                 <Alert className="rounded-[10px]">
                   <InfoIcon />
                   <AlertTitle>Informação importante</AlertTitle>
@@ -116,7 +116,7 @@ export default function AlertPage() {
                 </Alert>
               </div>
 
-              <div className="ds-card w-full max-w-3xl">
+              <div className="w-full max-w-3xl">
                 <Alert className="rounded-[10px]">
                   <PopcornIcon />
                   <AlertTitle>Alert com título e ícone, sem descrição</AlertTitle>
@@ -130,7 +130,7 @@ export default function AlertPage() {
               Destructive + action
             </Typography>
             <div className="grid gap-4">
-              <div className="ds-card w-full max-w-3xl">
+              <div className="w-full max-w-3xl">
                 <Alert variant="destructive" className="rounded-[10px]">
                   <AlertCircleIcon />
                   <AlertTitle>Não foi possível concluir a ação</AlertTitle>
@@ -140,7 +140,7 @@ export default function AlertPage() {
                 </Alert>
               </div>
 
-              <div className="ds-card w-full max-w-3xl">
+              <div className="w-full max-w-3xl">
                 <Alert className="rounded-[10px]">
                   <InfoIcon />
                   <AlertTitle>Atualização disponível</AlertTitle>
@@ -162,19 +162,19 @@ export default function AlertPage() {
         subtitle="Resumo das classes e snippets principais para usar o alert no projeto."
       >
         <div className="flex flex-col gap-4">
-          <div className="ds-card flex w-full max-w-md flex-col gap-1">
+          <div className="ds-card !p-[30px] flex w-full max-w-md flex-col gap-1">
             <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
               Root
             </Typography>
             <Typography as="p" variant="code" className="text-foreground">
-              rounded-lg border px-2.5 py-2 text-sm
+              rounded-lg border p-[30px] text-sm
             </Typography>
             <Typography as="p" variant="body-sm" className="text-muted-foreground">
               Estrutura base do container do alert.
             </Typography>
           </div>
 
-          <div className="ds-card flex w-full max-w-md flex-col gap-1">
+          <div className="ds-card !p-[30px] flex w-full max-w-md flex-col gap-1">
             <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
               Variant
             </Typography>
@@ -186,7 +186,7 @@ export default function AlertPage() {
             </Typography>
           </div>
 
-          <div className="ds-card flex w-full max-w-md flex-col gap-1">
+          <div className="ds-card !p-[30px] flex w-full max-w-md flex-col gap-1">
             <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
               Action
             </Typography>
@@ -243,7 +243,7 @@ export default function AlertPage() {
         subtitle="Pontos principais da API disponível no projeto."
       >
         <div className="grid gap-6 xl:grid-cols-2">
-          <div className="ds-card">
+          <div className="ds-card !p-[30px]">
             <Typography as="p" variant="h3" className="mb-4 text-foreground">
               Props principais
             </Typography>
@@ -280,7 +280,7 @@ export default function AlertPage() {
             </div>
           </div>
 
-          <div className="ds-card">
+          <div className="ds-card !p-[30px]">
             <Typography as="p" variant="h3" className="mb-4 text-foreground">
               Acessibilidade
             </Typography>
