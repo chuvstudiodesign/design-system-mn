@@ -45,7 +45,7 @@ export default function BlogPage() {
       <div className="flex items-start justify-between gap-4 px-1">
         <FoundationPageHeader
           title="Blog"
-          description="Plataforma editorial para negocios, inovacao, tecnologia, lideranca, estrategia e crescimento."
+          description="Plataforma editorial para negócios, inovação, tecnologia, liderança, estratégia e crescimento."
         />
         <Button render={<Link href="/styleguide/paginas/blog/cms" />} variant="secondary" size="sm" className="shrink-0">
           <LayoutDashboard data-icon="inline-start" className="size-4" />
@@ -55,8 +55,8 @@ export default function BlogPage() {
 
       <Section
         eyebrow="Blog"
-        title="Negocios, tecnologia e crescimento"
-        subtitle="Analises para founders, lideres e equipes que precisam transformar estrategia em decisao, produto, cultura e execucao."
+        title="Negócios, tecnologia e crescimento"
+        subtitle="Análises para founders, líderes e equipes que precisam transformar estratégia em decisão, produto, cultura e execução."
         first
       >
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_390px]">
@@ -74,10 +74,10 @@ export default function BlogPage() {
                 Newsletter
               </Typography>
               <Typography as="h3" variant="h2" className="text-foreground">
-                Receba leituras sobre negocios, tecnologia e crescimento.
+                Receba leituras sobre negócios, tecnologia e crescimento.
               </Typography>
               <Typography as="p" variant="body-sm" className="text-muted-foreground">
-                Uma curadoria para acompanhar tendencias, decisoes e movimentos que importam para empresas em crescimento.
+                Uma curadoria para acompanhar tendências, decisões e movimentos que importam para empresas em crescimento.
               </Typography>
               <form className="mt-2 flex flex-col gap-3" aria-label="Assinar newsletter demonstrativa">
                 <input
@@ -100,7 +100,7 @@ export default function BlogPage() {
 
       <Section
         title="Categorias"
-        subtitle="Mapa editorial para organizar temas, filtros e arquitetura de conteudo."
+        subtitle="Mapa editorial para organizar temas, filtros e arquitetura de conteúdo."
       >
         <div className="ds-grid-3">
           {categories.map((category) => (
@@ -130,7 +130,7 @@ export default function BlogPage() {
 
       <Section
         title="Biblioteca"
-        subtitle="Busca local e filtros por categoria ou tag. A estrutura simula a experiencia que sera conectada a um CMS real."
+        subtitle="Busca local e filtros por categoria ou tag. A estrutura simula a experiência que será conectada a um CMS real."
       >
         <BlogFilterExperience posts={posts} categories={categories} tags={tags} />
       </Section>
@@ -144,7 +144,7 @@ export default function BlogPage() {
 
       <Section
         title="Tags editoriais"
-        subtitle="Taxonomia provisoria para descoberta e migracao futura para CMS."
+        subtitle="Taxonomia provisória para descoberta e migração futura para CMS."
       >
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
@@ -157,7 +157,7 @@ export default function BlogPage() {
 
       <Section
         title="Newsletter"
-        subtitle="Bloco de conversao visual, preparado para futura integracao com CRM, automacao ou provider de email."
+        subtitle="Bloco de conversão visual, preparado para futura integração com CRM, automação ou provider de email."
       >
         <NewsletterCTA />
       </Section>

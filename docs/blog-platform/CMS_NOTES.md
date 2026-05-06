@@ -2,29 +2,29 @@
 
 ## Estado atual
 
-O CMS criado nesta etapa e um prototipo visual local-first. Ele demonstra informacao, estrutura e fluxos esperados, mas nao grava dados em banco.
+O CMS criado nesta etapa é um protótipo visual local-first. Ele demonstra informação, estrutura e fluxos esperados, mas não grava dados em banco.
 
-## Funcionalidades planejadas para o prototipo
+## Funcionalidades planejadas para o protótipo
 
 - Tabela/lista de posts: implementado.
 - Busca visual: implementado.
 - Filtro por categoria: implementado.
 - Status: publicado, rascunho e agendado: implementado.
-- Indicador de destaque: implementado no formulario preview.
-- Acoes: criar, editar, preview e salvar localmente: implementado em memoria no navegador.
+- Indicador de destaque: implementado no formulário preview.
+- Ações: criar, editar, preview e salvar localmente: implementado em memória no navegador.
 - Painel de campos principais: implementado com inputs editaveis.
-- Preview editorial: implementado por link para pagina de post.
+- Preview editorial: implementado por link para página de post.
 
 ## Campos de CMS
 
-- Titulo, subtitulo, slug, excerpt.
+- Título, subtítulo, slug, excerpt.
 - Categoria, tags, autor.
 - Status, featured, datas.
 - Cover image e alt text.
 - SEO title, SEO description, keywords, OG image e canonical.
-- Conteudo estruturado por blocos.
+- Conteúdo estruturado por blocos.
 
-## Persistencia futura
+## Persistência futura
 
 Quando houver CMS real, criar mutations/server actions ou route handlers para:
 
@@ -32,15 +32,15 @@ Quando houver CMS real, criar mutations/server actions ou route handlers para:
 - editar post;
 - publicar/despublicar;
 - agendar;
-- validar slug unico;
+- validar slug único;
 - upload/selecionar imagem;
 - gerar preview.
 
-## Proxima evolucao sugerida
+## Próxima evolução sugerida
 
-1. Persistir alteracoes via Server Actions, Route Handler ou CMS real.
-2. Introduzir tabs no editor (`Conteudo`, `SEO`, `Publicacao`, `Historico`).
-3. Criar `BlogCMSAdapter` com interface unica para local data e CMS real.
-4. Adicionar validacao de slug unico.
+1. Persistir alterações via Server Actions, Route Handler ou CMS real.
+2. Introduzir tabs no editor (`Conteúdo`, `SEO`, `Publicação`, `Histórico`).
+3. Criar `BlogCMSAdapter` com interface única para local data e CMS real.
+4. Adicionar validação de slug único.
 5. Adicionar fluxo de upload/selecionador de imagem.
-6. Implementar preview draft separado da rota publica, quando houver autenticacao.
+6. Implementar preview draft separado da rota pública, quando houver autenticação.

@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   if (!post) {
     return {
-      title: "Post nao encontrado | MN Design System",
+      title: "Post não encontrado | MN Design System",
     };
   }
 
@@ -53,29 +53,29 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <Section
         eyebrow="Blog"
         title="Artigo"
-        subtitle="Pagina individual estruturada para SEO, leitura longa e recomendacoes editoriais."
+        subtitle="Página individual estruturada para SEO, leitura longa e recomendações editoriais."
         first
       >
         <BlogPostHeader post={post} />
       </Section>
 
       <Section
-        title="Conteudo"
-        subtitle="Blocos ricos renderizados a partir da camada local-first de conteudo."
+        title="Conteúdo"
+        subtitle="Blocos ricos renderizados a partir da camada local-first de conteúdo."
       >
         <BlogPostContent post={post} />
       </Section>
 
       <Section
         title="Artigos relacionados"
-        subtitle="Relacionamento por curadoria explicita, categoria e tags compartilhadas."
+        subtitle="Relacionamento por curadoria explícita, categoria e tags compartilhadas."
       >
         <BlogRelatedPosts posts={relatedPosts} />
       </Section>
 
       <Section
         title="Continue acompanhando"
-        subtitle="CTA demonstrativo para fechar a leitura e preparar conversao futura."
+        subtitle="CTA demonstrativo para fechar a leitura e preparar conversão futura."
       >
         <NewsletterCTA />
       </Section>

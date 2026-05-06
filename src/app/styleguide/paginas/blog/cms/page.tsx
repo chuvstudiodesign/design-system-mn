@@ -23,7 +23,7 @@ import {
 
 export const metadata: Metadata = {
   title: "CMS Blog | MN Design System",
-  description: "Prototipo visual de Content Manager para a plataforma de Blog.",
+  description: "Protótipo visual de Content Manager para a plataforma de Blog.",
 };
 
 export default function BlogCMSPage() {
@@ -41,7 +41,7 @@ export default function BlogCMSPage() {
       <div className="flex items-start justify-between gap-4 px-1">
         <FoundationPageHeader
           title="CMS Blog"
-          description="Prototipo local-first para gerenciar posts, status, taxonomia, SEO e preview editorial."
+          description="Protótipo local-first para gerenciar posts, status, taxonomia, SEO e preview editorial."
         />
         <Button render={<Link href="/styleguide/paginas/blog" />} variant="secondary" size="sm" className="shrink-0">
           <ArrowLeft data-icon="inline-start" className="size-4" />
@@ -51,8 +51,8 @@ export default function BlogCMSPage() {
 
       <Section
         eyebrow="Content Manager"
-        title="Operacao editorial"
-        subtitle="Uma visao de CMS mockada, sem persistencia real, mas alinhada aos campos e fluxos esperados para uma integracao futura."
+        title="Operação editorial"
+        subtitle="Uma visão de CMS mockada, sem persistência real, mas alinhada aos campos e fluxos esperados para uma integração futura."
         first
       >
         <div className="ds-grid-3">
@@ -91,7 +91,7 @@ export default function BlogCMSPage() {
 
       <Section
         title="Posts e editor"
-        subtitle="Lista editorial com busca, filtro por categoria, criacao de rascunho, selecao, edicao e salvamento local em memoria."
+        subtitle="Lista editorial com busca, filtro por categoria, criação de rascunho, seleção, edição e salvamento local em memória."
       >
         <CMSBlogManager
           initialPosts={posts}
@@ -102,15 +102,15 @@ export default function BlogCMSPage() {
       </Section>
 
       <Section
-        title="Proxima camada"
-        subtitle="Preparacao para um CMS real sem reescrever a interface."
+        title="Próxima camada"
+        subtitle="Preparação para um CMS real sem reescrever a interface."
       >
         <div className="ds-card !p-[30px]">
           <Typography as="h3" variant="h3" className="text-foreground">
             Adapter primeiro, banco depois.
           </Typography>
           <Typography as="p" variant="body-sm" className="mt-2 max-w-3xl text-muted-foreground">
-            Os componentes consomem helpers de `src/lib/blog`. Para conectar Sanity, Payload, Strapi, Contentful, Supabase ou outro backend, a proxima etapa e trocar essa camada por queries reais e manter os mesmos contratos de dados.
+            Os componentes consomem helpers de `src/lib/blog`. Para conectar Sanity, Payload, Strapi, Contentful, Supabase ou outro backend, a próxima etapa é trocar essa camada por queries reais e manter os mesmos contratos de dados.
           </Typography>
         </div>
       </Section>

@@ -11,13 +11,13 @@ export function CMSPostFormPreview({ post }: { post: BlogPost }) {
       <div className="ds-card !p-[30px] flex flex-col gap-5">
         <div>
           <Typography as="p" variant="label" className="mb-2 normal-case tracking-normal text-foreground">
-            Titulo
+            Título
           </Typography>
           <Input value={post.title} readOnly className="h-12 rounded-[10px] bg-white" />
         </div>
         <div>
           <Typography as="p" variant="label" className="mb-2 normal-case tracking-normal text-foreground">
-            Subtitulo
+            Subtítulo
           </Typography>
           <Textarea value={post.subtitle} readOnly className="min-h-24 rounded-[10px] bg-white" />
         </div>
@@ -46,7 +46,7 @@ export function CMSPostFormPreview({ post }: { post: BlogPost }) {
       <aside className="ds-card !p-[30px] flex flex-col gap-5">
         <div>
           <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
-            Publicacao
+            Publicação
           </Typography>
           <div className="mt-3 flex flex-wrap gap-2">
             <CMSStatusBadge status={post.status} />

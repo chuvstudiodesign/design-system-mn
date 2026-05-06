@@ -7,19 +7,19 @@ const blogBasePath = "/styleguide/paginas/blog";
 export const blogHomeMetadata: Metadata = {
   title: "Blog | MN Design System",
   description:
-    "Plataforma editorial para negocios, inovacao, tecnologia, lideranca e crescimento.",
+    "Plataforma editorial para negócios, inovação, tecnologia, liderança e crescimento.",
   keywords: [
-    "blog de negocios",
-    "inovacao",
+    "blog de negócios",
+    "inovação",
     "empreendedorismo",
     "tecnologia",
-    "estrategia",
+    "estratégia",
     "crescimento",
   ],
   openGraph: {
     title: "Blog | MN Design System",
     description:
-      "Conteudos editoriais sobre negocios, inovacao, tecnologia e crescimento.",
+      "Conteúdos editoriais sobre negócios, inovação, tecnologia e crescimento.",
     type: "website",
     siteName,
     url: blogBasePath,
@@ -28,7 +28,7 @@ export const blogHomeMetadata: Metadata = {
     card: "summary_large_image",
     title: "Blog | MN Design System",
     description:
-      "Conteudos editoriais sobre negocios, inovacao, tecnologia e crescimento.",
+      "Conteúdos editoriais sobre negócios, inovação, tecnologia e crescimento.",
   },
 };
 

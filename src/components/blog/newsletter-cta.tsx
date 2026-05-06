@@ -12,10 +12,10 @@ export function NewsletterCTA() {
             Newsletter
           </Typography>
           <Typography as="h3" variant="h2" className="mt-3 text-white">
-            Receba leituras sobre negocios, tecnologia e crescimento.
+            Receba leituras sobre negócios, tecnologia e crescimento.
           </Typography>
           <Typography as="p" variant="body" className="mt-3 max-w-2xl text-white/70">
-            CTA visual preparado para futura integracao com CRM ou automacao. Nesta versao, o formulario e demonstrativo.
+            CTA visual preparado para futura integração com CRM ou automação. Nesta versão, o formulário é demonstrativo.
           </Typography>
         </div>
         <form className="flex flex-col gap-3 sm:flex-row" aria-label="Assinar newsletter demonstrativa">

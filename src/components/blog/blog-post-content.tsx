@@ -113,9 +113,9 @@ export function BlogPostContent({ post }: { post: BlogPost }) {
 
       <aside className="h-fit rounded-[10px] bg-white p-[30px] shadow-[var(--shadow-card)]">
         <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
-          Indice
+          Índice
         </Typography>
-        <nav className="mt-4 flex flex-col gap-3" aria-label="Indice do artigo">
+        <nav className="mt-4 flex flex-col gap-3" aria-label="Índice do artigo">
           {post.tableOfContents.map((item) => (
             <a key={item.id} href={`#${item.id}`} className="text-[13px] font-medium leading-relaxed text-muted-foreground hover:font-bold hover:text-primary">
               {item.title}

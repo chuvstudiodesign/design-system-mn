@@ -43,7 +43,7 @@ export function CMSPostTable({
           <Input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Buscar posts por titulo, autor ou tag"
+            placeholder="Buscar posts por título, autor ou tag"
             className="h-12 rounded-[10px] bg-white pl-10"
           />
         </label>
@@ -78,7 +78,7 @@ export function CMSPostTable({
               <TableHead>Status</TableHead>
               <TableHead>Categoria</TableHead>
               <TableHead>Atualizado</TableHead>
-              <TableHead className="text-right">Acoes</TableHead>
+              <TableHead className="text-right">Ações</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

@@ -4,9 +4,9 @@ export const blogAuthors: BlogAuthor[] = [
   {
     id: "author-lucas-martins",
     name: "Lucas Martins",
-    role: "Estrategia e Produto",
+    role: "Estratégia e Produto",
     avatar: "LM",
-    bio: "Especialista em estrategia de crescimento, produto digital e arquitetura de negocios.",
+    bio: "Especialista em estratégia de crescimento, produto digital e arquitetura de negócios.",
     socialLinks: {
       linkedin: "https://www.linkedin.com",
     },
@@ -14,22 +14,22 @@ export const blogAuthors: BlogAuthor[] = [
   {
     id: "author-marina-costa",
     name: "Marina Costa",
-    role: "Inovacao e Cultura",
+    role: "Inovação e Cultura",
     avatar: "MC",
-    bio: "Pesquisa como empresas tradicionais transformam cultura, tecnologia e operacao em vantagem competitiva.",
+    bio: "Pesquisa como empresas tradicionais transformam cultura, tecnologia e operação em vantagem competitiva.",
   },
   {
     id: "author-rafael-nogueira",
     name: "Rafael Nogueira",
     role: "Dados e IA",
     avatar: "RN",
-    bio: "Arquiteto de solucoes orientadas por dados, IA aplicada e governanca de decisao.",
+    bio: "Arquiteto de soluções orientadas por dados, IA aplicada e governança de decisão.",
   },
   {
     id: "author-bianca-alves",
     name: "Bianca Alves",
     role: "Growth e Mercado",
     avatar: "BA",
-    bio: "Atua na intersecao entre posicionamento, marketing, vendas e operacoes escalaveis.",
+    bio: "Atua na interseção entre posicionamento, marketing, vendas e operações escaláveis.",
   },
 ];

@@ -68,7 +68,7 @@ function createDraftPost({
     id: `local-${Date.now()}`,
     slug,
     title,
-    subtitle: "Subtitulo do novo artigo.",
+    subtitle: "Subtítulo do novo artigo.",
     excerpt: "Resumo curto usado nos cards e nos resultados de busca.",
     publishedAt: today,
     updatedAt: today,
@@ -76,16 +76,16 @@ function createDraftPost({
     status: "draft",
     featured: false,
     seoTitle: title,
-    seoDescription: "Descricao SEO do novo artigo.",
-    seoKeywords: ["blog", "negocios"],
-    tags: ["Estrategia"],
+    seoDescription: "Descrição SEO do novo artigo.",
+    seoKeywords: ["blog", "negócios"],
+    tags: ["Estratégia"],
     tagSlugs: ["estrategia"],
     relatedPosts: [],
-    tableOfContents: [{ id: "introducao", title: "Introducao" }],
+    tableOfContents: [{ id: "introducao", title: "Introdução" }],
     content: [
       { type: "paragraph", text: "Escreva aqui a abertura do artigo." },
-      { type: "heading", id: "introducao", text: "Introducao" },
-      { type: "paragraph", text: "Desenvolva a ideia principal com contexto, exemplos e implicacoes para negocios." },
+      { type: "heading", id: "introducao", text: "Introdução" },
+      { type: "paragraph", text: "Desenvolva a ideia principal com contexto, exemplos e implicações para negócios." },
     ],
     canonicalUrl: `/styleguide/paginas/blog/${slug}`,
     ...categoryFields(categories, categories[0].slug),
@@ -208,7 +208,7 @@ export function CMSBlogManager({
     );
     setSelectedId(updatedPost.id);
     setDraft(updatedPost);
-    setSavedNotice("Alteracoes salvas em memoria. A persistencia real entra no adapter futuro.");
+    setSavedNotice("Alterações salvas em memória. A persistência real entra no adapter futuro.");
   }
 
   return (
@@ -221,7 +221,7 @@ export function CMSBlogManager({
             <Input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Buscar posts por titulo, autor ou tag"
+              placeholder="Buscar posts por título, autor ou tag"
               className="h-12 rounded-[10px] bg-white pl-10"
             />
           </label>
@@ -256,7 +256,7 @@ export function CMSBlogManager({
                 <TableHead>Status</TableHead>
                 <TableHead>Categoria</TableHead>
                 <TableHead>Atualizado</TableHead>
-                <TableHead className="text-right">Acoes</TableHead>
+                <TableHead className="text-right">Ações</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -330,14 +330,14 @@ export function CMSBlogManager({
 
           <label className="block">
             <Typography as="span" variant="label" className="mb-2 block normal-case tracking-normal text-foreground">
-              Titulo
+              Título
             </Typography>
             <Input value={draft.title} onChange={(event) => updateTitle(event.target.value)} className="h-12 rounded-[10px] bg-white" />
           </label>
 
           <label className="block">
             <Typography as="span" variant="label" className="mb-2 block normal-case tracking-normal text-foreground">
-              Subtitulo
+              Subtítulo
             </Typography>
             <Textarea value={draft.subtitle} onChange={(event) => updateDraft({ subtitle: event.target.value })} className="min-h-24 rounded-[10px] bg-white" />
           </label>
@@ -398,7 +398,7 @@ export function CMSBlogManager({
         <aside className="ds-card !p-[30px] flex h-fit flex-col gap-5">
           <div>
             <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
-              Publicacao
+              Publicação
             </Typography>
             <div className="mt-3 flex flex-wrap gap-2">
               <CMSStatusBadge status={draft.status} />
@@ -433,7 +433,7 @@ export function CMSBlogManager({
 
           <div>
             <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
-              Tags disponiveis
+              Tags disponíveis
             </Typography>
             <div className="mt-3 flex flex-wrap gap-2">
               {tags.map((tag) => (
@@ -446,10 +446,10 @@ export function CMSBlogManager({
 
           <div>
             <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
-              Persistencia
+              Persistência
             </Typography>
             <Typography as="p" variant="body-sm" className="mt-2 text-muted-foreground">
-              Este editor salva em memoria no navegador. O contrato ja esta pronto para trocar por Server Actions ou CMS real.
+              Este editor salva em memória no navegador. O contrato já está pronto para trocar por Server Actions ou CMS real.
             </Typography>
           </div>
         </aside>

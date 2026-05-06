@@ -40,7 +40,7 @@ export function BlogFilterExperience({
             <Input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Buscar por titulo, tema, categoria ou tag"
+              placeholder="Buscar por título, tema, categoria ou tag"
               className="h-12 rounded-[10px] bg-white pl-10"
             />
           </label>
