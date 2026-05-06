@@ -44,12 +44,12 @@ export default function LabelPage() {
             <div className="ds-card !p-[30px] flex flex-col gap-4 max-w-sm">
               <div className="flex flex-col gap-1.5">
                 <Label htmlFor="l-text">Nome completo</Label>
-                <Input id="l-text" placeholder="Lucas Zerlotini" />
+                <Input id="l-text" placeholder="Breno Masi" />
               </div>
 
               <div className="flex flex-col gap-1.5">
                 <Label htmlFor="l-email">E-mail</Label>
-                <Input id="l-email" type="email" placeholder="lucas@empresa.com" />
+                <Input id="l-email" type="email" placeholder="breno@empresa.com" />
               </div>
 
               <div className="flex items-center gap-2">

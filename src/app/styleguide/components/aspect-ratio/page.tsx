@@ -37,17 +37,14 @@ export default function AspectRatioPage() {
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-3">
             <Typography as="p" variant="h3" className="text-foreground">
-              16:9 — padrão para vídeo e imagem wide
+              1:1 — padrão para cards
             </Typography>
-            <div className="ds-card !p-[30px] w-full max-w-xl">
-              <AspectRatio ratio={16 / 9}>
-                <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-muted">
-                  <Typography as="p" variant="label" className="normal-case tracking-normal text-muted-foreground">
-                    16 : 9
-                  </Typography>
-                </div>
-              </AspectRatio>
+            <div className="ds-card !p-[30px] w-full max-w-xs">
+              <AspectRatio ratio={1} />
             </div>
+            <Typography as="p" variant="body-sm" className="text-muted-foreground">
+              Proporção padrão do design system para cards com imagem. Use <code className="font-mono text-foreground">ratio={"{1}"}</code> para garantir quadrado perfeito.
+            </Typography>
           </div>
 
           <div className="ds-card !p-[30px]">
@@ -129,6 +126,7 @@ export default function AspectRatioPage() {
           </div>
         </div>
       </Section>
+
 
       <Section
         title="Padrão de implementação"

@@ -284,23 +284,25 @@ export default function StyleguidePage() {
                 <div className="max-w-full overflow-x-auto">
                   {token.name.includes("gap") ? (
                     <div
-                      className="flex min-w-fit items-center rounded-[8px] border border-black/10 bg-[#ECECEC] p-3"
+                      className="flex w-fit items-center rounded-[8px] border border-dotted border-black/20 bg-white p-3"
                       style={{ gap: `${token.value}px` }}
                     >
-                      <div className="h-8 w-16 rounded-[6px] bg-white" />
-                      <div className="h-8 w-16 rounded-[6px] bg-white" />
+                      <div className="h-8 w-16 rounded-[6px] bg-[#ECECEC]" />
+                      <div className="h-8 w-16 rounded-[6px] bg-[#ECECEC]" />
                     </div>
                   ) : (
                     <div
-                      className="min-w-fit rounded-[8px] border border-black/10 bg-[#ECECEC]"
+                      className="w-fit rounded-[8px] border border-dotted border-black/20 bg-white"
                       style={{
                         padding:
                           token.name === "--section-padding-y"
-                            ? `${token.value}px 18px`
-                            : `${18}px ${token.value}px`,
+                            ? `${token.value}px 12px`
+                            : token.name === "--section-padding-x"
+                            ? `12px ${token.value}px`
+                            : `${token.value}px`,
                       }}
                     >
-                      <div className="min-h-8 min-w-24 rounded-[6px] bg-white" />
+                      <div className="h-8 w-20 rounded-[6px] bg-[#ECECEC]" />
                     </div>
                   )}
                 </div>
@@ -468,37 +470,37 @@ export default function StyleguidePage() {
           {/* Cards */}
           <div>
             <h3 className="ds-h2 mb-4">Cards</h3>
-            <div className="ds-grid-2">
-              <Card className="rounded-[10px]" style={{ border: "none" }}>
+            <div className="flex flex-col gap-6">
+              <Card className="w-[400px] h-[400px] rounded-[10px]" style={{ border: "none" }}>
                 <CardHeader>
                   <Badge className="mb-2 min-h-8 w-fit px-2.5 py-0">Gestão</Badge>
                   <CardTitle>Mentorados ativos</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex flex-col flex-1">
                   <p className="ds-body-sm">
                     Acompanhe o progresso dos seus mentorados com métricas em tempo real.
                   </p>
-                  <Button variant="ghost" size="sm" className="mt-4 -ml-2 text-primary">
+                  <Button variant="ghost" size="sm" className="mt-auto -ml-2 text-primary">
                     Ver mais →
                   </Button>
                 </CardContent>
               </Card>
 
-              <Card className="rounded-[10px] bg-brand-green text-black" style={{ border: "none" }}>
+              <Card className="w-[400px] h-[400px] rounded-[10px] bg-brand-green text-black" style={{ border: "none" }}>
                 <CardHeader>
                   <Badge variant="outline" className="mb-2 min-h-8 w-fit border-black/20 px-2.5 py-0 text-black">
                     Destaque
                   </Badge>
                   <CardTitle>Resumo financeiro</CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex flex-col flex-1">
                   <Typography as="p" variant="body-sm" className="text-black/70">
                     Controle completo das receitas, despesas e metas financeiras do mês.
                   </Typography>
                   <Button
                     variant="outline"
                     size="sm"
-                    className="mt-4 border-black/20 bg-transparent text-black hover:bg-black/5"
+                    className="mt-auto border-black/20 bg-transparent text-black hover:bg-black/5"
                   >
                     Ver mais →
                   </Button>

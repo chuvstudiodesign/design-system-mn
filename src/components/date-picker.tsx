@@ -34,7 +34,7 @@ function DatePicker({
           <CalendarIcon className="mr-2 size-4" />
           {date ? format(date, "dd/MM/yyyy", { locale: ptBR }) : placeholder}
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
+      <PopoverContent className="w-auto p-[30px]" align="start">
         <Calendar
           mode="single"
           selected={date}

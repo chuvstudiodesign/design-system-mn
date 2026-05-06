@@ -15,6 +15,7 @@ export const navigation: NavSection[] = [
       { name: "Design Tokens", href: "/styleguide" },
       { name: "Section System", href: "/styleguide/section-system" },
       { name: "Card System", href: "/styleguide/card-system" },
+      { name: "Logotipo", href: "/styleguide/logotipo" },
     ],
   },
   {

@@ -18,9 +18,11 @@ const BRAND_LOGO_URL = "https://raw.githubusercontent.com/chuvstudiodesign/logos
 function SidebarContent({
   pathname,
   onNavClick,
+  logoClassName = "h-7",
 }: {
   pathname: string;
   onNavClick?: () => void;
+  logoClassName?: string;
 }) {
   return (
     <>
@@ -30,7 +32,7 @@ function SidebarContent({
           <img
             src={BRAND_LOGO_URL}
             alt="Negocios"
-            className="h-7 w-auto"
+            className={`${logoClassName} w-auto`}
           />
         </Link>
       </div>
@@ -135,7 +137,7 @@ export default function StyleguideLayout({
           <img
             src={BRAND_LOGO_URL}
             alt="Negocios"
-            className="h-6 w-auto"
+            className="h-[19px] w-auto"
           />
         </Link>
 
@@ -166,31 +168,14 @@ export default function StyleguideLayout({
       {/* ── Mobile drawer (opens from the RIGHT) ── */}
       <aside
         className={cn(
-          "fixed right-0 top-0 z-50 h-full w-[min(20rem,calc(100vw-1rem))]",
-          "flex flex-col overflow-y-auto rounded-l-[10px] border border-white p-5",
+          "fixed right-[30px] top-[30px] z-50 w-[min(20rem,calc(100vw-60px))]",
+          "flex flex-col overflow-y-auto rounded-[10px] border border-white p-5",
           "transition-transform duration-200 lg:hidden",
-          mobileOpen ? "translate-x-0" : "translate-x-full"
+          mobileOpen ? "translate-x-0" : "translate-x-[calc(100%+30px)]"
         )}
-        style={{ backgroundColor: "#ececec" }}
+        style={{ backgroundColor: "#ececec", height: "calc(100vh - 60px)" }}
       >
-        <button
-          onClick={() => setMobileOpen(false)}
-          aria-label="Fechar menu"
-          className="absolute left-4 top-4 rounded-[10px] p-1.5 transition-colors hover:bg-black/10"
-        >
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path
-              d="M4 4l10 10M14 4L4 14"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-          </svg>
-        </button>
-        {/* Offset content below the close button */}
-        <div className="mt-8">
-          <SidebarContent pathname={pathname} onNavClick={() => setMobileOpen(false)} />
-        </div>
+        <SidebarContent pathname={pathname} onNavClick={() => setMobileOpen(false)} logoClassName="h-5" />
       </aside>
 
       {/* ── Desktop sidebar (fixed, slides left on collapse) ── */}

@@ -82,7 +82,7 @@ export default function DrawerPage() {
                 <DrawerTrigger asChild>
                   <Button variant="outline">Abrir drawer (right)</Button>
                 </DrawerTrigger>
-                <DrawerContent className="h-full w-[320px]">
+                <DrawerContent className="w-[320px]">
                   <DrawerHeader>
                     <DrawerTitle>Painel lateral</DrawerTitle>
                     <DrawerDescription>
@@ -164,7 +164,7 @@ export default function DrawerPage() {
   <DrawerTrigger asChild>
     <Button variant="outline">Filtros</Button>
   </DrawerTrigger>
-  <DrawerContent className="h-full w-[320px]">
+  <DrawerContent className="w-[320px]">
     <DrawerHeader>
       <DrawerTitle>Filtros</DrawerTitle>
     </DrawerHeader>

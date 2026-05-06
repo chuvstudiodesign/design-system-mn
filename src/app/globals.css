@@ -352,4 +352,15 @@
     @apply mt-4 overflow-x-auto whitespace-pre-wrap rounded-[10px] border border-white bg-white/60 px-4 py-3 text-[11px] font-mono;
     color: #474747;
   }
+
+  /* ── Sonner toast padding ── */
+  .cn-toast {
+    padding: 30px !important;
+  }
+
+  /* ── Vaul drawer: remove fill pseudo-element for floating drawers ── */
+  [data-vaul-drawer-direction="bottom"][data-slot="drawer-content"]::after,
+  [data-vaul-drawer-direction="right"][data-slot="drawer-content"]::after {
+    display: none;
+  }
 }

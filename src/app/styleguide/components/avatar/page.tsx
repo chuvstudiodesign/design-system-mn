@@ -13,7 +13,7 @@ import {
   Section,
 } from "../../foundation-sections";
 
-const DEMO_IMAGE = "https://github.com/shadcn.png";
+const DEMO_IMAGE = "https://randomuser.me/api/portraits/women/44.jpg";
 
 function CodeBlock({ title, code }: { title: string; code: string }) {
   return (

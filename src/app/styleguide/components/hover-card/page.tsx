@@ -47,19 +47,19 @@ export default function HoverCardPage() {
             </Typography>
             <div className="ds-card !p-[30px] flex items-center gap-4">
               <HoverCard>
-                <HoverCardTrigger render={<Button variant="link" className="h-auto p-0" />}>@lucaszerlotini</HoverCardTrigger>
+                <HoverCardTrigger render={<Button variant="link" className="h-auto p-0" />}>@brenomasi</HoverCardTrigger>
                 <HoverCardContent className="w-80">
                   <div className="flex items-start gap-4">
                     <Avatar size="lg">
-                      <AvatarImage src="https://github.com/shadcn.png" alt="Lucas" />
-                      <AvatarFallback>LZ</AvatarFallback>
+                      <AvatarImage src="https://randomuser.me/api/portraits/men/52.jpg" alt="Breno Masi" />
+                      <AvatarFallback>BM</AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col gap-1">
                       <Typography as="p" variant="body" className="font-semibold text-foreground">
-                        Lucas Zerlotini
+                        Breno Masi
                       </Typography>
                       <Typography as="p" variant="body-sm" className="text-muted-foreground">
-                        Designer & Developer. Trabalhando no MN Design System.
+                        Fundador da Masi Negócios.
                       </Typography>
                       <Typography as="p" variant="caption" className="mt-1 normal-case tracking-normal text-muted-foreground">
                         Entrou em Janeiro 2024

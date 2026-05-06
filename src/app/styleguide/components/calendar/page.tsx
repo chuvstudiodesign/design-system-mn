@@ -43,7 +43,7 @@ export default function CalendarPage() {
             <Typography as="p" variant="h3" className="text-foreground">
               Seleção única
             </Typography>
-            <div className="ds-card !p-[30px] w-fit">
+            <div className="ds-card !p-[30px] w-full max-w-xs">
               <CalendarSingleDemo />
             </div>
           </div>

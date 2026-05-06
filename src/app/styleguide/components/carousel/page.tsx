@@ -40,20 +40,20 @@ export default function CarouselPage() {
 
       <Section
         title="Visão geral"
-        subtitle="O Carousel usa Embla Carousel para navegação fluida. Suporta slides de qualquer largura, orientação vertical e autoplay."
+        subtitle="O Carousel usa Embla Carousel para navegação fluida. Padrão Netflix: slides 1:1 com tamanho fixo, overflow lateral mostra o próximo parcialmente."
         first
       >
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-3">
             <Typography as="p" variant="h3" className="text-foreground">
-              Demo básica
+              Demo — estilo Netflix (1:1)
             </Typography>
-            <div className="ds-card !p-[30px] w-full max-w-xl">
-              <Carousel className="w-full">
-                <CarouselContent>
+            <div className="overflow-hidden"><div className="relative px-20">
+              <Carousel opts={{ align: "start" }} className="w-full">
+                <CarouselContent viewportClassName="overflow-visible" className="-ml-4">
                   {SLIDES.map((slide) => (
-                    <CarouselItem key={slide}>
-                      <div className="flex h-40 items-center justify-center rounded-[10px] bg-muted">
+                    <CarouselItem key={slide} className="pl-4 basis-[520px] shrink-0">
+                      <div className="aspect-square flex items-center justify-center rounded-[10px] bg-white shadow-[var(--shadow-card)]">
                         <Typography as="p" variant="h3" className="text-foreground">
                           {slide}
                         </Typography>
@@ -64,6 +64,7 @@ export default function CarouselPage() {
                 <CarouselPrevious />
                 <CarouselNext />
               </Carousel>
+            </div>
             </div>
           </div>
 
@@ -78,21 +79,174 @@ export default function CarouselPage() {
 } from "@/components/ui/carousel"`}
             </Typography>
           </div>
+
+          <div className="ds-card !p-[30px]">
+            <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
+              Padrão 1:1 Netflix
+            </Typography>
+            <Typography as="p" variant="body-sm" className="mt-3 text-muted-foreground">
+              Cada slide tem largura fixa (<code className="font-mono text-foreground">basis-[520px]</code>) e proporção quadrada via <code className="font-mono text-foreground">aspect-square</code>. O slide seguinte aparece parcialmente na borda direita. O conteúdo é o slide em si — sem card externo envolvendo o carrossel.
+            </Typography>
+          </div>
+        </div>
+      </Section>
+
+
+      <Section
+        title="Múltiplos slides visíveis"
+        subtitle="Slides menores exibidos em grupo — usa basis fracionado para definir quantos aparecem por vez."
+      >
+        <div className="flex flex-col gap-6">
+          <div className="overflow-hidden"><div className="relative px-20">
+            <Carousel opts={{ align: "start" }} className="w-full">
+              <CarouselContent viewportClassName="overflow-visible" className="-ml-4">
+                {["Mentorias", "Financeiro", "Agenda", "Relatórios", "Metas", "Equipe"].map((label) => (
+                  <CarouselItem key={label} className="pl-4 basis-1/2 md:basis-1/3 shrink-0">
+                    <div className="aspect-square flex flex-col items-center justify-center gap-3 rounded-[10px] bg-white shadow-[var(--shadow-card)]">
+                      <div className="h-10 w-10 rounded-full bg-[#ECECEC]" />
+                      <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
+                        {label}
+                      </Typography>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
+          </div>
+
+          <CodeBlock
+            title="2 ou 3 slides visíveis"
+            code={`<Carousel opts={{ align: "start" }}>
+  <CarouselContent viewportClassName="overflow-visible" className="-ml-4">
+    {items.map((item) => (
+      <CarouselItem key={item} className="pl-4 basis-1/2 md:basis-1/3 shrink-0">
+        <div className="aspect-square rounded-[10px] bg-white shadow-[var(--shadow-card)]">
+          {/* conteúdo */}
+        </div>
+      </CarouselItem>
+    ))}
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>`}
+          />
         </div>
       </Section>
 
       <Section
-        title="Múltiplos itens visíveis"
-        subtitle="Controle quantos slides ficam visíveis por vez com classes basis."
+        title="Loop infinito"
+        subtitle="Com opts={{ loop: true }} o carrossel reinicia automaticamente ao chegar no último slide."
       >
         <div className="flex flex-col gap-6">
-          <div className="ds-card !p-[30px] w-full max-w-2xl">
-            <Carousel className="w-full">
-              <CarouselContent className="-ml-4">
+          <div className="overflow-hidden"><div className="relative px-20">
+            <Carousel opts={{ align: "start", loop: true }} className="w-full">
+              <CarouselContent viewportClassName="overflow-visible" className="-ml-4">
+                {["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"].map((mes) => (
+                  <CarouselItem key={mes} className="pl-4 basis-[520px] shrink-0">
+                    <div className="aspect-square flex items-center justify-center rounded-[10px] bg-white shadow-[var(--shadow-card)]">
+                      <Typography as="p" variant="h2" className="text-foreground">
+                        {mes}
+                      </Typography>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
+          </div>
+
+          <CodeBlock
+            title="Loop habilitado"
+            code={`<Carousel opts={{ align: "start", loop: true }}>
+  <CarouselContent viewportClassName="overflow-visible" className="-ml-4">
+    {items.map((item) => (
+      <CarouselItem key={item} className="pl-4 basis-[520px] shrink-0">
+        <div className="aspect-square rounded-[10px] bg-white shadow-[var(--shadow-card)]" />
+      </CarouselItem>
+    ))}
+  </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>`}
+          />
+        </div>
+      </Section>
+
+      <Section
+        title="Cards de conteúdo"
+        subtitle="Slides com estrutura de card real — badge, título, descrição e ação."
+      >
+        <div className="flex flex-col gap-6">
+          <div className="overflow-hidden"><div className="relative px-20">
+            <Carousel opts={{ align: "start" }} className="w-full">
+              <CarouselContent viewportClassName="overflow-visible" className="-ml-4">
+                {[
+                  { badge: "Gestão", title: "Mentorados ativos", desc: "Acompanhe o progresso com métricas em tempo real." },
+                  { badge: "Financeiro", title: "Receita do mês", desc: "Visão consolidada de entradas e metas atingidas." },
+                  { badge: "Agenda", title: "Próximas sessões", desc: "Sessões agendadas para os próximos 7 dias." },
+                  { badge: "Relatório", title: "NPS da semana", desc: "Satisfação dos mentorados nas últimas avaliações." },
+                ].map((card) => (
+                  <CarouselItem key={card.title} className="pl-4 basis-[340px] shrink-0">
+                    <div className="flex h-full flex-col justify-between rounded-[10px] bg-white p-[30px] shadow-[var(--shadow-card)]">
+                      <div>
+                        <span className="mb-3 inline-block rounded-full bg-[#ECECEC] px-3 py-1 text-[11px] font-semibold uppercase tracking-widest text-foreground">
+                          {card.badge}
+                        </span>
+                        <Typography as="p" variant="h3" className="mb-2 text-foreground">
+                          {card.title}
+                        </Typography>
+                        <Typography as="p" variant="body-sm" className="text-muted-foreground">
+                          {card.desc}
+                        </Typography>
+                      </div>
+                      <Typography as="p" variant="body-sm" className="mt-6 font-medium text-primary">
+                        Ver mais →
+                      </Typography>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
+          </div>
+
+          <CodeBlock
+            title="Card com badge, título e descrição"
+            code={`<CarouselItem className="pl-4 basis-[340px] shrink-0">
+  <div className="flex h-full flex-col justify-between rounded-[10px] bg-white p-[30px] shadow-[var(--shadow-card)]">
+    <div>
+      <span className="mb-3 inline-block rounded-full bg-muted px-3 py-1 text-xs font-semibold">
+        Badge
+      </span>
+      <h3 className="mb-2 text-base font-semibold">Título do card</h3>
+      <p className="text-sm text-muted-foreground">Descrição do conteúdo.</p>
+    </div>
+    <p className="mt-6 text-sm font-medium text-primary">Ver mais →</p>
+  </div>
+</CarouselItem>`}
+          />
+        </div>
+      </Section>
+
+      <Section
+        title="Orientação vertical"
+        subtitle="Carousel com scroll vertical — útil para listas de itens em painéis laterais."
+      >
+        <div className="flex flex-col gap-6">
+          <div className="mx-auto w-[520px]">
+            <Carousel orientation="vertical" opts={{ align: "start" }} className="w-full">
+              <CarouselContent viewportClassName="overflow-hidden" className="-mt-4 h-[560px]">
                 {SLIDES.map((slide) => (
-                  <CarouselItem key={slide} className="pl-4 md:basis-1/2 lg:basis-1/3">
-                    <div className="flex h-32 items-center justify-center rounded-[10px] bg-muted">
-                      <Typography as="p" variant="label" className="normal-case tracking-normal text-muted-foreground">
+                  <CarouselItem key={slide} className="pt-4 basis-full shrink-0">
+                    <div className="flex h-full items-center justify-center rounded-[10px] bg-white shadow-[var(--shadow-card)]">
+                      <Typography as="p" variant="h3" className="text-foreground">
                         {slide}
                       </Typography>
                     </div>
@@ -105,12 +259,12 @@ export default function CarouselPage() {
           </div>
 
           <CodeBlock
-            title="3 slides visíveis em telas grandes"
-            code={`<Carousel>
-  <CarouselContent className="-ml-4">
+            title="Carousel vertical"
+            code={`<Carousel orientation="vertical" opts={{ align: "start" }}>
+  <CarouselContent className="-mt-4 h-[560px]">
     {items.map((item) => (
-      <CarouselItem key={item.id} className="pl-4 md:basis-1/2 lg:basis-1/3">
-        {/* conteúdo do slide */}
+      <CarouselItem key={item} className="pt-4 basis-full">
+        <div className="flex h-full items-center justify-center rounded-[10px] bg-white" />
       </CarouselItem>
     ))}
   </CarouselContent>

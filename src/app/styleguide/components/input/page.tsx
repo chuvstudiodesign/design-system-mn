@@ -68,11 +68,11 @@ export default function InputPage() {
           <div className="grid gap-4 xl:grid-cols-2">
             <div className="ds-card !p-[30px] flex flex-col gap-4">
               <Field label="Nome" htmlFor="i-nome" required>
-                <Input id="i-nome" placeholder="Lucas Zerlotini" />
+                <Input id="i-nome" placeholder="Breno Masi" />
               </Field>
 
               <Field label="E-mail" htmlFor="i-email" description="Use seu e-mail corporativo.">
-                <Input id="i-email" type="email" placeholder="lucas@empresa.com" />
+                <Input id="i-email" type="email" placeholder="breno@empresa.com" />
               </Field>
 
               <Field label="Senha" htmlFor="i-senha" error="Mínimo de 8 caracteres.">

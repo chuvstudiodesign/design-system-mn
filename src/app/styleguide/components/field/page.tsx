@@ -45,11 +45,11 @@ export default function FieldPage() {
             </Typography>
             <div className="ds-card !p-[30px] flex flex-col gap-4 w-full max-w-sm">
               <Field label="Nome completo" htmlFor="nome" required description="Digite seu nome como aparece no documento.">
-                <Input id="nome" placeholder="Lucas Zerlotini" />
+                <Input id="nome" placeholder="Breno Masi" />
               </Field>
 
               <Field label="E-mail" htmlFor="email" error="Este e-mail já está em uso.">
-                <Input id="email" type="email" placeholder="lucas@exemplo.com" aria-invalid />
+                <Input id="email" type="email" placeholder="breno@exemplo.com" aria-invalid />
               </Field>
             </div>
           </div>
