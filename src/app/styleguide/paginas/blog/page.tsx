@@ -58,7 +58,7 @@ export default function BlogPage() {
           <BlogPostCard post={primaryPost} featured />
           <div className="flex flex-col gap-6">
             <div className="ds-card !p-[30px] flex flex-col gap-4">
-              <Typography as="p" variant="caption" className="text-primary">
+              <Typography as="p" variant="caption" className="font-bold text-primary">
                 Sistema editorial
               </Typography>
               <Typography as="h3" variant="h2" className="text-foreground">
@@ -101,7 +101,7 @@ export default function BlogPage() {
               <Typography as="p" variant="body-sm" className="mt-2 text-muted-foreground">
                 {category.description}
               </Typography>
-              <Typography as="p" variant="code" className="mt-4 text-primary">
+              <Typography as="p" variant="code" className="mt-4 font-bold text-primary">
                 {getBlogCategoryCount(category.slug)} artigos publicados
               </Typography>
             </div>

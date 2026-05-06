@@ -153,6 +153,7 @@ O usuario concedeu modo full auto responsavel para ler, criar, editar, documenta
 - As imagens foram ajustadas para priorizar cenas com pessoas relacionadas ao tema de cada artigo.
 - Todas as imagens reais recebem `saturate(1.1)` via classe Tailwind para ficarem cerca de 10% mais vivas sem overlay.
 - Verdes do Blog usam `--primary` / `#5FC318`; `--brand-green` permanece reservado para sidebar ativa.
+- Textos verdes do Blog usam a mesma tipografia em bold para reforcar hierarquia.
 - As imagens continuam sem exigir configuracao de `next/image`, porque o componente usa `<img>` e o build nao precisa buscar os arquivos remotos.
 
 ## Problemas encontrados e correcoes

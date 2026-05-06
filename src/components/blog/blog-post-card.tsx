@@ -48,7 +48,7 @@ export function BlogPostCard({
           <Typography
             as="h3"
             variant={featured ? "h2" : "h3"}
-            className="text-foreground transition-colors group-hover:text-primary"
+            className="text-foreground transition-colors group-hover:font-bold group-hover:text-primary"
           >
             {post.title}
           </Typography>
@@ -66,7 +66,7 @@ export function BlogPostCard({
             {formatReadingTime(post.readingTime)}
           </span>
         </div>
-        <Button render={<Link href={`${blogBasePath}/${post.slug}`} />} variant="ghost" size="sm" className="-mr-3 text-primary">
+        <Button render={<Link href={`${blogBasePath}/${post.slug}`} />} variant="ghost" size="sm" className="-mr-3 font-bold text-primary">
           Ler artigo
           <ArrowRight data-icon="inline-end" className="size-3.5" />
         </Button>

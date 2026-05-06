@@ -308,7 +308,7 @@ export function CMSBlogManager({
         <div className="ds-card !p-[30px] flex flex-col gap-5">
           <div className="flex flex-wrap items-start justify-between gap-4">
             <div>
-              <Typography as="p" variant="caption" className="text-primary">
+              <Typography as="p" variant="caption" className="font-bold text-primary">
                 Editor local
               </Typography>
               <Typography as="h3" variant="h3" className="mt-2 text-foreground">

@@ -13,7 +13,7 @@ export function BlogPostHeader({ post }: { post: BlogPost }) {
   return (
     <header className="flex flex-col gap-6">
       <div>
-        <Button render={<Link href="/styleguide/paginas/blog" />} variant="ghost" size="sm" className="-ml-3 text-primary">
+        <Button render={<Link href="/styleguide/paginas/blog" />} variant="ghost" size="sm" className="-ml-3 font-bold text-primary">
           <ArrowLeft data-icon="inline-start" className="size-3.5" />
           Voltar para Blog
         </Button>

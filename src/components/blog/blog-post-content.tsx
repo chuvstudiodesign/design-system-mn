@@ -61,7 +61,7 @@ function BlockRenderer({ block }: { block: BlogContentBlock }) {
     return (
       <div className="ds-card !p-[30px] grid gap-3 sm:grid-cols-[160px_1fr] sm:items-center">
         <div>
-          <Typography as="p" variant="caption" className="text-primary">
+          <Typography as="p" variant="caption" className="font-bold text-primary">
             {block.label}
           </Typography>
           <Typography as="p" variant="display" className="text-foreground">
@@ -117,7 +117,7 @@ export function BlogPostContent({ post }: { post: BlogPost }) {
         </Typography>
         <nav className="mt-4 flex flex-col gap-3" aria-label="Indice do artigo">
           {post.tableOfContents.map((item) => (
-            <a key={item.id} href={`#${item.id}`} className="text-[13px] leading-relaxed text-muted-foreground hover:text-primary">
+            <a key={item.id} href={`#${item.id}`} className="text-[13px] font-medium leading-relaxed text-muted-foreground hover:font-bold hover:text-primary">
               {item.title}
             </a>
           ))}
