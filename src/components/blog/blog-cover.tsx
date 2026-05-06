@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 const toneStyles = {
   green: {
-    background: "linear-gradient(135deg, #0C1C16 0%, #5FC318 54%, #AFF000 100%)",
+    background: "linear-gradient(135deg, #0C1C16 0%, #5FC318 54%, #8AD059 100%)",
   },
   dark: {
     background: "linear-gradient(135deg, #0C1C16 0%, #1F1F1F 58%, #5FC318 100%)",
