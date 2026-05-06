@@ -107,7 +107,7 @@ O usuario concedeu modo full auto responsavel para ler, criar, editar, documenta
 
 ## Componentes criados
 
-- `BlogCover`: capa editorial com imagem real, overlay disruptivo e fallback visual.
+- `BlogCover`: capa editorial com imagem real sem elementos sobrepostos e fallback visual apenas quando nao houver URL.
 - `BlogPostCard`: card editorial reutilizavel para grid e relacionados.
 - `BlogFilterExperience`: busca e filtros locais por query, categoria e tag.
 - `BlogPostHeader`: header semantico de post.
@@ -141,7 +141,7 @@ O usuario concedeu modo full auto responsavel para ler, criar, editar, documenta
 ## Atualizacao de imagens
 
 - Posts passaram a usar imagens reais remotas em alta resolucao via `images.unsplash.com`.
-- `BlogCover` foi atualizado para renderizar a foto real com overlay visual do Design System, mantendo fallback caso a URL nao seja carregada.
+- `BlogCover` foi atualizado para renderizar a foto real limpa, sem bordas, overlays ou elementos decorativos sobre a imagem. O fallback visual so aparece quando nao houver URL.
 - As imagens continuam sem exigir configuracao de `next/image`, porque o componente usa `<img>` e o build nao precisa buscar os arquivos remotos.
 
 ## Problemas encontrados e correcoes
