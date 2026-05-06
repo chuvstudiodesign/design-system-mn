@@ -41,7 +41,7 @@ function IconCard({ icon }: { icon: MNIcon }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={icon.src} alt={icon.name} style={{ width: w, height: h }} />
       </div>
-      <Typography as="p" variant="body-sm" className="font-semibold text-foreground" style={{ flexShrink: 0 }}>
+      <Typography as="p" variant="body-sm" className="font-semibold text-foreground" style={{ flexShrink: 0, textAlign: "center" }}>
         {icon.name}
       </Typography>
     </div>
