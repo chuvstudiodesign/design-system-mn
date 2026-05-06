@@ -8,7 +8,7 @@ import {
 
 // Same scale factor applied to BOTH figmaW and figmaH of every icon.
 // Never fix only height and derive width — that breaks icons that are not ~square.
-const ICON_SCALE = 0.75;
+const ICON_SCALE = 0.3;
 
 function scaled(icon: MNIcon) {
   return {
