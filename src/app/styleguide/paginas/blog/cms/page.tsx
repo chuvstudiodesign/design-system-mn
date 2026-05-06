@@ -2,14 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, FileText, Radio, Sparkles } from "lucide-react";
 import {
-  CMSPostFormPreview,
-  CMSPostTable,
+  CMSBlogManager,
   CMSStatusBadge,
 } from "@/components/blog";
 import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/typography";
 import {
   getBlogCategories,
+  getBlogAuthors,
+  getBlogTags,
   getCmsBlogPosts,
   getFeaturedBlogPosts,
   getPublishedBlogPosts,
@@ -28,11 +29,12 @@ export const metadata: Metadata = {
 export default function BlogCMSPage() {
   const posts = getCmsBlogPosts();
   const categories = getBlogCategories();
+  const tags = getBlogTags();
+  const authors = getBlogAuthors();
   const publishedCount = getPublishedBlogPosts().length;
   const featuredCount = getFeaturedBlogPosts().length;
   const draftCount = posts.filter((post) => post.status === "draft").length;
   const scheduledCount = posts.filter((post) => post.status === "scheduled").length;
-  const selectedPost = posts[0];
 
   return (
     <div className="ds-page">
@@ -88,17 +90,15 @@ export default function BlogCMSPage() {
       </Section>
 
       <Section
-        title="Posts"
-        subtitle="Lista editorial com busca, filtro por categoria, status e acoes de preview/edicao mockadas."
+        title="Posts e editor"
+        subtitle="Lista editorial com busca, filtro por categoria, criacao de rascunho, selecao, edicao e salvamento local em memoria."
       >
-        <CMSPostTable posts={posts} categories={categories} />
-      </Section>
-
-      <Section
-        title="Editor mockado"
-        subtitle="Campos principais do post selecionado. Esta UI demonstra estrutura, nao grava dados nesta versao."
-      >
-        <CMSPostFormPreview post={selectedPost} />
+        <CMSBlogManager
+          initialPosts={posts}
+          categories={categories}
+          tags={tags}
+          authors={authors}
+        />
       </Section>
 
       <Section

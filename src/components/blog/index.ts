@@ -4,6 +4,7 @@ export { BlogPostCard } from "./blog-post-card";
 export { BlogPostContent } from "./blog-post-content";
 export { BlogPostHeader } from "./blog-post-header";
 export { BlogRelatedPosts } from "./blog-related-posts";
+export { CMSBlogManager } from "./cms-blog-manager";
 export { CMSPostFormPreview } from "./cms-post-form-preview";
 export { CMSPostTable } from "./cms-post-table";
 export { CMSStatusBadge } from "./cms-status-badge";

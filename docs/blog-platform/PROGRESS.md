@@ -117,6 +117,14 @@ O usuario concedeu modo full auto responsavel para ler, criar, editar, documenta
 - `CMSPostTable`: tabela client-side de posts com busca/filtro.
 - `CMSPostFormPreview`: preview de formulario/editor mockado.
 - `CMSStatusBadge`: padronizacao dos status editoriais.
+- `CMSBlogManager`: gerenciador client-side funcional com criar, editar, selecionar e salvar em memoria.
+
+## Correção CMS
+
+- O primeiro CMS era visual e os botoes `Novo post` e `Editar` nao alteravam estado.
+- Foi criada a camada `CMSBlogManager`, que mantem posts em estado local no navegador.
+- O fluxo agora permite selecionar um post, editar titulo/subtitulo/excerpt/slug/categoria/autor/status/tags/SEO, marcar destaque, criar rascunho e salvar as alteracoes em memoria.
+- Ainda nao ha persistencia em banco/CMS real; isso fica documentado como proxima camada.
 
 ## Paginas criadas
 
