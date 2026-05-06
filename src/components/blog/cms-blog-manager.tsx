@@ -2,21 +2,13 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { Check, Edit3, Eye, Plus, Save, Search } from "lucide-react";
+import { Check, Edit3, Eye, Plus, Save, Search, Trash2 } from "lucide-react";
 import type { BlogAuthor, BlogCategory, BlogPost, BlogPostStatus, BlogTag } from "@/data/blog";
 import { filterBlogPosts, formatBlogDate, getBlogCategoryStyle } from "@/lib/blog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { Typography } from "@/components/typography";
 import { CMSStatusBadge } from "./cms-status-badge";
 
@@ -211,6 +203,26 @@ export function CMSBlogManager({
     setSavedNotice("Alterações salvas em memória. A persistência real entra no adapter futuro.");
   }
 
+  function deletePost(postId: string) {
+    setPosts((current) => {
+      const nextPosts = current.filter((post) => post.id !== postId);
+
+      if (postId === selectedId) {
+        const nextSelectedPost = nextPosts[0];
+
+        if (nextSelectedPost) {
+          setSelectedId(nextSelectedPost.id);
+          setDraft(nextSelectedPost);
+          setSavedNotice("Post deletado localmente.");
+        }
+      } else {
+        setSavedNotice("Post deletado localmente.");
+      }
+
+      return nextPosts;
+    });
+  }
+
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-6">
@@ -239,68 +251,93 @@ export function CMSBlogManager({
             <Button
               key={item.slug}
               type="button"
-              variant={category === item.slug ? "default" : "secondary"}
+              variant="secondary"
               size="sm"
+              style={category === item.slug ? getBlogCategoryStyle(item.slug) : undefined}
               onClick={() => setCategory(item.slug)}
             >
+              <span className="size-2 shrink-0 rounded-full" style={{ backgroundColor: item.colorHex }} />
               {item.name}
             </Button>
           ))}
         </div>
 
-        <div className="ds-card !p-0 overflow-hidden">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Post</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Categoria</TableHead>
-                <TableHead>Atualizado</TableHead>
-                <TableHead className="text-right">Ações</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filteredPosts.map((post) => (
-                <TableRow key={post.id} className={post.id === selectedId ? "bg-primary/5" : undefined}>
-                  <TableCell>
-                    <div className="max-w-[480px]">
-                      <Typography as="p" variant="body" className="font-medium text-foreground">
-                        {post.title}
-                      </Typography>
-                      <Typography as="p" variant="code" className="mt-1 text-muted-foreground">
-                        /{post.slug}
-                      </Typography>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <CMSStatusBadge status={post.status} />
-                  </TableCell>
-                  <TableCell>
-                    <Badge
-                      variant="secondary"
-                      className="min-h-8 px-2.5 py-0 text-[10px]"
-                      style={getBlogCategoryStyle(post.categorySlug)}
-                    >
-                      {post.category}
-                    </Badge>
-                  </TableCell>
-                  <TableCell>{formatBlogDate(post.updatedAt)}</TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex justify-end gap-2">
-                      <Button render={<Link href={`/styleguide/paginas/blog/${post.slug}`} />} size="xs" variant="ghost">
-                        <Eye data-icon="inline-start" className="size-3" />
-                        Preview
-                      </Button>
-                      <Button type="button" size="xs" variant="ghost" onClick={() => selectPost(post)}>
-                        <Edit3 data-icon="inline-start" className="size-3" />
-                        Editar
-                      </Button>
-                    </div>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+        <div className="hidden px-[30px] lg:grid lg:grid-cols-[minmax(280px,1fr)_120px_160px_120px_220px] lg:gap-4">
+          {["Post", "Status", "Categoria", "Atualizado", "Ações"].map((label) => (
+            <Typography
+              key={label}
+              as="p"
+              variant="caption"
+              className={label === "Ações" ? "text-right text-muted-foreground" : "text-muted-foreground"}
+            >
+              {label}
+            </Typography>
+          ))}
+        </div>
+
+        <div className="flex flex-col gap-3">
+          {filteredPosts.map((post) => (
+            <article
+              key={post.id}
+              className={`ds-card !p-[30px] grid gap-5 lg:grid-cols-[minmax(280px,1fr)_120px_160px_120px_220px] lg:items-center lg:gap-4 ${post.id === selectedId ? "ring-2 ring-primary/40" : ""}`}
+            >
+              <div className="min-w-0">
+                <Typography as="p" variant="caption" className="mb-2 normal-case tracking-normal text-muted-foreground lg:hidden">
+                  Post
+                </Typography>
+                <Typography as="p" variant="body" className="font-medium text-foreground">
+                  {post.title}
+                </Typography>
+                <Typography as="p" variant="code" className="mt-1 break-all text-muted-foreground">
+                  /{post.slug}
+                </Typography>
+              </div>
+
+              <div>
+                <Typography as="p" variant="caption" className="mb-2 normal-case tracking-normal text-muted-foreground lg:hidden">
+                  Status
+                </Typography>
+                <CMSStatusBadge status={post.status} />
+              </div>
+
+              <div>
+                <Typography as="p" variant="caption" className="mb-2 normal-case tracking-normal text-muted-foreground lg:hidden">
+                  Categoria
+                </Typography>
+                <Badge
+                  variant="secondary"
+                  className="min-h-8 px-2.5 py-0 text-[10px]"
+                  style={getBlogCategoryStyle(post.categorySlug)}
+                >
+                  {post.category}
+                </Badge>
+              </div>
+
+              <div>
+                <Typography as="p" variant="caption" className="mb-2 normal-case tracking-normal text-muted-foreground lg:hidden">
+                  Atualizado
+                </Typography>
+                <Typography as="p" variant="body-sm" className="text-foreground">
+                  {formatBlogDate(post.updatedAt)}
+                </Typography>
+              </div>
+
+              <div className="flex flex-wrap gap-2 lg:justify-end">
+                <Button render={<Link href={`/styleguide/paginas/blog/${post.slug}`} />} size="xs" variant="ghost">
+                  <Eye data-icon="inline-start" className="size-3" />
+                  Preview
+                </Button>
+                <Button type="button" size="xs" variant="ghost" onClick={() => selectPost(post)}>
+                  <Edit3 data-icon="inline-start" className="size-3" />
+                  Editar
+                </Button>
+                <Button type="button" size="xs" variant="destructive" onClick={() => deletePost(post.id)}>
+                  <Trash2 data-icon="inline-start" className="size-3" />
+                  Deletar
+                </Button>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
 

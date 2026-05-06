@@ -5,7 +5,7 @@ import { Typography } from "@/components/typography";
 
 export function NewsletterCTA() {
   return (
-    <div className="rounded-[10px] bg-brand-dark-green p-[30px] text-white">
+    <div className="rounded-[10px] bg-brand-dark-green px-[60px] py-[80px] text-white">
       <div className="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end">
         <div>
           <Typography as="p" variant="caption" className="font-bold text-primary">

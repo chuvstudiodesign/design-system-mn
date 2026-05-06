@@ -19,10 +19,25 @@ function brandHref(slug: string) {
   return slug === "hub" ? "/styleguide/logotipo" : `/styleguide/logotipo/${slug}`;
 }
 
+const LARGER_BRAND_ICONS = new Set(["academy", "workshop", "action", "founder"]);
+const BRAND_SWITCHER_ORDER = [
+  "hub",
+  "academy",
+  "workshop",
+  "action",
+  "experience",
+  "aceleracao",
+  "founder",
+  "advisor",
+];
+
 function BrandIcon({ brand }: { brand: LogoBrand }) {
   const symbolSrc = brand.slug === "hub"
     ? brand.logos.symbol.src
     : `${brand.logos.symbol.base}-brand.svg`;
+  const iconSizeClass = LARGER_BRAND_ICONS.has(brand.slug)
+    ? "h-[74.5%] w-[74.5%]"
+    : "h-[69%] w-[69%]";
 
   return (
     <div
@@ -37,36 +52,41 @@ function BrandIcon({ brand }: { brand: LogoBrand }) {
         src={symbolSrc}
         alt=""
         aria-hidden="true"
-        className="block h-full w-full object-contain"
+        className={`block object-contain ${iconSizeClass}`}
       />
     </div>
   );
 }
 
 export function BrandSwitcher({ currentSlug }: { currentSlug: string }) {
+  const orderedBrands = BRAND_SWITCHER_ORDER
+    .map((slug) => LOGO_BRANDS.find((brand) => brand.slug === slug))
+    .filter((brand): brand is LogoBrand => Boolean(brand));
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
         <Button variant="outline">Outras marcas</Button>
       </DrawerTrigger>
       <DrawerContent>
-        <div className="mx-auto w-full max-w-4xl">
-          <DrawerHeader>
+        <div className="w-full">
+          <DrawerHeader className="px-[30px] py-[80px]">
             <DrawerTitle>Selecione a marca</DrawerTitle>
             <DrawerDescription>
               Acesse as diretrizes e downloads de logotipo de cada marca.
             </DrawerDescription>
           </DrawerHeader>
-          <div className="flex items-start justify-center gap-10 overflow-x-auto px-[30px] pb-[30px]">
-            {LOGO_BRANDS.map((brand) => (
+          <div className="flex flex-wrap items-start justify-center gap-x-[50px] gap-y-8 px-[30px] pb-[80px]">
+            {orderedBrands.map((brand) => (
               <DrawerClose key={brand.slug} asChild>
                 <Link
                   href={brandHref(brand.slug)}
+                  aria-label={`Selecionar ${brand.name}`}
                   aria-current={brand.slug === currentSlug ? "page" : undefined}
-                  className="group flex w-[75px] flex-col items-center gap-3 rounded-[10px] transition-opacity hover:opacity-80 aria-[current=page]:opacity-100"
+                  className="group flex w-[90px] flex-col items-center gap-3 rounded-[10px] transition-opacity hover:opacity-80 aria-[current=page]:opacity-100"
                 >
                   <BrandIcon brand={brand} />
-                  <Typography as="p" variant="body-sm" className="text-center font-semibold text-foreground">
+                  <Typography as="p" variant="body" className="pointer-events-none min-h-[1.5em] text-center font-normal text-black opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
                     {brand.name}
                   </Typography>
                 </Link>

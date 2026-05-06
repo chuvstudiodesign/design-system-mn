@@ -59,8 +59,8 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/styleguide/paginas/blog/og/inovacao-aplicada",
     relatedPosts: ["estrategia-execucao-cultura-tripe-crescimento", "design-tecnologia-estrategia-motores-diferenciacao"],
     content: [
-      { type: "paragraph", text: "Empresas tradicionais não perdem relevância porque são grandes. Elas perdem relevância quando seus rituais internos ficam mais fortes do que a leitura do mercado. Inovação aplicada é o mecanismo que reabre esse canal de escuta sem transformar a organização em uma coleção de experimentos soltos." },
       { type: "heading", id: "problema-real", text: "Comece pelo problema real" },
+      { type: "paragraph", text: "Empresas tradicionais não perdem relevância porque são grandes. Elas perdem relevância quando seus rituais internos ficam mais fortes do que a leitura do mercado. Inovação aplicada é o mecanismo que reabre esse canal de escuta sem transformar a organização em uma coleção de experimentos soltos." },
       { type: "paragraph", text: "A pergunta central não é quais tecnologias a empresa deveria usar. A pergunta correta é onde existe fricção que impede crescimento, margem, velocidade ou experiência. Quando a inovação nasce desse diagnóstico, ela deixa de ser teatro e vira uma disciplina de alocação de recursos." },
       { type: "list", title: "Sinais de uma agenda aplicada", items: ["Problemas conectados a metas executivas.", "Times pequenos com autonomia para testar.", "Critérios claros para matar ou escalar iniciativas.", "Aprendizados registrados como ativo da organização."] },
       { type: "heading", id: "portfolio", text: "Trate inovação como portfólio" },
@@ -96,8 +96,8 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/styleguide/paginas/blog/og/ia-gestao",
     relatedPosts: ["lideres-decisoes-melhores-com-dados", "operacao-preparada-para-escalar"],
     content: [
-      { type: "paragraph", text: "A primeira onda de IA nas empresas foi marcada por curiosidade e ferramentas pontuais. A próxima será marcada por redesenho de processos. Gestores que entenderem essa diferença vão capturar ganhos mais consistentes do que aqueles que tratam IA como atalho para tarefas isoladas." },
       { type: "heading", id: "decisao", text: "IA como infraestrutura de decisão" },
+      { type: "paragraph", text: "A primeira onda de IA nas empresas foi marcada por curiosidade e ferramentas pontuais. A próxima será marcada por redesenho de processos. Gestores que entenderem essa diferença vão capturar ganhos mais consistentes do que aqueles que tratam IA como atalho para tarefas isoladas." },
       { type: "paragraph", text: "Decisões melhores dependem de repertório, dados e velocidade de síntese. A IA amplia a capacidade de comparar cenários, resumir sinais e transformar conhecimento disperso em insumos para discussão executiva." },
       { type: "metric", label: "Ciclo de análise", value: "-40%", description: "Redução estimada em rotinas de preparação quando dados, briefing e histórico estão bem estruturados." },
       { type: "heading", id: "governanca", text: "Sem governança, escala vira risco" },
@@ -133,8 +133,8 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/styleguide/paginas/blog/og/founders-produto",
     relatedPosts: ["empresas-alto-crescimento-fazem-diferente", "vantagem-competitiva-mercados-saturados"],
     content: [
-      { type: "paragraph", text: "Founders costumam separar estratégia, venda e produto em caixas diferentes. Essa divisão pode funcionar em empresas maduras, mas no início ela atrasa aprendizado. Produto é a linguagem que conecta a promessa feita ao mercado com a experiência entregue." },
       { type: "heading", id: "promessa", text: "Produto organiza a promessa" },
+      { type: "paragraph", text: "Founders costumam separar estratégia, venda e produto em caixas diferentes. Essa divisão pode funcionar em empresas maduras, mas no início ela atrasa aprendizado. Produto é a linguagem que conecta a promessa feita ao mercado com a experiência entregue." },
       { type: "paragraph", text: "Cada feature, serviço, ritual de atendimento ou documento comercial comunica uma escolha. Quando o founder pensa em produto, ele consegue enxergar onde a promessa está clara, onde existe atrito e onde a proposta de valor ainda depende demais de explicação manual." },
       { type: "heading", id: "aprendizado", text: "Aprendizado precisa ser desenhado" },
       { type: "paragraph", text: "A vantagem dos primeiros dias não está em ter escala, mas em ter proximidade. O produto deve capturar perguntas, objeções, comportamentos e dados que ajudem a empresa a decidir o que repetir." },
@@ -168,8 +168,8 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/styleguide/paginas/blog/og/tripe-crescimento",
     relatedPosts: ["como-a-inovacao-aplicada-transforma-empresas-tradicionais", "operacao-preparada-para-escalar"],
     content: [
-      { type: "paragraph", text: "Quando uma empresa cresce, os problemas deixam de ser apenas comerciais. A velocidade cria complexidade. O papel da liderança é transformar complexidade em foco compartilhado, e isso exige uma conexão prática entre estratégia, execução e cultura." },
       { type: "heading", id: "estrategia", text: "Estratégia precisa caber em escolhas" },
+      { type: "paragraph", text: "Quando uma empresa cresce, os problemas deixam de ser apenas comerciais. A velocidade cria complexidade. O papel da liderança é transformar complexidade em foco compartilhado, e isso exige uma conexão prática entre estratégia, execução e cultura." },
       { type: "paragraph", text: "Uma estratégia que não muda prioridades, budget e agenda executiva é apenas discurso. Escolhas estratégicas boas criam limites: dizem onde a empresa não vai jogar e quais trade-offs serão aceitos." },
       { type: "heading", id: "execucao", text: "Execução precisa de cadência" },
       { type: "paragraph", text: "Times não precisam de mais urgência abstrata. Precisam de cadência, dono, indicador e revisão. A execução melhora quando fica claro o que será decidido a cada semana e quais dados sustentam essa decisão." },
@@ -203,8 +203,8 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/styleguide/paginas/blog/og/vantagem-competitiva",
     relatedPosts: ["design-tecnologia-estrategia-motores-diferenciacao", "empresas-alto-crescimento-fazem-diferente"],
     content: [
-      { type: "paragraph", text: "Mercados saturados raramente estão saturados de boas experiências. Eles estão saturados de promessas parecidas. A vantagem competitiva aparece quando a empresa escolhe um recorte claro e constrói uma operação superior ao redor dele." },
       { type: "heading", id: "recorte", text: "Diferenciação começa pelo recorte" },
+      { type: "paragraph", text: "Mercados saturados raramente estão saturados de boas experiências. Eles estão saturados de promessas parecidas. A vantagem competitiva aparece quando a empresa escolhe um recorte claro e constrói uma operação superior ao redor dele." },
       { type: "paragraph", text: "Tentar falar com todo mundo leva a uma oferta média. Públicos específicos permitem linguagem, produto, atendimento e canais mais coerentes. Quanto mais claro o recorte, mais fácil criar memorabilidade." },
       { type: "heading", id: "experiencia", text: "Experiência é estratégia tangível" },
       { type: "paragraph", text: "Muitas empresas competem em discurso e esquecem os pontos de contato. Onboarding, suporte, proposta, follow-up e pós-venda são lugares onde o posicionamento precisa aparecer." },
@@ -237,8 +237,8 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/styleguide/paginas/blog/og/ecossistemas-brasil",
     relatedPosts: ["como-a-inovacao-aplicada-transforma-empresas-tradicionais", "por-que-founders-precisam-pensar-em-produto-desde-o-primeiro-dia"],
     content: [
-      { type: "paragraph", text: "Ecossistemas de negócios amadurecem quando deixam de depender apenas de encontros e passam a construir infraestrutura. Essa infraestrutura conecta capital, conhecimento, talentos, demanda e narrativas compartilhadas." },
       { type: "heading", id: "infraestrutura", text: "De comunidade para infraestrutura" },
+      { type: "paragraph", text: "Ecossistemas de negócios amadurecem quando deixam de depender apenas de encontros e passam a construir infraestrutura. Essa infraestrutura conecta capital, conhecimento, talentos, demanda e narrativas compartilhadas." },
       { type: "paragraph", text: "Comunidade cria pertencimento. Infraestrutura cria fluxo. O Brasil precisa dos dois, mas a próxima fase será definida por quem conseguir transformar relacionamento em oportunidades recorrentes." },
       { type: "heading", id: "densidade", text: "Densidade importa mais do que volume" },
       { type: "paragraph", text: "Ter muitos participantes não garante qualidade. Ecossistemas fortes criam densidade: pessoas certas conectadas por problemas, contextos e objetivos relevantes." },
@@ -272,8 +272,8 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/styleguide/paginas/blog/og/decisoes-com-dados",
     relatedPosts: ["papel-da-inteligencia-artificial-na-nova-gestao-de-negocios", "estrategia-execucao-cultura-tripe-crescimento"],
     content: [
-      { type: "paragraph", text: "A maturidade em dados não aparece na quantidade de gráficos, mas na qualidade das decisões que eles suportam. Líderes precisam de sistemas que conectem pergunta, indicador, contexto e ação." },
       { type: "heading", id: "pergunta", text: "Toda métrica precisa responder uma pergunta" },
+      { type: "paragraph", text: "A maturidade em dados não aparece na quantidade de gráficos, mas na qualidade das decisões que eles suportam. Líderes precisam de sistemas que conectem pergunta, indicador, contexto e ação." },
       { type: "paragraph", text: "Dashboards sem pergunta geram consumo passivo de informação. Comece pelo que a liderança precisa decidir: priorizar canal, ajustar produto, rever margem, contratar ou mudar posicionamento." },
       { type: "heading", id: "contexto", text: "Dados sem contexto viram ruído" },
       { type: "paragraph", text: "Uma queda de conversão pode indicar problema de oferta, campanha, sazonalidade ou tracking. A decisão melhora quando dados quantitativos conversam com observação qualitativa." },
@@ -306,8 +306,8 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/styleguide/paginas/blog/og/alto-crescimento",
     relatedPosts: ["operacao-preparada-para-escalar", "vantagem-competitiva-mercados-saturados"],
     content: [
-      { type: "paragraph", text: "Empresas de alto crescimento parecem mais rápidas por fora, mas por dentro geralmente são mais claras. Elas sabem quais apostas importam, quais sinais observar e quais decisões não podem ficar presas em hierarquia excessiva." },
       { type: "heading", id: "foco", text: "Foco operacional é uma vantagem" },
+      { type: "paragraph", text: "Empresas de alto crescimento parecem mais rápidas por fora, mas por dentro geralmente são mais claras. Elas sabem quais apostas importam, quais sinais observar e quais decisões não podem ficar presas em hierarquia excessiva." },
       { type: "paragraph", text: "A cada nova oportunidade, a empresa paga um custo de atenção. Times de alto crescimento protegem foco com critérios de priorização simples e repetidos." },
       { type: "heading", id: "aprendizado", text: "Aprendizado vira processo" },
       { type: "paragraph", text: "O que funciona em vendas, produto e operação precisa ser documentado e replicado. Sem esse mecanismo, crescimento depende de pessoas específicas e perde eficiência ao escalar." },
@@ -341,8 +341,8 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/styleguide/paginas/blog/og/design-tecnologia-estrategia",
     relatedPosts: ["vantagem-competitiva-mercados-saturados", "por-que-founders-precisam-pensar-em-produto-desde-o-primeiro-dia"],
     content: [
-      { type: "paragraph", text: "Design sem estratégia vira estética isolada. Tecnologia sem estratégia vira complexidade. Estratégia sem materialização vira documento. A diferenciação aparece quando essas três camadas trabalham juntas." },
       { type: "heading", id: "marca", text: "Marca precisa aparecer no produto" },
+      { type: "paragraph", text: "Design sem estratégia vira estética isolada. Tecnologia sem estratégia vira complexidade. Estratégia sem materialização vira documento. A diferenciação aparece quando essas três camadas trabalham juntas." },
       { type: "paragraph", text: "A marca não vive apenas em campanhas. Ela se confirma em cada interação, no tempo de resposta, na clareza da interface, na linguagem comercial e na confiança que o produto transmite." },
       { type: "heading", id: "tecnologia", text: "Tecnologia deve sustentar uma promessa" },
       { type: "paragraph", text: "Nem toda tecnologia nova cria valor. O ponto é escolher capacidades que amplifiquem a promessa central da empresa: velocidade, personalização, inteligência, segurança ou escala." },
@@ -376,8 +376,8 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/styleguide/paginas/blog/og/operacao-escalavel",
     relatedPosts: ["empresas-alto-crescimento-fazem-diferente", "papel-da-inteligencia-artificial-na-nova-gestao-de-negocios"],
     content: [
-      { type: "paragraph", text: "Toda empresa que cresce encontra um limite operacional. O que antes era resolvido por proximidade, talento individual e improviso passa a exigir processo, padrão e visibilidade. Escalar é reduzir dependência de heroísmo sem perder qualidade." },
       { type: "heading", id: "processo", text: "Processo antes de ferramenta" },
+      { type: "paragraph", text: "Toda empresa que cresce encontra um limite operacional. O que antes era resolvido por proximidade, talento individual e improviso passa a exigir processo, padrão e visibilidade. Escalar é reduzir dependência de heroísmo sem perder qualidade." },
       { type: "paragraph", text: "Ferramentas aceleram processos bons e amplificam processos ruins. Antes de contratar novas plataformas, descreva fluxo, dono, entrada, saída, critério de qualidade e indicador." },
       { type: "heading", id: "dados", text: "Visibilidade operacional evita surpresa" },
       { type: "paragraph", text: "Operações escaláveis monitoram capacidade, gargalos e qualidade. Sem visibilidade, a liderança descobre problemas quando eles já chegaram no cliente." },
@@ -412,8 +412,8 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/styleguide/paginas/blog/og/playbook-editorial",
     relatedPosts: ["vantagem-competitiva-mercados-saturados"],
     content: [
-      { type: "paragraph", text: "Conteúdo B2B funciona melhor quando nasce de problemas comerciais reais, não apenas de calendário. Este rascunho organiza uma abordagem para conectar pauta, prova e distribuição." },
       { type: "heading", id: "pautas", text: "Pautas por etapa de decisão" },
+      { type: "paragraph", text: "Conteúdo B2B funciona melhor quando nasce de problemas comerciais reais, não apenas de calendário. Este rascunho organiza uma abordagem para conectar pauta, prova e distribuição." },
       { type: "paragraph", text: "Cada etapa da jornada exige perguntas diferentes. O playbook deve separar conteúdos de descoberta, consideração, comparação e decisão." },
     ],
     canonicalUrl: "/styleguide/paginas/blog/rascunho-playbook-editorial-crescimento",
@@ -442,8 +442,8 @@ export const blogPosts: BlogPost[] = [
     ogImage: "/styleguide/paginas/blog/og/agenda-2026",
     relatedPosts: ["papel-da-inteligencia-artificial-na-nova-gestao-de-negocios"],
     content: [
-      { type: "paragraph", text: "A agenda executiva de 2026 deve ser menos sobre ferramentas isoladas e mais sobre conexão entre IA, produto e operação. Empresas que integrarem essas camadas ganham velocidade de aprendizado." },
       { type: "heading", id: "integracao", text: "Integração como vantagem" },
+      { type: "paragraph", text: "A agenda executiva de 2026 deve ser menos sobre ferramentas isoladas e mais sobre conexão entre IA, produto e operação. Empresas que integrarem essas camadas ganham velocidade de aprendizado." },
       { type: "paragraph", text: "Produto gera dados, IA transforma dados em apoio a decisão e operação fecha o ciclo de entrega. A maturidade está em fazer esse circuito funcionar." },
     ],
     canonicalUrl: "/styleguide/paginas/blog/agenda-ia-produto-operacoes-2026",

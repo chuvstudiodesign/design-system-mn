@@ -48,6 +48,8 @@ export const navigation: NavSection[] = [
       { name: "Empty", href: "/styleguide/components/empty" },
       { name: "Field", href: "/styleguide/components/field" },
       { name: "Hover Card", href: "/styleguide/components/hover-card" },
+      { name: "Icon Cloud", href: "/styleguide/components/icon-cloud" },
+      { name: "Icon Library", href: "/styleguide/components/icon-library" },
       { name: "Input", href: "/styleguide/components/input" },
       { name: "Input Group", href: "/styleguide/components/input-group" },
       { name: "Input OTP", href: "/styleguide/components/input-otp" },

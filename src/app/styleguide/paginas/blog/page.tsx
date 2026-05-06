@@ -111,14 +111,11 @@ export default function BlogPage() {
         <div className="ds-grid-3">
           {categories.map((category) => (
             <div key={category.slug} className="ds-card !p-[30px]">
-              <div className="mb-5 flex items-center gap-3">
+              <div className="mb-5">
                 <div
                   className="h-3 w-16 rounded-full"
                   style={{ background: category.colorToken }}
                 />
-                <Typography as="p" variant="code" className="text-muted-foreground">
-                  {category.colorName}
-                </Typography>
               </div>
               <Typography as="h3" variant="h3" className="text-foreground">
                 {category.name}

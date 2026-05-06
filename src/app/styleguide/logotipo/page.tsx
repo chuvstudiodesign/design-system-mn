@@ -24,10 +24,12 @@ function LogoDownloadDialog({
   logoName,
   assetBase,
   colors,
+  triggerStyle,
 }: {
   logoName: string;
   assetBase: string;
   colors: AssetColor[];
+  triggerStyle?: CSSProperties;
 }) {
   return (
     <Dialog>
@@ -37,6 +39,7 @@ function LogoDownloadDialog({
             type="button"
             variant="default"
             className="font-mono text-[11px] font-bold uppercase tracking-wider"
+            style={triggerStyle}
           />
         }
       >
@@ -119,41 +122,73 @@ const DARK_BG = new Set(["#0C1C16", "#1C1C1C", "#1F1F1F"]);
 
 const LOGO_DIMENSIONS: Record<string, { width: number; height: number }> = Object.fromEntries(
   LOGO_BRANDS.flatMap((brand) =>
-    Object.values(brand.logos).map((logo) => [
-      logo.src,
-      { width: logo.width, height: logo.height },
-    ])
+    Object.values(brand.logos).flatMap((logo) =>
+      [
+        logo.src,
+        `${logo.base}-dark.svg`,
+        `${logo.base}-light.svg`,
+        `${logo.base}-brand.svg`,
+        `${logo.base}-green.svg`,
+        `${logo.base}-brand-dark-green.svg`,
+      ].map((src) => [
+        src,
+        { width: logo.width, height: logo.height },
+      ])
+    )
   )
 );
 
 const LOGO_DISPLAY_SCALE = 0.192;
 
-function logoSize(src: string) {
+function logoDisplayWidth(src: string) {
   const size = LOGO_DIMENSIONS[src];
 
   if (!size) {
     return undefined;
   }
 
+  return Math.round(size.width * LOGO_DISPLAY_SCALE);
+}
+
+function logoSize(src: string, responsiveMaxWidth?: number) {
+  const size = LOGO_DIMENSIONS[src];
+
+  if (!size) {
+    return undefined;
+  }
+
+  const width = Math.round(size.width * LOGO_DISPLAY_SCALE);
+
+  if (responsiveMaxWidth && responsiveMaxWidth > 0) {
+    return {
+      width: `min(${width}px, calc(90cqw * ${width / responsiveMaxWidth}))`,
+      height: "auto",
+    };
+  }
+
   return {
-    width: `${Math.round(size.width * LOGO_DISPLAY_SCALE)}px`,
+    width: `${width}px`,
     height: `${Math.round(size.height * LOGO_DISPLAY_SCALE)}px`,
   };
 }
 
 function LogoBox({
-  src, alt, bg = "#FFFFFF", bgStyle, imgFilter, fill = false,
+  src, alt, bg = "#FFFFFF", bgStyle, imgFilter, fill = false, responsiveMaxWidth,
 }: {
-  src: string; alt: string; bg?: string; bgStyle?: CSSProperties; imgFilter?: string; fill?: boolean;
+  src: string; alt: string; bg?: string; bgStyle?: CSSProperties; imgFilter?: string | null; fill?: boolean; responsiveMaxWidth?: number;
 }) {
   const autoFilter = DARK_BG.has(bg) ? LOGO_ON_DARK : undefined;
-  const filter = imgFilter ?? autoFilter;
-  const size = logoSize(src);
+  const filter = imgFilter === null ? undefined : imgFilter ?? autoFilter;
+  const size = logoSize(src, responsiveMaxWidth);
+  const boxStyle: CSSProperties = {
+    ...(bgStyle ?? { background: bg }),
+    ...(responsiveMaxWidth ? { containerType: "inline-size" } : {}),
+  };
 
   return (
     <div
       className={`flex items-center justify-center rounded-[10px] p-8${fill ? " flex-1" : ""}`}
-      style={bgStyle ?? { background: bg }}
+      style={boxStyle}
     >
       <img
         src={src}
@@ -178,6 +213,70 @@ export function LogotipoPageContent({ brand }: { brand: LogoBrand }) {
   const LOGO_SYMBOL = brand.logos.symbol.src;
   const filePrefix = brand.slug === "hub" ? "masi" : brand.slug;
   const brandColorStyle = brand.brandColor.swatchStyle ?? { background: brand.brandColor.hex };
+  const isHubBrand = brand.slug === "hub";
+  const brandDisplayName = isHubBrand ? "Mase" : `Mase ${brand.name}`;
+  const downloadButtonStyle: CSSProperties = {
+    ...brandColorStyle,
+    borderColor: "transparent",
+    color: isHubBrand ? "#000000" : "#FFFFFF",
+  };
+  const primaryLogoVariant = (suffix: string) => `${brand.logos.primary.base}-${suffix}.svg`;
+  const symbolLogoVariant = (suffix: string) => `${brand.logos.symbol.base}-${suffix}.svg`;
+  const colorUsageExamples = isHubBrand
+    ? [
+        { logoSrc: LOGO_PRIMARY, bg: "#FFFFFF", bgLabel: "Fundo branco", filter: undefined, desc: "Versão preta. Contraste máximo em fundos brancos e claros." },
+        { logoSrc: LOGO_PRIMARY, bg: "#0C1C16", bgLabel: "Fundo verde escuro", filter: LOGO_ON_DARK, desc: "Versão branca. Legibilidade total em fundos muito escuros." },
+        { logoSrc: LOGO_PRIMARY, bg: brand.brandColor.hex ?? "#FFFFFF", bgStyle: brandColorStyle, bgLabel: `Fundo ${brand.name}`, filter: undefined, desc: "Versão preta sobre a cor principal da marca. Contraste e identidade preservados." },
+        { logoSrc: LOGO_PRIMARY, bg: "#1F1F1F", bgLabel: "Fundo preto", filter: LOGO_ON_DARK, desc: "Versão branca em fundos neutros escuros." },
+      ]
+    : [
+        { logoSrc: primaryLogoVariant("dark"), bg: "#FFFFFF", bgLabel: "Fundo branco", filter: undefined, desc: "Versão preta. Contraste máximo em fundos brancos e claros." },
+        { logoSrc: primaryLogoVariant("brand"), bg: "#FFFFFF", bgLabel: "Fundo branco", filter: undefined, desc: `Versão ${brand.name}. Aplicação colorida da marca em fundo branco.` },
+        { logoSrc: primaryLogoVariant("light"), bg: brand.brandColor.hex ?? "#FFFFFF", bgStyle: brandColorStyle, bgLabel: `Fundo ${brand.name}`, filter: null, desc: "Versão branca sobre a cor principal da marca." },
+        { logoSrc: primaryLogoVariant("light"), bg: "#1F1F1F", bgLabel: "Fundo preto", filter: null, desc: "Versão branca em fundos neutros escuros." },
+      ];
+  const correctColorUsage = isHubBrand
+    ? {
+        logoSrc: LOGO_PRIMARY,
+        alt: "Versão branca em fundo escuro",
+        bg: "#0C1C16",
+        filter: LOGO_ON_DARK,
+        title: "Versão branca em fundo escuro",
+        desc: "Contraste adequado com versão clara sobre fundo verde escuro.",
+      }
+    : {
+        logoSrc: primaryLogoVariant("light"),
+        alt: `Versão branca em fundo ${brand.name}`,
+        bg: brand.brandColor.hex ?? "#FFFFFF",
+        bgStyle: brandColorStyle,
+        filter: null,
+        title: `Versão branca em fundo ${brand.name}`,
+        desc: "Contraste adequado com versão clara sobre a cor principal da marca.",
+      };
+  const avatarSymbol = isHubBrand
+    ? {
+        src: LOGO_SYMBOL,
+        bg: "#0C1C16",
+        bgStyle: undefined,
+        filter: LOGO_ON_DARK,
+        size: "102%",
+      }
+    : {
+        src: symbolLogoVariant("light"),
+        bg: brand.brandColor.hex ?? "#FFFFFF",
+        bgStyle: brandColorStyle,
+        filter: null,
+        size: brand.slug === "workshop" ? "24px" : "102%",
+      };
+  const logoVersionItems = [
+    { key: "primary", src: LOGO_PRIMARY, alt: "Logo principal", name: "Logo principal", desc: "Símbolo e nome em composição horizontal. Versão primária para toda comunicação institucional onde a marca precisa ser apresentada com clareza completa.", tags: ["Apresentações", "Headers", "Materiais comerciais"] },
+    { key: "vertical", src: LOGO_VERTICAL, alt: "Logo vertical", name: "Logo vertical", desc: "Símbolo e nome em composição vertical. Indicado para capas, aberturas e layouts onde a altura favorece a composição centralizada.", tags: ["Capas", "Peças editoriais", "Composições centralizadas"] },
+    { key: "wordmark", src: LOGO_WORDMARK, alt: "Wordmark", name: "Wordmark", desc: "Apenas o nome tipográfico. Para aplicações minimalistas, assinaturas, rodapés e contextos onde a marca já está estabelecida.", tags: ["Rodapés", "Documentos", "Assinaturas"] },
+    { key: "symbol", src: LOGO_SYMBOL, alt: "Símbolo", name: "Símbolo", desc: "Apenas o símbolo da marca. Para espaços reduzidos, avatares, favicons, app icons e selos onde o reconhecimento precisa ser rápido e compacto.", tags: ["Avatar", "Favicon", "App icon", "Selos"] },
+  ] as const;
+  const logoVersionMaxWidth = Math.max(
+    ...logoVersionItems.map((item) => logoDisplayWidth(item.src) ?? 0)
+  );
 
   return (
     <div className="ds-page">
@@ -191,26 +290,23 @@ export function LogotipoPageContent({ brand }: { brand: LogoBrand }) {
         </div>
       </div>
 
-      {/* ── 01 · TIPOS DE MARCA ──────────────────────────────────────────────── */}
+      {/* ── 01 · VERSÕES DO LOGOTIPO ─────────────────────────────────────────── */}
       <Section
         eyebrow="Fundação"
-        title="Tipos de marca"
-        subtitle="A MASI possui quatro assinaturas visuais. Cada uma foi criada para um contexto específico — escolher a versão correta é parte essencial do uso correto da marca."
+        title="Versões do logotipo"
+        subtitle={`${brandDisplayName} possui quatro assinaturas visuais. Cada uma foi criada para um contexto específico — escolher a versão correta é parte essencial do uso correto da marca.`}
         first
       >
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
 
-          {[
-            { src: LOGO_PRIMARY,  alt: "Logo principal", name: "Logo principal", symbol: false, desc: "Símbolo e nome em composição horizontal. Versão primária para toda comunicação institucional onde a marca precisa ser apresentada com clareza completa.", tags: ["Apresentações", "Headers", "Materiais comerciais"] },
-            { src: LOGO_VERTICAL, alt: "Logo vertical",  name: "Logo vertical",  symbol: false, desc: "Símbolo e nome em composição vertical. Indicado para capas, aberturas e layouts onde a altura favorece a composição centralizada.",                       tags: ["Capas", "Peças editoriais", "Composições centralizadas"] },
-            { src: LOGO_WORDMARK, alt: "Wordmark",       name: "Wordmark",       symbol: false, desc: "Apenas o nome tipográfico. Para aplicações minimalistas, assinaturas, rodapés e contextos onde a marca já está estabelecida.",                          tags: ["Rodapés", "Documentos", "Assinaturas"] },
-            { src: LOGO_SYMBOL,   alt: "Símbolo",        name: "Símbolo",        symbol: true,  desc: "Apenas o símbolo da marca. Para espaços reduzidos, avatares, favicons, app icons e selos onde o reconhecimento precisa ser rápido e compacto.",          tags: ["Avatar", "Favicon", "App icon", "Selos"] },
-          ].map((item) => (
-            <div key={item.name} className="ds-card !p-[30px] flex flex-col" style={{ height: "560px" }}>
-              <LogoBox src={item.src} alt={item.alt} fill />
-              <div className="mt-5">
-                <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">{item.name}</Typography>
-                <Typography as="p" variant="body-sm" className="mt-2 text-muted-foreground">{item.desc}</Typography>
+          {logoVersionItems.map((item) => (
+            <div key={item.name} className="ds-card !p-[30px] flex flex-col" style={{ height: "650px" }}>
+              <LogoBox src={item.src} alt={item.alt} fill responsiveMaxWidth={logoVersionMaxWidth} />
+              <div className="mt-5 flex flex-col gap-3">
+                <div>
+                  <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">{item.name}</Typography>
+                  <Typography as="p" variant="body-sm" className="mt-2 text-muted-foreground">{item.desc}</Typography>
+                </div>
                 <div className="mt-3 flex flex-wrap gap-1.5">
                   {item.tags.map((t) => (
                     <Badge
@@ -221,6 +317,14 @@ export function LogotipoPageContent({ brand }: { brand: LogoBrand }) {
                       {t}
                     </Badge>
                   ))}
+                </div>
+                <div className="flex">
+                  <LogoDownloadDialog
+                    logoName={item.name}
+                    assetBase={brand.logos[item.key].base}
+                    colors={brand.colors}
+                    triggerStyle={downloadButtonStyle}
+                  />
                 </div>
               </div>
             </div>
@@ -233,39 +337,6 @@ export function LogotipoPageContent({ brand }: { brand: LogoBrand }) {
             O logo completo deve ser priorizado quando a marca precisa ser apresentada com clareza pela primeira vez ou em contextos de comunicação institucional.
             O símbolo deve ser usado quando o espaço é limitado ou quando a marca já está contextualizada no ambiente.
           </Typography>
-        </div>
-      </Section>
-
-      {/* ── 02 · DOWNLOADS ───────────────────────────────────────────────────── */}
-      <Section
-        eyebrow="Assets"
-        title="Downloads"
-        subtitle="Todas as versões disponíveis em SVG e PNG. Use sempre SVG para interfaces digitais — PNG apenas quando SVG não for suportado pela plataforma."
-      >
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          {([
-            { key: "primary",  name: "Logo principal", desc: "Formato primário para identificação institucional completa.",          src: LOGO_PRIMARY,  alt: "Logo principal", symbol: false },
-            { key: "vertical", name: "Logo vertical",  desc: "Assinatura alternativa para composições centralizadas ou verticais.", src: LOGO_VERTICAL, alt: "Logo vertical",  symbol: false },
-            { key: "wordmark", name: "Wordmark",       desc: "Versão tipográfica para aplicações minimalistas.",                    src: LOGO_WORDMARK, alt: "Wordmark",       symbol: false },
-            { key: "symbol",   name: "Símbolo",        desc: "Símbolo compacto para avatares, favicons e ícones.",                  src: LOGO_SYMBOL,   alt: "Símbolo",        symbol: true  },
-          ] as const).map((item) => (
-            <div key={item.key} className="ds-card !p-[30px] flex flex-col" style={{ height: "560px" }}>
-              <LogoBox src={item.src} alt={item.alt} fill />
-              <div className="mt-5 flex flex-col gap-3">
-                <div>
-                  <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">{item.name}</Typography>
-                  <Typography as="p" variant="body-sm" className="mt-1 text-muted-foreground">{item.desc}</Typography>
-                </div>
-                <div className="flex gap-2">
-                  <LogoDownloadDialog
-                    logoName={item.name}
-                    assetBase={brand.logos[item.key].base}
-                    colors={brand.colors}
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
 
         <div className="ds-card !p-[30px] mt-6">
@@ -287,7 +358,133 @@ export function LogotipoPageContent({ brand }: { brand: LogoBrand }) {
         </div>
       </Section>
 
-      {/* ── 03 · ÁREA DE PROTEÇÃO ────────────────────────────────────────────── */}
+      {/* ── 02 · USO DE COR ──────────────────────────────────────────────────── */}
+      <Section
+        eyebrow="Color Usage"
+        title="Uso de cor"
+        subtitle="O logotipo possui versões cromáticas para garantir contraste e legibilidade em qualquer fundo. A escolha deve sempre priorizar legibilidade."
+      >
+        <div className="grid gap-6 sm:grid-cols-2">
+          {colorUsageExamples.map((item, index) => (
+            <div key={`${item.bgLabel}-${index}`} className="ds-card !p-[30px] flex flex-col" style={{ height: "650px" }}>
+              <LogoBox src={item.logoSrc} alt={`Logo em ${item.bgLabel}`} bg={item.bg} bgStyle={item.bgStyle} imgFilter={item.filter} fill />
+              <div className="mt-5">
+                <div className="flex items-center gap-2">
+                  <div className="h-3 w-3 shrink-0 rounded-full border border-black/15" style={item.bgStyle ?? { background: item.bg }} />
+                  <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">{item.bgLabel}</Typography>
+                </div>
+                <Typography as="p" variant="body-sm" className="mt-1 text-muted-foreground">{item.desc}</Typography>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="ds-card !p-[30px] mt-6">
+          <Typography as="p" variant="label" className="mb-4 normal-case tracking-normal text-foreground">Paleta oficial de aplicação</Typography>
+          <div className="grid gap-4 sm:grid-cols-4">
+            {[
+              { name: "Preto",        hex: "#0D0D0D" },
+              { name: "Branco",       hex: "#FFFFFF" },
+              { name: brand.name,      hex: brand.brandColor.hex ?? "Gradiente", swatchStyle: brandColorStyle },
+              ...(brand.slug === "hub" ? [{ name: "Verde escuro", hex: "#0C1C16" }] : []),
+            ].map((c) => (
+              <div key={c.name} className="flex items-center gap-3">
+                <div className="h-9 w-9 shrink-0 rounded-[6px] border border-black/10" style={c.swatchStyle ?? { background: c.hex }} />
+                <div>
+                  <Typography as="p" variant="body-sm" className="font-semibold text-foreground">{c.name}</Typography>
+                  <Typography as="p" variant="code" className="text-muted-foreground">{c.hex}</Typography>
+                </div>
+              </div>
+            ))}
+          </div>
+          <Typography as="p" variant="body-sm" className="mt-4 text-muted-foreground">
+            Nunca aplique o logotipo em cores fora dessa paleta sem aprovação. A consistência cromática é parte essencial da identidade visual da {brandDisplayName}.
+          </Typography>
+        </div>
+      </Section>
+
+      {/* ── 03 · USOS CORRETOS ───────────────────────────────────────────────── */}
+      <Section
+        eyebrow="Correct Usage"
+        title="Usos corretos"
+        subtitle="Referências de aplicação que preservam a integridade, legibilidade e consistência visual da marca."
+      >
+        <div className="grid gap-6 sm:grid-cols-2">
+
+          <div className="ds-card !p-[30px] flex flex-col gap-4" style={{ height: "650px" }}>
+            <LogoBox src={LOGO_PRIMARY} alt="Proporção original" fill />
+            <div>
+              <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">Proporção original</Typography>
+              <Typography as="p" variant="body-sm" className="mt-1 text-muted-foreground">Logo aplicado com as proporções exatas do arquivo original.</Typography>
+            </div>
+          </div>
+
+          <div className="ds-card !p-[30px] flex flex-col gap-4" style={{ height: "650px" }}>
+            <LogoBox
+              src={correctColorUsage.logoSrc}
+              alt={correctColorUsage.alt}
+              bg={correctColorUsage.bg}
+              bgStyle={correctColorUsage.bgStyle}
+              imgFilter={correctColorUsage.filter}
+              fill
+            />
+            <div>
+              <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">{correctColorUsage.title}</Typography>
+              <Typography as="p" variant="body-sm" className="mt-1 text-muted-foreground">{correctColorUsage.desc}</Typography>
+            </div>
+          </div>
+
+          <div className="ds-card !p-[30px] flex flex-col gap-4" style={{ height: "650px" }}>
+            <div className="relative flex-1 rounded-[10px] bg-white p-8">
+              <div className="pointer-events-none absolute inset-5 rounded-[8px] border border-dashed border-black/45" />
+              <div className="relative z-10 flex h-full items-center justify-center">
+                <img src={LOGO_PRIMARY} alt="Com área de respiro"
+                  style={{
+                    display: "block",
+                    width: logoSize(LOGO_PRIMARY)?.width ?? "auto",
+                    height: logoSize(LOGO_PRIMARY)?.height ?? "auto",
+                    maxWidth: "90%",
+                    objectFit: "contain",
+                    margin: "0 auto",
+                  }} />
+              </div>
+            </div>
+            <div>
+              <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">Área de respiro preservada</Typography>
+              <Typography as="p" variant="body-sm" className="mt-1 text-muted-foreground">Espaçamento mínimo mantido em todos os lados do logotipo.</Typography>
+            </div>
+          </div>
+
+          <div className="ds-card !p-[30px] flex flex-col gap-4" style={{ height: "650px" }}>
+            <div className="flex flex-1 items-center justify-center rounded-[10px] bg-white p-8">
+              <div
+                className="flex h-14 w-14 items-center justify-center rounded-full p-[18px]"
+                style={avatarSymbol.bgStyle ?? { background: avatarSymbol.bg }}
+              >
+                <img
+                  src={avatarSymbol.src}
+                  alt="Símbolo em avatar"
+                  style={{
+                    display: "block",
+                    width: avatarSymbol.size,
+                    height: "auto",
+                    maxWidth: "none",
+                    flexShrink: 0,
+                    ...(avatarSymbol.filter ? { filter: avatarSymbol.filter } : {}),
+                  }}
+                />
+              </div>
+            </div>
+            <div>
+              <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">Símbolo em avatar</Typography>
+              <Typography as="p" variant="body-sm" className="mt-1 text-muted-foreground">Símbolo compacto com respiro interno, ideal para perfis e apps.</Typography>
+            </div>
+          </div>
+
+        </div>
+      </Section>
+
+      {/* ── 04 · ÁREA DE PROTEÇÃO ────────────────────────────────────────────── */}
       <Section
         eyebrow="Clear Space"
         title="Área de proteção"
@@ -300,8 +497,11 @@ export function LogotipoPageContent({ brand }: { brand: LogoBrand }) {
             { name: "Wordmark",       src: LOGO_WORDMARK },
             { name: "Símbolo",        src: LOGO_SYMBOL },
           ].map((item) => (
-            <div key={item.name} className="ds-card !p-[30px] flex flex-col" style={{ height: "560px" }}>
-              <div className="relative flex-1 flex items-center justify-center rounded-[10px] bg-white p-8">
+            <div key={item.name} className="ds-card !p-[30px] flex flex-col" style={{ height: "650px" }}>
+              <div
+                className="relative flex-1 flex items-center justify-center rounded-[10px] bg-white p-8"
+                style={{ containerType: "inline-size" }}
+              >
                 <div className="pointer-events-none absolute inset-5 rounded-[8px] border border-dashed border-black/45" />
                 <img
                   src={item.src}
@@ -309,8 +509,8 @@ export function LogotipoPageContent({ brand }: { brand: LogoBrand }) {
                   className="relative z-10"
                   style={{
                     display: "block",
-                    width: logoSize(item.src)?.width ?? "auto",
-                    height: logoSize(item.src)?.height ?? "auto",
+                    width: logoSize(item.src, logoVersionMaxWidth)?.width ?? "auto",
+                    height: logoSize(item.src, logoVersionMaxWidth)?.height ?? "auto",
                     maxWidth: "90%",
                     objectFit: "contain",
                     margin: "0 auto",
@@ -332,7 +532,7 @@ export function LogotipoPageContent({ brand }: { brand: LogoBrand }) {
         </div>
       </Section>
 
-      {/* ── 04 · TAMANHO MÍNIMO ──────────────────────────────────────────────── */}
+      {/* ── 05 · TAMANHO MÍNIMO ──────────────────────────────────────────────── */}
       <Section
         eyebrow="Minimum Size"
         title="Tamanho mínimo"
@@ -369,118 +569,7 @@ export function LogotipoPageContent({ brand }: { brand: LogoBrand }) {
         </div>
       </Section>
 
-      {/* ── 05 · USO DE COR ──────────────────────────────────────────────────── */}
-      <Section
-        eyebrow="Color Usage"
-        title="Uso de cor"
-        subtitle="O logotipo possui versões cromáticas para garantir contraste e legibilidade em qualquer fundo. A escolha deve sempre priorizar legibilidade."
-      >
-        <div className="grid gap-6 sm:grid-cols-2">
-          {[
-            { bg: "#FFFFFF",  bgLabel: "Fundo branco",       filter: undefined,    desc: "Versão preta. Contraste máximo em fundos brancos e claros." },
-            { bg: "#0C1C16",  bgLabel: "Fundo verde escuro",  filter: LOGO_ON_DARK, desc: "Versão branca. Legibilidade total em fundos muito escuros." },
-            { bg: brand.brandColor.hex ?? "#FFFFFF", bgStyle: brandColorStyle, bgLabel: `Fundo ${brand.name}`, filter: undefined, desc: "Versão preta sobre a cor principal da marca. Contraste e identidade preservados." },
-            { bg: "#1F1F1F",  bgLabel: "Fundo preto",         filter: LOGO_ON_DARK, desc: "Versão branca em fundos neutros escuros." },
-          ].map((item) => (
-            <div key={item.bgLabel} className="ds-card !p-[30px] flex flex-col" style={{ height: "560px" }}>
-              <LogoBox src={LOGO_PRIMARY} alt={`Logo em ${item.bgLabel}`} bg={item.bg} bgStyle={item.bgStyle} imgFilter={item.filter} fill />
-              <div className="mt-5">
-                <div className="flex items-center gap-2">
-                  <div className="h-3 w-3 shrink-0 rounded-full border border-black/15" style={item.bgStyle ?? { background: item.bg }} />
-                  <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">{item.bgLabel}</Typography>
-                </div>
-                <Typography as="p" variant="body-sm" className="mt-1 text-muted-foreground">{item.desc}</Typography>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="ds-card !p-[30px] mt-6">
-          <Typography as="p" variant="label" className="mb-4 normal-case tracking-normal text-foreground">Paleta oficial de aplicação</Typography>
-          <div className="grid gap-4 sm:grid-cols-4">
-            {[
-              { name: "Preto",        hex: "#0D0D0D" },
-              { name: "Branco",       hex: "#FFFFFF" },
-              { name: brand.name,      hex: brand.brandColor.hex ?? "Gradiente", swatchStyle: brandColorStyle },
-              ...(brand.slug === "hub" ? [{ name: "Verde escuro", hex: "#0C1C16" }] : []),
-            ].map((c) => (
-              <div key={c.name} className="flex items-center gap-3">
-                <div className="h-9 w-9 shrink-0 rounded-[6px] border border-black/10" style={c.swatchStyle ?? { background: c.hex }} />
-                <div>
-                  <Typography as="p" variant="body-sm" className="font-semibold text-foreground">{c.name}</Typography>
-                  <Typography as="p" variant="code" className="text-muted-foreground">{c.hex}</Typography>
-                </div>
-              </div>
-            ))}
-          </div>
-          <Typography as="p" variant="body-sm" className="mt-4 text-muted-foreground">
-            Nunca aplique o logotipo em cores fora dessa paleta sem aprovação. A consistência cromática é parte essencial da identidade visual da MASI.
-          </Typography>
-        </div>
-      </Section>
-
-      {/* ── 06 · USOS CORRETOS ───────────────────────────────────────────────── */}
-      <Section
-        eyebrow="Correct Usage"
-        title="Usos corretos"
-        subtitle="Referências de aplicação que preservam a integridade, legibilidade e consistência visual da marca."
-      >
-        <div className="grid gap-6 sm:grid-cols-2">
-
-          <div className="ds-card !p-[30px] flex flex-col gap-4" style={{ height: "560px" }}>
-            <LogoBox src={LOGO_PRIMARY} alt="Proporção original" fill />
-            <div>
-              <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">Proporção original</Typography>
-              <Typography as="p" variant="body-sm" className="mt-1 text-muted-foreground">Logo aplicado com as proporções exatas do arquivo original.</Typography>
-            </div>
-          </div>
-
-          <div className="ds-card !p-[30px] flex flex-col gap-4" style={{ height: "560px" }}>
-            <LogoBox src={LOGO_PRIMARY} alt="Versão branca em fundo escuro" bg="#0C1C16" imgFilter={LOGO_ON_DARK} fill />
-            <div>
-              <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">Versão branca em fundo escuro</Typography>
-              <Typography as="p" variant="body-sm" className="mt-1 text-muted-foreground">Contraste adequado com versão clara sobre fundo verde escuro.</Typography>
-            </div>
-          </div>
-
-          <div className="ds-card !p-[30px] flex flex-col gap-4" style={{ height: "560px" }}>
-            <div className="relative flex-1 rounded-[10px] bg-white p-8">
-              <div className="pointer-events-none absolute inset-5 rounded-[8px] border border-dashed border-black/45" />
-              <div className="relative z-10 flex h-full items-center justify-center">
-                <img src={LOGO_PRIMARY} alt="Com área de respiro"
-                  style={{
-                    display: "block",
-                    width: logoSize(LOGO_PRIMARY)?.width ?? "auto",
-                    height: logoSize(LOGO_PRIMARY)?.height ?? "auto",
-                    maxWidth: "90%",
-                    objectFit: "contain",
-                    margin: "0 auto",
-                  }} />
-              </div>
-            </div>
-            <div>
-              <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">Área de respiro preservada</Typography>
-              <Typography as="p" variant="body-sm" className="mt-1 text-muted-foreground">Espaçamento mínimo mantido em todos os lados do logotipo.</Typography>
-            </div>
-          </div>
-
-          <div className="ds-card !p-[30px] flex flex-col gap-4" style={{ height: "560px" }}>
-            <div className="flex flex-1 items-center justify-center rounded-[10px] bg-white p-8">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#0C1C16] p-[18px]">
-                <img src={LOGO_SYMBOL} alt="Símbolo em avatar"
-                  style={{ display: "block", width: "102%", height: "auto", filter: LOGO_ON_DARK }} />
-              </div>
-            </div>
-            <div>
-              <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">Símbolo em avatar</Typography>
-              <Typography as="p" variant="body-sm" className="mt-1 text-muted-foreground">Símbolo compacto com respiro interno, ideal para perfis e apps.</Typography>
-            </div>
-          </div>
-
-        </div>
-      </Section>
-
-      {/* ── 07 · GUIA DE ESCOLHA ─────────────────────────────────────────────── */}
+      {/* ── 06 · GUIA DE ESCOLHA ─────────────────────────────────────────────── */}
       <Section
         eyebrow="Logo Selection"
         title="Guia de escolha"

@@ -6,6 +6,7 @@ import {
   BlogRelatedPosts,
   NewsletterCTA,
 } from "@/components/blog";
+import { ChamferedPanel } from "@/components/chamfered-panel";
 import {
   createPostMetadata,
   getAllBlogPosts,
@@ -14,6 +15,7 @@ import {
 } from "@/lib/blog";
 import {
   FoundationFooter,
+  FoundationPageHeader,
   Section,
 } from "../../../foundation-sections";
 
@@ -50,21 +52,28 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   return (
     <div className="ds-page">
-      <Section
-        eyebrow="Blog"
-        title="Artigo"
-        subtitle="Página individual estruturada para SEO, leitura longa e recomendações editoriais."
-        first
-      >
-        <BlogPostHeader post={post} />
-      </Section>
+      <FoundationPageHeader
+        title="Blog"
+        description="Artigo editorial para aprofundar temas de negócios, inovação, tecnologia, liderança, estratégia e crescimento."
+      />
 
-      <Section
-        title="Conteúdo"
-        subtitle="Blocos ricos renderizados a partir da camada local-first de conteúdo."
-      >
+      <section className="w-full">
+        <ChamferedPanel
+          strokeColor="#FFFFFF"
+          strokeWidth={1}
+          innerStyle={{
+            background: "#ECECEC",
+            borderRadius: 10,
+            padding: "var(--section-padding-y) var(--section-padding-x)",
+          }}
+        >
+          <BlogPostHeader post={post} />
+        </ChamferedPanel>
+      </section>
+
+      <section className="ds-section">
         <BlogPostContent post={post} />
-      </Section>
+      </section>
 
       <Section
         title="Artigos relacionados"

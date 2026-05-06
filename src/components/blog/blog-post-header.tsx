@@ -39,9 +39,6 @@ export function BlogPostHeader({ post }: { post: BlogPost }) {
             <Typography as="h1" variant="display" className="max-w-4xl text-foreground">
               {post.title}
             </Typography>
-            <Typography as="p" variant="body-lg" className="mt-4 max-w-3xl text-muted-foreground">
-              {post.subtitle}
-            </Typography>
           </div>
 
           <div className="grid gap-3 text-[13px] text-muted-foreground sm:grid-cols-3">
