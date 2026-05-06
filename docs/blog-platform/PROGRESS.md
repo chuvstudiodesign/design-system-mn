@@ -150,6 +150,8 @@ O usuario concedeu modo full auto responsavel para ler, criar, editar, documenta
 
 - Posts passaram a usar imagens reais remotas em alta resolucao via `images.unsplash.com`.
 - `BlogCover` foi atualizado para renderizar a foto real limpa, sem bordas, overlays ou elementos decorativos sobre a imagem. O fallback visual so aparece quando nao houver URL.
+- As imagens foram ajustadas para priorizar cenas com pessoas relacionadas ao tema de cada artigo.
+- Todas as imagens reais recebem `saturate(1.1)` via classe Tailwind para ficarem cerca de 10% mais vivas sem overlay.
 - As imagens continuam sem exigir configuracao de `next/image`, porque o componente usa `<img>` e o build nao precisa buscar os arquivos remotos.
 
 ## Problemas encontrados e correcoes

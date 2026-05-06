@@ -47,7 +47,7 @@ export function BlogCover({
           src={src}
           alt={label}
           loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover saturate-[1.1]"
         />
       ) : (
         <>
