@@ -6,20 +6,24 @@ import {
   Section,
 } from "../../foundation-sections";
 
+// Display height used in the grid cards — smaller than ICON_REF_HEIGHT (docs reference)
+const GRID_H = 50;
+
+function iconGridWidth(icon: MNIcon) {
+  return Math.round((icon.figmaW / icon.figmaH) * GRID_H);
+}
+
 function IconCard({ icon }: { icon: MNIcon }) {
-  const displayW = iconDisplayWidth(icon);
+  const gridW = iconGridWidth(icon);
 
   return (
     <div className="ds-card !p-[30px] flex flex-col gap-4">
-      <div
-        className="flex items-end justify-center"
-        style={{ height: ICON_REF_HEIGHT }}
-      >
+      <div className="flex items-end justify-center" style={{ height: GRID_H }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={icon.src}
           alt={icon.name}
-          style={{ height: ICON_REF_HEIGHT, width: "auto" }}
+          style={{ width: gridW, height: GRID_H }}
         />
       </div>
       <div className="border-t border-[#ECECEC] pt-3">
@@ -30,7 +34,7 @@ function IconCard({ icon }: { icon: MNIcon }) {
           {icon.figmaW} × {icon.figmaH} px
         </Typography>
         <Typography as="p" variant="code" className="mt-0.5 text-muted-foreground">
-          display: {displayW} × {ICON_REF_HEIGHT}
+          display: {gridW} × {GRID_H}
         </Typography>
       </div>
     </div>

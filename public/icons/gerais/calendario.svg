@@ -1,4 +1,4 @@
-<svg preserveAspectRatio="xMidYMid meet" width="173" height="187" overflow="visible" style="display: block;" viewBox="0 0 173 187" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg preserveAspectRatio="xMidYMid meet" width="173" height="187" overflow="hidden" style="display: block;" viewBox="0 0 173 187" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Calendario">
 <path d="M152.601 83.4614H20.3993V71.8782H152.601V83.4614Z" fill="var(--fill-0, black)"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M54.8535 14.5467H117.297V0H127.101V14.6053C152.657 15.8406 173 37.0883 173 63.1229V138.424C173 165.252 151.396 187 124.749 187H48.2511C21.6035 187 2.58532e-05 165.252 0 138.424V63.1229C4.78014e-05 37.3775 19.8939 16.311 45.049 14.6515V0H54.8535V14.5467ZM54.8535 42.3882H45.049V26.2712C26.2535 27.9042 11.5046 43.7792 11.5046 63.1229V138.424C11.5046 158.854 27.9557 175.417 48.2511 175.417H124.749C145.044 175.417 161.495 158.854 161.495 138.424V63.1229C161.495 43.4886 146.3 27.4263 127.101 26.2054V42.3882H117.297V26.1299H54.8535V42.3882Z" fill="var(--fill-0, black)"/>

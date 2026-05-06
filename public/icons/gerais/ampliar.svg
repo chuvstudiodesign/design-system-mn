@@ -1,4 +1,4 @@
-<svg preserveAspectRatio="xMidYMid meet" width="173" height="173" overflow="visible" style="display: block;" viewBox="0 0 173 173" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg preserveAspectRatio="xMidYMid meet" width="173" height="173" overflow="hidden" style="display: block;" viewBox="0 0 173 173" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Apliar">
 <path d="M11.0856 114.246C11.0857 125.461 14.9615 135.769 21.4429 143.91L77.035 88.3242L84.8726 96.162L29.3026 151.729C37.41 158.108 47.6375 161.914 58.7538 161.914H89.7936V173H58.7538C26.305 173 6.35094e-05 146.695 0 114.246V83.2055H11.0856V114.246Z" fill="var(--fill-0, black)"/>
 <path d="M114.246 0C146.695 0.000458478 173 26.3055 173 58.7544V89.7945L161.914 89.7928V58.7544C161.914 47.539 158.037 37.2297 151.555 29.0882L95.965 84.6758L88.1274 76.838L143.696 21.2708C135.589 14.892 125.362 11.0859 114.246 11.0857H83.2064V0H114.246Z" fill="var(--fill-0, black)"/>

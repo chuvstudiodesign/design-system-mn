@@ -1,4 +1,4 @@
-<svg preserveAspectRatio="xMidYMid meet" width="231" height="152" overflow="visible" style="display: block;" viewBox="0 0 231 152" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg preserveAspectRatio="xMidYMid meet" width="231" height="152" overflow="hidden" style="display: block;" viewBox="0 0 231 152" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Cartao">
 <path d="M179.284 58.7273H49.9925V46.6364H179.284V58.7273Z" fill="var(--fill-0, black)"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M173.846 0C204.859 0.000732054 230.191 25.9657 230.981 58.1892L231 59.7275V92.2725L230.981 93.8108C230.191 126.034 204.859 151.999 173.846 152H57.1541C26.141 151.999 0.809022 126.034 0.0185182 93.8108L0 92.2725V59.7275L0.0185182 58.1892C0.809019 25.9657 26.141 0.000732054 57.1541 0H173.846ZM57.2163 11.7923C31.8741 11.7933 11.3475 33.3244 11.3466 59.7259V92.2741C11.3475 118.676 31.8741 140.207 57.2163 140.208H173.784C199.126 140.207 219.653 118.676 219.653 92.2741V59.7259C219.653 33.3244 199.126 11.7933 173.784 11.7923H57.2163Z" fill="var(--fill-0, black)"/>

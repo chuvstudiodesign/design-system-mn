@@ -1,4 +1,4 @@
-<svg preserveAspectRatio="xMidYMid meet" width="190" height="190" overflow="visible" style="display: block;" viewBox="0 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg preserveAspectRatio="xMidYMid meet" width="190" height="190" overflow="hidden" style="display: block;" viewBox="0 0 190 190" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Clock">
 <path d="M132.305 59.0331L94.5386 96.7966L115.234 132.638L105.268 138.391L80.1598 94.9017L124.168 50.8967L132.305 59.0331Z" fill="var(--fill-0, black)"/>
 <path fill-rule="evenodd" clip-rule="evenodd" d="M95 0C147.465 0 190 42.5312 190 95C190 147.469 147.465 190 95 190C42.5347 190 4.05224e-07 147.469 0 95C0 42.5312 42.5347 1.38069e-06 95 0ZM95 11.5095C48.886 11.5095 11.5065 48.8913 11.5065 95C11.5065 141.109 48.886 178.49 95 178.49C141.114 178.49 178.494 141.109 178.494 95C178.494 48.8913 141.114 11.5095 95 11.5095Z" fill="var(--fill-0, black)"/>
