@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, LayoutDashboard } from "lucide-react";
 import {
   BlogFilterExperience,
+  BlogPostCarousel,
   BlogPostCard,
   NewsletterCTA,
 } from "@/components/blog";
@@ -85,10 +86,15 @@ export default function BlogPage() {
         <div className="ds-grid-3">
           {categories.map((category) => (
             <div key={category.slug} className="ds-card !p-[30px]">
-              <div
-                className="mb-5 h-3 w-16 rounded-full"
-                style={{ background: category.colorToken }}
-              />
+              <div className="mb-5 flex items-center gap-3">
+                <div
+                  className="h-3 w-16 rounded-full"
+                  style={{ background: category.colorToken }}
+                />
+                <Typography as="p" variant="code" className="text-muted-foreground">
+                  {category.colorName}
+                </Typography>
+              </div>
               <Typography as="h3" variant="h3" className="text-foreground">
                 {category.name}
               </Typography>
@@ -112,13 +118,9 @@ export default function BlogPage() {
 
       <Section
         title="Leitura recomendada"
-        subtitle="Curadoria editorial para reforcar temas estrategicos e manter fluxo de leitura."
+        subtitle="Carrossel infinito com todos os posts da biblioteca, mantendo o mesmo card editorial."
       >
-        <div className="ds-grid-3">
-          {posts.slice(3, 6).map((post) => (
-            <BlogPostCard key={post.id} post={post} />
-          ))}
-        </div>
+        <BlogPostCarousel posts={posts} />
       </Section>
 
       <Section

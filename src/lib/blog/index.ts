@@ -1,4 +1,7 @@
 export {
+  getBlogCategoryStyle,
+} from "./category-style";
+export {
   formatBlogDate,
   formatReadingTime,
   normalizeSearchText,

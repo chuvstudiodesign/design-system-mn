@@ -1,6 +1,7 @@
 export { BlogCover } from "./blog-cover";
 export { BlogFilterExperience } from "./blog-filter-experience";
 export { BlogPostCard } from "./blog-post-card";
+export { BlogPostCarousel } from "./blog-post-carousel";
 export { BlogPostContent } from "./blog-post-content";
 export { BlogPostHeader } from "./blog-post-header";
 export { BlogRelatedPosts } from "./blog-related-posts";

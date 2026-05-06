@@ -38,6 +38,9 @@ export interface BlogCategory {
   slug: string;
   description: string;
   colorToken: string;
+  colorHex: string;
+  colorName: string;
+  textColor: string;
 }
 
 export interface BlogTag {

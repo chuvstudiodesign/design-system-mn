@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Clock } from "lucide-react";
 import type { BlogPost } from "@/data/blog";
-import { formatBlogDate, formatReadingTime } from "@/lib/blog";
+import { formatBlogDate, formatReadingTime, getBlogCategoryStyle } from "@/lib/blog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/typography";
@@ -16,6 +16,8 @@ export function BlogPostCard({
   post: BlogPost;
   featured?: boolean;
 }) {
+  const categoryStyle = getBlogCategoryStyle(post.categorySlug);
+
   return (
     <article className="ds-card !p-[30px] flex h-full flex-col gap-5">
       <Link href={`${blogBasePath}/${post.slug}`} aria-label={`Ler ${post.title}`}>
@@ -28,7 +30,10 @@ export function BlogPostCard({
       </Link>
 
       <div className="flex flex-wrap items-center gap-2">
-        <Badge className="min-h-8 px-2.5 py-0 text-[10px] font-semibold uppercase tracking-wider">
+        <Badge
+          className="min-h-8 px-2.5 py-0 text-[10px] font-semibold uppercase tracking-wider"
+          style={categoryStyle}
+        >
           {post.category}
         </Badge>
         {post.featured && (

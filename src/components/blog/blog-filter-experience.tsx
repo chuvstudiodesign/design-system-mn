@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { Search, X } from "lucide-react";
 import type { BlogCategory, BlogPost, BlogTag } from "@/data/blog";
-import { filterBlogPosts } from "@/lib/blog";
+import { filterBlogPosts, getBlogCategoryStyle } from "@/lib/blog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -83,9 +83,10 @@ export function BlogFilterExperience({
               <Button
                 key={item.slug}
                 type="button"
-                variant={category === item.slug ? "default" : "secondary"}
+                variant="secondary"
                 size="sm"
                 onClick={() => setCategory(item.slug)}
+                style={category === item.slug ? getBlogCategoryStyle(item.slug) : undefined}
               >
                 {item.name}
               </Button>

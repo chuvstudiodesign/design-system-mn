@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Check, Edit3, Eye, Plus, Save, Search } from "lucide-react";
 import type { BlogAuthor, BlogCategory, BlogPost, BlogPostStatus, BlogTag } from "@/data/blog";
-import { filterBlogPosts, formatBlogDate } from "@/lib/blog";
+import { filterBlogPosts, formatBlogDate, getBlogCategoryStyle } from "@/lib/blog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -276,7 +276,11 @@ export function CMSBlogManager({
                     <CMSStatusBadge status={post.status} />
                   </TableCell>
                   <TableCell>
-                    <Badge variant="secondary" className="min-h-8 px-2.5 py-0 text-[10px]">
+                    <Badge
+                      variant="secondary"
+                      className="min-h-8 px-2.5 py-0 text-[10px]"
+                      style={getBlogCategoryStyle(post.categorySlug)}
+                    >
                       {post.category}
                     </Badge>
                   </TableCell>

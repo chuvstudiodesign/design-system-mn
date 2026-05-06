@@ -171,6 +171,17 @@ A base robusta do Blog/CMS esta implementada e validada. O proximo trabalho deve
 4. Adicionar imagens reais ou pipeline de OG images.
 5. Criar testes unitarios simples para filtros e helpers.
 
+## Atualizacao de categorias e carrossel
+
+- Categorias do blog agora usam cores de marcas do Design System:
+  - Estrategia: Advisor `#5C00FF`
+  - Inovacao: Academy `#9E00FF`
+  - Tecnologia: Webinar `#FFEA00`
+  - Lideranca: Workshop `#F54A00`
+  - Crescimento: MXP `#FF0055`
+- Badges de categoria usam a mesma cor nos cards, artigo, biblioteca e CMS.
+- `Leitura recomendada` virou carrossel infinito (`loop: true`) usando o mesmo `BlogPostCard`, com todos os posts publicados.
+
 ## Proximos passos imediatos
 
 1. Criar tipos e conteudo local-first.

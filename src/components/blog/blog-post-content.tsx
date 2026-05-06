@@ -1,4 +1,5 @@
 import type { BlogContentBlock, BlogPost } from "@/data/blog";
+import { getBlogCategoryStyle } from "@/lib/blog";
 import { Badge } from "@/components/ui/badge";
 import { Typography } from "@/components/typography";
 
@@ -87,6 +88,8 @@ function BlockRenderer({ block }: { block: BlogContentBlock }) {
 }
 
 export function BlogPostContent({ post }: { post: BlogPost }) {
+  const categoryStyle = getBlogCategoryStyle(post.categorySlug);
+
   return (
     <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_280px]">
       <article className="flex max-w-4xl flex-col gap-6">
@@ -94,6 +97,12 @@ export function BlogPostContent({ post }: { post: BlogPost }) {
           <BlockRenderer key={`${block.type}-${index}`} block={block} />
         ))}
         <div className="flex flex-wrap gap-2 border-t border-white pt-6">
+          <Badge
+            className="min-h-8 px-2.5 py-0 text-[10px]"
+            style={categoryStyle}
+          >
+            {post.category}
+          </Badge>
           {post.tags.map((tag) => (
             <Badge key={tag} variant="secondary" className="min-h-8 px-2.5 py-0 text-[10px]">
               {tag}

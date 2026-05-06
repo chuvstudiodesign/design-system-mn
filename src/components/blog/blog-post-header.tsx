@@ -1,13 +1,15 @@
 import Link from "next/link";
 import { ArrowLeft, Calendar, Clock, UserRound } from "lucide-react";
 import type { BlogPost } from "@/data/blog";
-import { formatBlogDate, formatReadingTime } from "@/lib/blog";
+import { formatBlogDate, formatReadingTime, getBlogCategoryStyle } from "@/lib/blog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/typography";
 import { BlogCover } from "./blog-cover";
 
 export function BlogPostHeader({ post }: { post: BlogPost }) {
+  const categoryStyle = getBlogCategoryStyle(post.categorySlug);
+
   return (
     <header className="flex flex-col gap-6">
       <div>
@@ -20,7 +22,10 @@ export function BlogPostHeader({ post }: { post: BlogPost }) {
       <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_420px]">
         <div className="flex flex-col justify-between gap-6">
           <div className="flex flex-wrap gap-2">
-            <Badge className="min-h-8 px-2.5 py-0 text-[10px] font-semibold uppercase tracking-wider">
+            <Badge
+              className="min-h-8 px-2.5 py-0 text-[10px] font-semibold uppercase tracking-wider"
+              style={categoryStyle}
+            >
               {post.category}
             </Badge>
             {post.tags.slice(0, 3).map((tag) => (
