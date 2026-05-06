@@ -6,10 +6,12 @@ import {
   Section,
 } from "../../foundation-sections";
 
-// Same scale factor applied to BOTH figmaW and figmaH of every icon.
-// Result: each icon keeps its exact Figma proportions, just smaller.
-// e.g. Coração 206×188 → 62×56 | iPhone 154×191 → 46×57 | iPhone Camera 232×152 → 70×46
-const ICON_SCALE = 0.3;
+// Scale factor applied equally to figmaW and figmaH — same multiplier for every icon.
+// At 0.4× most icons land in the 55–95px range, filling the 100px display slot well.
+const ICON_SCALE = 0.4;
+
+// Fixed display slot. Icons are centered inside it at their scaled proportions.
+const SLOT = 100;
 
 function scaled(icon: MNIcon) {
   return {
@@ -22,20 +24,21 @@ function IconCard({ icon }: { icon: MNIcon }) {
   const { w, h } = scaled(icon);
 
   return (
-    <div className="ds-card !p-[30px] flex flex-col gap-4">
-      <div className="flex items-end justify-center" style={{ height: 70 }}>
+    <div className="ds-card !p-[20px] flex flex-col gap-3">
+      {/* Fixed-size slot: icon centered at exact proportional dimensions */}
+      <div
+        className="flex items-center justify-center rounded-[6px] bg-[#F0F0F0]"
+        style={{ width: SLOT, height: SLOT }}
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={icon.src} alt={icon.name} style={{ width: w, height: h }} />
       </div>
-      <div className="border-t border-[#ECECEC] pt-3">
-        <Typography as="p" variant="body" className="font-semibold text-foreground">
+      <div>
+        <Typography as="p" variant="body-sm" className="font-semibold text-foreground">
           {icon.name}
         </Typography>
-        <Typography as="p" variant="code" className="mt-1 text-muted-foreground">
-          Figma: {icon.figmaW} × {icon.figmaH}
-        </Typography>
         <Typography as="p" variant="code" className="mt-0.5 text-muted-foreground">
-          Display: {w} × {h}
+          {icon.figmaW} × {icon.figmaH}
         </Typography>
       </div>
     </div>
