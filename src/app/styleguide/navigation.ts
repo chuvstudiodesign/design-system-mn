@@ -82,4 +82,10 @@ export const navigation: NavSection[] = [
       { name: "Typography", href: "/styleguide/components/typography" },
     ],
   },
+  {
+    title: "Páginas",
+    items: [
+      { name: "Blog", href: "/styleguide/paginas/blog" },
+    ],
+  },
 ];
