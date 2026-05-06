@@ -187,7 +187,7 @@ A base robusta do Blog/CMS esta implementada e validada. O proximo trabalho deve
 ## Ajuste editorial da abertura
 
 - A primeira section deixou de usar texto interno sobre Design System/CMS e passou a comunicar o blog para o usuario final.
-- A coluna lateral do destaque foi preenchida com mais artigos destacados/curados em cards compactos, evitando vazio visual abaixo do artigo principal.
+- A abertura agora usa uma composicao editorial: destaque principal, dois cards medios abaixo, newsletter em card branco e menos cards compactos na lateral.
 
 ## Proximos passos imediatos
 

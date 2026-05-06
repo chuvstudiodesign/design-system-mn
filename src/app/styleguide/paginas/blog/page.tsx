@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LayoutDashboard } from "lucide-react";
+import { ArrowRight, LayoutDashboard } from "lucide-react";
 import {
   BlogFilterExperience,
   BlogPostCarousel,
@@ -31,10 +31,12 @@ export default function BlogPage() {
   const posts = getPublishedBlogPosts();
   const featuredPosts = getFeaturedBlogPosts();
   const primaryPost = getPrimaryBlogPost();
-  const secondaryFeatured = [
+  const editorialPicks = [
     ...featuredPosts.filter((post) => post.slug !== primaryPost.slug),
     ...posts.filter((post) => post.slug !== primaryPost.slug && !post.featured),
-  ].slice(0, 4);
+  ];
+  const belowFeatured = editorialPicks.slice(0, 2);
+  const sideFeatured = editorialPicks.slice(2, 4);
   const categories = getBlogCategories();
   const tags = getBlogTags();
 
@@ -57,10 +59,39 @@ export default function BlogPage() {
         subtitle="Analises para founders, lideres e equipes que precisam transformar estrategia em decisao, produto, cultura e execucao."
         first
       >
-        <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_420px]">
-          <BlogPostCard post={primaryPost} featured />
+        <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_390px]">
           <div className="flex flex-col gap-6">
-            {secondaryFeatured.map((post) => (
+            <BlogPostCard post={primaryPost} featured />
+            <div className="grid gap-6 lg:grid-cols-2">
+              {belowFeatured.map((post) => (
+                <BlogPostCard key={post.id} post={post} />
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-col gap-6">
+            <div className="ds-card !p-[30px] flex flex-col gap-4">
+              <Typography as="p" variant="caption" className="font-bold text-primary">
+                Newsletter
+              </Typography>
+              <Typography as="h3" variant="h2" className="text-foreground">
+                Receba leituras sobre negocios, tecnologia e crescimento.
+              </Typography>
+              <Typography as="p" variant="body-sm" className="text-muted-foreground">
+                Uma curadoria para acompanhar tendencias, decisoes e movimentos que importam para empresas em crescimento.
+              </Typography>
+              <form className="mt-2 flex flex-col gap-3" aria-label="Assinar newsletter demonstrativa">
+                <input
+                  type="email"
+                  placeholder="email@empresa.com"
+                  className="h-12 rounded-[10px] border border-input bg-[#ECECEC] px-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                />
+                <Button type="button" className="min-h-12 w-fit">
+                  Assinar
+                  <ArrowRight data-icon="inline-end" className="size-4" />
+                </Button>
+              </form>
+            </div>
+            {sideFeatured.map((post) => (
               <BlogPostCard key={post.id} post={post} compact />
             ))}
           </div>
