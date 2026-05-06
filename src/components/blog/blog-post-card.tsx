@@ -12,9 +12,11 @@ const blogBasePath = "/styleguide/paginas/blog";
 export function BlogPostCard({
   post,
   featured = false,
+  compact = false,
 }: {
   post: BlogPost;
   featured?: boolean;
+  compact?: boolean;
 }) {
   const categoryStyle = getBlogCategoryStyle(post.categorySlug);
 
@@ -25,7 +27,7 @@ export function BlogPostCard({
           src={post.coverImage}
           tone={post.coverTone}
           label={post.coverAlt}
-          className={featured ? "min-h-[320px]" : "min-h-[210px]"}
+          className={featured ? "min-h-[320px]" : compact ? "min-h-[130px]" : "min-h-[210px]"}
         />
       </Link>
 
@@ -47,15 +49,17 @@ export function BlogPostCard({
         <Link href={`${blogBasePath}/${post.slug}`} className="group">
           <Typography
             as="h3"
-            variant={featured ? "h2" : "h3"}
+            variant={featured ? "h2" : compact ? "body" : "h3"}
             className="text-foreground transition-colors group-hover:font-bold group-hover:text-primary"
           >
             {post.title}
           </Typography>
         </Link>
-        <Typography as="p" variant={featured ? "body" : "body-sm"} className="text-muted-foreground">
-          {post.excerpt}
-        </Typography>
+        {!compact && (
+          <Typography as="p" variant={featured ? "body" : "body-sm"} className="text-muted-foreground">
+            {post.excerpt}
+          </Typography>
+        )}
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-4 border-t border-[#ECECEC] pt-4">

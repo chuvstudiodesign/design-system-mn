@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, LayoutDashboard } from "lucide-react";
+import { LayoutDashboard } from "lucide-react";
 import {
   BlogFilterExperience,
   BlogPostCarousel,
@@ -31,7 +31,10 @@ export default function BlogPage() {
   const posts = getPublishedBlogPosts();
   const featuredPosts = getFeaturedBlogPosts();
   const primaryPost = getPrimaryBlogPost();
-  const secondaryFeatured = featuredPosts.filter((post) => post.slug !== primaryPost.slug).slice(0, 2);
+  const secondaryFeatured = [
+    ...featuredPosts.filter((post) => post.slug !== primaryPost.slug),
+    ...posts.filter((post) => post.slug !== primaryPost.slug && !post.featured),
+  ].slice(0, 4);
   const categories = getBlogCategories();
   const tags = getBlogTags();
 
@@ -49,31 +52,16 @@ export default function BlogPage() {
       </div>
 
       <Section
-        eyebrow="Paginas"
-        title="Editorial de negocios"
-        subtitle="Uma experiencia de blog construida com os mesmos tokens, sections, cards e componentes do Design System."
+        eyebrow="Blog"
+        title="Negocios, tecnologia e crescimento"
+        subtitle="Analises para founders, lideres e equipes que precisam transformar estrategia em decisao, produto, cultura e execucao."
         first
       >
         <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_420px]">
           <BlogPostCard post={primaryPost} featured />
           <div className="flex flex-col gap-6">
-            <div className="ds-card !p-[30px] flex flex-col gap-4">
-              <Typography as="p" variant="caption" className="font-bold text-primary">
-                Sistema editorial
-              </Typography>
-              <Typography as="h3" variant="h2" className="text-foreground">
-                Conteudo local-first preparado para CMS real.
-              </Typography>
-              <Typography as="p" variant="body-sm" className="text-muted-foreground">
-                Posts, categorias, tags, autores, SEO e blocos de conteudo estao tipados para evoluir para Sanity, Payload, Strapi, Supabase ou outro backend.
-              </Typography>
-              <Button render={<Link href="/styleguide/paginas/blog/cms" />} variant="outline" size="sm" className="mt-auto w-fit">
-                Ver CMS mockado
-                <ArrowRight data-icon="inline-end" className="size-4" />
-              </Button>
-            </div>
             {secondaryFeatured.map((post) => (
-              <BlogPostCard key={post.id} post={post} />
+              <BlogPostCard key={post.id} post={post} compact />
             ))}
           </div>
         </div>

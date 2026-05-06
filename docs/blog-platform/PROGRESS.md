@@ -184,6 +184,11 @@ A base robusta do Blog/CMS esta implementada e validada. O proximo trabalho deve
 - Badges de categoria usam a mesma cor nos cards, artigo, biblioteca e CMS.
 - `Leitura recomendada` virou carrossel infinito (`loop: true`) usando o mesmo `BlogPostCard`, com todos os posts publicados.
 
+## Ajuste editorial da abertura
+
+- A primeira section deixou de usar texto interno sobre Design System/CMS e passou a comunicar o blog para o usuario final.
+- A coluna lateral do destaque foi preenchida com mais artigos destacados/curados em cards compactos, evitando vazio visual abaixo do artigo principal.
+
 ## Proximos passos imediatos
 
 1. Criar tipos e conteudo local-first.
