@@ -6,12 +6,9 @@ import {
   Section,
 } from "../../foundation-sections";
 
-// Scale factor applied equally to figmaW and figmaH — same multiplier for every icon.
-// At 0.4× most icons land in the 55–95px range, filling the 100px display slot well.
-const ICON_SCALE = 0.4;
-
-// Fixed display slot. Icons are centered inside it at their scaled proportions.
-const SLOT = 100;
+// Same scale factor applied to BOTH figmaW and figmaH of every icon.
+// Never fix only height and derive width — that breaks icons that are not ~square.
+const ICON_SCALE = 0.75;
 
 function scaled(icon: MNIcon) {
   return {
@@ -24,28 +21,19 @@ function IconCard({ icon }: { icon: MNIcon }) {
   const { w, h } = scaled(icon);
 
   return (
-    <div className="ds-card !p-[20px] flex flex-col gap-3">
-      {/* Fixed-size slot: icon centered at exact proportional dimensions */}
-      <div
-        className="flex items-center justify-center rounded-[6px] bg-[#F0F0F0]"
-        style={{ width: SLOT, height: SLOT }}
-      >
+    // Fixed 250×250 card — never changes size with the viewport
+    <div className="ds-card !p-[20px] flex h-[250px] w-[250px] shrink-0 flex-col gap-2">
+      <div className="flex flex-1 items-center justify-center">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={icon.src} alt={icon.name} style={{ width: w, height: h }} />
       </div>
-      <div>
-        <Typography as="p" variant="body-sm" className="font-semibold text-foreground">
-          {icon.name}
-        </Typography>
-        <Typography as="p" variant="code" className="mt-0.5 text-muted-foreground">
-          {icon.figmaW} × {icon.figmaH}
-        </Typography>
-      </div>
+      <Typography as="p" variant="body-sm" className="shrink-0 font-semibold text-foreground">
+        {icon.name}
+      </Typography>
     </div>
   );
 }
 
-// Demonstrates correct (uniform scale) vs incorrect (forced same W×H) rendering
 function ProportionalityExample({
   a,
   b,
@@ -55,9 +43,8 @@ function ProportionalityExample({
   b: MNIcon;
   correct: boolean;
 }) {
-  // For the comparison use a larger scale so the difference is visible
   const DEMO_SCALE = 0.5;
-  const WRONG_SIZE = 80; // forced square used in the wrong example
+  const WRONG_SIZE = 80;
 
   return (
     <div className="flex flex-col gap-4">
@@ -70,8 +57,8 @@ function ProportionalityExample({
         </div>
         <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
           {correct
-            ? "Correto — mesmo fator de escala em W e H de cada ícone"
-            : "Incorreto — mesma W e H forçada para todos"}
+            ? "Correto — mesmo fator de escala aplicado em W e H"
+            : "Incorreto — mesma W × H forçada para todos"}
         </Typography>
       </div>
 
@@ -82,17 +69,13 @@ function ProportionalityExample({
           return (
             <div key={icon.id} className="flex flex-col items-center gap-3">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={icon.src}
-                alt={icon.name}
-                style={{ width: w, height: h, objectFit: correct ? "fill" : "fill" }}
-              />
+              <img src={icon.src} alt={icon.name} style={{ width: w, height: h }} />
               <div className="text-center">
                 <Typography as="p" variant="code" className="text-foreground">
                   {icon.name}
                 </Typography>
                 <Typography as="p" variant="code" className="text-muted-foreground">
-                  {w} × {h}{!correct ? " ← errado" : ""}
+                  {w} × {h}{!correct ? " ← distorcido" : ""}
                 </Typography>
               </div>
             </div>
@@ -102,17 +85,19 @@ function ProportionalityExample({
 
       {correct && (
         <Typography as="p" variant="body-sm" className="text-muted-foreground">
-          Escala <code className="font-mono text-foreground">{DEMO_SCALE}</code> aplicada em ambas as dimensões:{" "}
-          Pessoa <code className="font-mono text-foreground">{a.figmaW}×{a.figmaH}</code> →{" "}
-          <code className="font-mono text-foreground">{Math.round(a.figmaW * DEMO_SCALE)}×{Math.round(a.figmaH * DEMO_SCALE)}</code>,{" "}
-          Pessoas Time <code className="font-mono text-foreground">{b.figmaW}×{b.figmaH}</code> →{" "}
-          <code className="font-mono text-foreground">{Math.round(b.figmaW * DEMO_SCALE)}×{Math.round(b.figmaH * DEMO_SCALE)}</code>.
-          Cada ícone com W e H diferentes, mas ambos proporcionais ao Figma.
+          Fator <code className="font-mono text-foreground">{DEMO_SCALE}</code> aplicado em W e H de cada ícone —{" "}
+          Pessoa <code className="font-mono text-foreground">{a.figmaW}×{a.figmaH}</code>{" "}
+          → <code className="font-mono text-foreground">{Math.round(a.figmaW * DEMO_SCALE)}×{Math.round(a.figmaH * DEMO_SCALE)}</code>,{" "}
+          Pessoas Time <code className="font-mono text-foreground">{b.figmaW}×{b.figmaH}</code>{" "}
+          → <code className="font-mono text-foreground">{Math.round(b.figmaW * DEMO_SCALE)}×{Math.round(b.figmaH * DEMO_SCALE)}</code>.
+          Cada ícone com W e H próprios, ambos proporcionais ao original do Figma.
         </Typography>
       )}
       {!correct && (
         <Typography as="p" variant="body-sm" className="text-muted-foreground">
-          Forçar <code className="font-mono text-foreground">{WRONG_SIZE}×{WRONG_SIZE}</code> em todos ignora que Pessoa é estreito ({a.figmaW}×{a.figmaH}) e Pessoas Time é largo ({b.figmaW}×{b.figmaH}). Ambos ficam distorcidos.
+          Forçar <code className="font-mono text-foreground">{WRONG_SIZE}×{WRONG_SIZE}</code> ignora que Pessoa
+          ({a.figmaW}×{a.figmaH}) e Pessoas Time ({b.figmaW}×{b.figmaH}) têm proporções diferentes.
+          O resultado distorce os dois.
         </Typography>
       )}
     </div>
@@ -133,10 +118,10 @@ export default function IconLibraryPage() {
       {/* ── SEÇÃO 1: ÍCONES GERAIS ── */}
       <Section
         title="Ícones Gerais"
-        subtitle="28 ícones para uso geral na interface — pessoas, objetos, ações e categorias. Cada ícone é exibido na sua proporção exata extraída do Figma."
+        subtitle="28 ícones para uso geral na interface — pessoas, objetos, ações e categorias. Cada ícone exibido nas suas proporções exatas do Figma."
         first
       >
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7">
+        <div className="flex flex-wrap gap-4">
           {iconsGerais.map((icon) => (
             <IconCard key={icon.id} icon={icon} />
           ))}
@@ -146,9 +131,9 @@ export default function IconLibraryPage() {
       {/* ── SEÇÃO 2: ÍCONES DESIGN ── */}
       <Section
         title="Ícones Design"
-        subtitle="8 ícones de sistema de design — representam as categorias fundacionais: logotipo, símbolo, paleta, tipografia, ícones, section, glass e uso."
+        subtitle="8 ícones de sistema de design — logotipo, símbolo, paleta, tipografia, ícones, section, glass e uso."
       >
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="flex flex-wrap gap-4">
           {iconsDesign.map((icon) => (
             <IconCard key={icon.id} icon={icon} />
           ))}
@@ -158,7 +143,7 @@ export default function IconLibraryPage() {
       {/* ── SEÇÃO 3: PROPORCIONALIDADE ── */}
       <Section
         title="Proporcionalidade"
-        subtitle="Regra central da biblioteca: nunca aplicar mesma largura e altura para ícones diferentes. Cada ícone tem uma razão de aspecto definida no Figma que precisa ser respeitada."
+        subtitle="Regra central da biblioteca: nunca aplicar mesma W e H para ícones diferentes. Cada ícone tem proporções definidas no Figma que precisam ser respeitadas."
       >
         <div className="flex flex-col gap-8">
 
@@ -168,12 +153,14 @@ export default function IconLibraryPage() {
               Princípio
             </Typography>
             <Typography as="h3" variant="h3" className="mt-2 text-foreground">
-              Altura de referência fixa, largura calculada.
+              Mesmo fator de escala em W e H de cada ícone.
             </Typography>
             <Typography as="p" variant="body-sm" className="mt-3 max-w-2xl text-muted-foreground">
-              Ícones diferentes têm dimensões nativas diferentes no Figma. Para manter o equilíbrio visual entre eles, define-se uma{" "}
-              <strong className="text-foreground">altura de referência única</strong> e calcula-se a largura de cada ícone proporcionalmente.
-              Isso garante que ícones estreitos continuem estreitos e ícones largos continuem largos — exatamente como no Figma.
+              Cada ícone tem suas próprias dimensões no Figma — largura e altura diferentes entre si.
+              Para manter as proporções corretas ao reduzir ou ampliar, aplica-se um{" "}
+              <strong className="text-foreground">único fator de escala multiplicado em W e H simultaneamente</strong>.
+              Isso preserva a relação exata entre largura e altura de cada ícone, como definido no Figma.
+              Ícones largos continuam largos, estreitos continuam estreitos — nenhum fica distorcido.
             </Typography>
           </div>
 
@@ -191,13 +178,13 @@ export default function IconLibraryPage() {
             </div>
             <div className="ds-card !p-[30px]">
               <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">
-                Fator de escala
+                Fator atual nesta página
               </Typography>
               <Typography as="p" variant="display" className="mt-2 text-foreground">
                 {ICON_SCALE}×
               </Typography>
               <Typography as="p" variant="body-sm" className="mt-1 text-muted-foreground">
-                Constante <code className="font-mono text-foreground">ICON_SCALE</code> nesta página. O mesmo fator é multiplicado em W e H — nunca um em um e outro em outro.
+                O mesmo fator é aplicado em W e H de cada ícone. Ajuste conforme o contexto — o que não pode mudar é que W e H usem o mesmo fator.
               </Typography>
             </div>
             <div className="ds-card !p-[30px]">
@@ -206,13 +193,13 @@ export default function IconLibraryPage() {
               </Typography>
               <div className="mt-3 bg-[#D4D4D4] p-4">
                 <pre className="font-mono text-[12px] leading-6 text-foreground">
-                  {`const scale = 0.3\nconst w = Math.round(icon.figmaW * scale)\nconst h = Math.round(icon.figmaH * scale)\n\n<img style={{ width: w, height: h }} />`}
+                  {`const scale = 0.75\nconst w = Math.round(icon.figmaW * scale)\nconst h = Math.round(icon.figmaH * scale)\n\n<img style={{ width: w, height: h }} />`}
                 </pre>
               </div>
             </div>
           </div>
 
-          {/* Exemplo de uso correto vs incorreto */}
+          {/* Comparação correto vs incorreto */}
           <div className="grid gap-6 xl:grid-cols-2">
             <ProportionalityExample a={pessoaIcon} b={pessoasTimeIcon} correct={false} />
             <ProportionalityExample a={pessoaIcon} b={pessoasTimeIcon} correct />
@@ -221,15 +208,15 @@ export default function IconLibraryPage() {
           {/* Tabela de dimensões */}
           <div className="ds-card !p-[30px]">
             <Typography as="p" variant="label" className="mb-4 normal-case tracking-normal text-foreground">
-              Referência de dimensões — Ícones Gerais
+              Referência — Ícones Gerais (scale {ICON_SCALE}×)
             </Typography>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-[#ECECEC]">
-                    {["Ícone", "Figma W", "Figma H", `Display W (×${ICON_SCALE})`, `Display H (×${ICON_SCALE})`, "Razão W/H"].map((h) => (
-                      <th key={h} className="py-2 pr-6 text-left font-mono text-[11px] font-semibold text-muted-foreground">
-                        {h}
+                    {["Ícone", "Figma W", "Figma H", `Display W`, `Display H`, "Razão W/H"].map((col) => (
+                      <th key={col} className="py-2 pr-6 text-left font-mono text-[11px] font-semibold text-muted-foreground">
+                        {col}
                       </th>
                     ))}
                   </tr>
@@ -238,16 +225,14 @@ export default function IconLibraryPage() {
                   {iconsGerais.map((icon) => {
                     const { w, h } = scaled(icon);
                     return (
-                    <tr key={icon.id} className="border-b border-[#ECECEC] last:border-0">
-                      <td className="py-2 pr-6 font-medium text-foreground">{icon.name}</td>
-                      <td className="py-2 pr-6 font-mono text-muted-foreground">{icon.figmaW}</td>
-                      <td className="py-2 pr-6 font-mono text-muted-foreground">{icon.figmaH}</td>
-                      <td className="py-2 pr-6 font-mono text-foreground">{w}</td>
-                      <td className="py-2 pr-6 font-mono text-foreground">{h}</td>
-                      <td className="py-2 pr-6 font-mono text-muted-foreground">
-                        {(icon.figmaW / icon.figmaH).toFixed(3)}
-                      </td>
-                    </tr>
+                      <tr key={icon.id} className="border-b border-[#ECECEC] last:border-0">
+                        <td className="py-2 pr-6 font-medium text-foreground">{icon.name}</td>
+                        <td className="py-2 pr-6 font-mono text-muted-foreground">{icon.figmaW}</td>
+                        <td className="py-2 pr-6 font-mono text-muted-foreground">{icon.figmaH}</td>
+                        <td className="py-2 pr-6 font-mono text-foreground">{w}</td>
+                        <td className="py-2 pr-6 font-mono text-foreground">{h}</td>
+                        <td className="py-2 pr-6 font-mono text-muted-foreground">{(icon.figmaW / icon.figmaH).toFixed(3)}</td>
+                      </tr>
                     );
                   })}
                 </tbody>
@@ -257,15 +242,15 @@ export default function IconLibraryPage() {
 
           <div className="ds-card !p-[30px]">
             <Typography as="p" variant="label" className="mb-4 normal-case tracking-normal text-foreground">
-              Referência de dimensões — Ícones Design
+              Referência — Ícones Design (scale {ICON_SCALE}×)
             </Typography>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-[#ECECEC]">
-                    {["Ícone", "Figma W", "Figma H", `Display W (×${ICON_SCALE})`, `Display H (×${ICON_SCALE})`, "Razão W/H"].map((h) => (
-                      <th key={h} className="py-2 pr-6 text-left font-mono text-[11px] font-semibold text-muted-foreground">
-                        {h}
+                    {["Ícone", "Figma W", "Figma H", `Display W`, `Display H`, "Razão W/H"].map((col) => (
+                      <th key={col} className="py-2 pr-6 text-left font-mono text-[11px] font-semibold text-muted-foreground">
+                        {col}
                       </th>
                     ))}
                   </tr>
@@ -274,16 +259,14 @@ export default function IconLibraryPage() {
                   {iconsDesign.map((icon) => {
                     const { w, h } = scaled(icon);
                     return (
-                    <tr key={icon.id} className="border-b border-[#ECECEC] last:border-0">
-                      <td className="py-2 pr-6 font-medium text-foreground">{icon.name}</td>
-                      <td className="py-2 pr-6 font-mono text-muted-foreground">{icon.figmaW}</td>
-                      <td className="py-2 pr-6 font-mono text-muted-foreground">{icon.figmaH}</td>
-                      <td className="py-2 pr-6 font-mono text-foreground">{w}</td>
-                      <td className="py-2 pr-6 font-mono text-foreground">{h}</td>
-                      <td className="py-2 pr-6 font-mono text-muted-foreground">
-                        {(icon.figmaW / icon.figmaH).toFixed(3)}
-                      </td>
-                    </tr>
+                      <tr key={icon.id} className="border-b border-[#ECECEC] last:border-0">
+                        <td className="py-2 pr-6 font-medium text-foreground">{icon.name}</td>
+                        <td className="py-2 pr-6 font-mono text-muted-foreground">{icon.figmaW}</td>
+                        <td className="py-2 pr-6 font-mono text-muted-foreground">{icon.figmaH}</td>
+                        <td className="py-2 pr-6 font-mono text-foreground">{w}</td>
+                        <td className="py-2 pr-6 font-mono text-foreground">{h}</td>
+                        <td className="py-2 pr-6 font-mono text-muted-foreground">{(icon.figmaW / icon.figmaH).toFixed(3)}</td>
+                      </tr>
                     );
                   })}
                 </tbody>
@@ -297,27 +280,27 @@ export default function IconLibraryPage() {
               {
                 index: "01",
                 title: "Nunca forçar mesma W e H para ícones diferentes",
-                note: "Ícones com razões W/H distintas ficam distorcidos se recebem o mesmo quadrado. A exceção são ícones que já são quadrados no Figma (razão 1.000).",
+                note: "Ícones com razões W/H distintas ficam distorcidos se recebem as mesmas dimensões. A única exceção são ícones perfeitamente quadrados no Figma (razão 1.000).",
               },
               {
                 index: "02",
-                title: "Aplicar o mesmo fator de escala em W e H",
-                note: "O fator de escala é multiplicado nas duas dimensões. Nunca fixe só a altura e calcule a largura — isso funciona para quadrados mas distorce ícones mais largos ou mais altos que o normal.",
+                title: "Aplicar sempre o mesmo fator nas duas dimensões",
+                note: "O fator de escala é multiplicado em W e em H do mesmo ícone. Nunca fixe só a altura e derive a largura — isso distorce ícones que têm alturas muito diferentes entre si.",
               },
               {
                 index: "03",
-                title: "Escolher o fator de escala pelo contexto",
-                note: "Para listas e cards use um fator menor (0.2–0.25). Para showcases e seções de destaque use um fator maior (0.4–0.5). O importante é que o mesmo fator seja usado para todos os ícones em um mesmo contexto.",
+                title: "Usar o mesmo fator para todos os ícones do mesmo contexto",
+                note: "Em um card, lista ou seção, todos os ícones usam o mesmo fator de escala. Ícones de contextos diferentes (hero vs. lista) podem ter fatores distintos, mas dentro de cada contexto o fator é único.",
               },
               {
                 index: "04",
                 title: "Calcular com Math.round() para evitar meio pixel",
-                note: "Math.round(figmaW * scale) garante valores inteiros. Dimensões com casas decimais causam renderização borrada em telas não-retina.",
+                note: "Math.round(figmaW * scale) garante valores inteiros. Dimensões fracionadas causam renderização borrada em telas não-retina.",
               },
               {
                 index: "05",
-                title: "Não criar novos ícones fora deste sistema",
-                note: "Qualquer ícone novo deve ser adicionado ao arquivo src/data/icons.ts com suas dimensões exatas do Figma para manter a consistência da biblioteca.",
+                title: "Registrar dimensões no arquivo de dados",
+                note: "Qualquer ícone novo deve ser adicionado a src/data/icons.ts com figmaW e figmaH exatos — os valores do viewBox do SVG exportado, não do canvas do Figma após rotação.",
               },
             ].map((rule) => (
               <div
@@ -338,6 +321,7 @@ export default function IconLibraryPage() {
               </div>
             ))}
           </div>
+
         </div>
       </Section>
 
