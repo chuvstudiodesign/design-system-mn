@@ -8,7 +8,6 @@ import {
   NewsletterCTA,
 } from "@/components/blog";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { Typography } from "@/components/typography";
 import {
   blogHomeMetadata,
@@ -99,6 +98,13 @@ export default function BlogPage() {
       </Section>
 
       <Section
+        title="Biblioteca"
+        subtitle="Busca local e filtros por categoria ou tag. A estrutura simula a experiência que será conectada a um CMS real."
+      >
+        <BlogFilterExperience posts={posts} categories={categories} tags={tags} />
+      </Section>
+
+      <Section
         title="Categorias"
         subtitle="Mapa editorial para organizar temas, filtros e arquitetura de conteúdo."
       >
@@ -129,30 +135,10 @@ export default function BlogPage() {
       </Section>
 
       <Section
-        title="Biblioteca"
-        subtitle="Busca local e filtros por categoria ou tag. A estrutura simula a experiência que será conectada a um CMS real."
-      >
-        <BlogFilterExperience posts={posts} categories={categories} tags={tags} />
-      </Section>
-
-      <Section
         title="Leitura recomendada"
         subtitle="Carrossel infinito com todos os posts da biblioteca, mantendo o mesmo card editorial."
       >
         <BlogPostCarousel posts={posts} />
-      </Section>
-
-      <Section
-        title="Tags editoriais"
-        subtitle="Taxonomia provisória para descoberta e migração futura para CMS."
-      >
-        <div className="flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <Badge key={tag.slug} variant="secondary" className="min-h-8 px-2.5 py-0 text-[10px]">
-              {tag.name}
-            </Badge>
-          ))}
-        </div>
       </Section>
 
       <Section

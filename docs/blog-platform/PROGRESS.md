@@ -188,6 +188,8 @@ A base robusta do Blog/CMS está implementada e validada. O próximo trabalho de
 
 - A primeira section deixou de usar texto interno sobre Design System/CMS e passou a comunicar o blog para o usuário final.
 - A abertura agora usa uma composição editorial: destaque principal, dois cards médios abaixo, newsletter em card branco e menos cards compactos na lateral.
+- A home do Blog foi reorganizada para seguir a ordem editorial: abertura, Biblioteca, Categorias, Leitura recomendada e Newsletter.
+- A section pública de Tags editoriais foi removida; tags continuam como taxonomia interna para busca e filtro da Biblioteca.
 
 ## Próximos passos imediatos
 
