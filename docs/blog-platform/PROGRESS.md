@@ -59,6 +59,7 @@ O usuario concedeu modo full auto responsavel para ler, criar, editar, documenta
 - [x] Sidebar atualizada.
 - [x] SEO implementado.
 - [x] Validacoes executadas.
+- [x] Capas substituidas por imagens reais em alta resolucao.
 
 ## Comandos executados
 
@@ -106,7 +107,7 @@ O usuario concedeu modo full auto responsavel para ler, criar, editar, documenta
 
 ## Componentes criados
 
-- `BlogCover`: capa visual local sem dependencia de imagem externa.
+- `BlogCover`: capa editorial com imagem real, overlay disruptivo e fallback visual.
 - `BlogPostCard`: card editorial reutilizavel para grid e relacionados.
 - `BlogFilterExperience`: busca e filtros locais por query, categoria e tag.
 - `BlogPostHeader`: header semantico de post.
@@ -136,6 +137,12 @@ O usuario concedeu modo full auto responsavel para ler, criar, editar, documenta
   - `/styleguide/paginas/blog`: `200 OK`
   - `/styleguide/paginas/blog/cms`: `200 OK`
   - `/styleguide/paginas/blog/como-a-inovacao-aplicada-transforma-empresas-tradicionais`: `200 OK`
+
+## Atualizacao de imagens
+
+- Posts passaram a usar imagens reais remotas em alta resolucao via `images.unsplash.com`.
+- `BlogCover` foi atualizado para renderizar a foto real com overlay visual do Design System, mantendo fallback caso a URL nao seja carregada.
+- As imagens continuam sem exigir configuracao de `next/image`, porque o componente usa `<img>` e o build nao precisa buscar os arquivos remotos.
 
 ## Problemas encontrados e correcoes
 

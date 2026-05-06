@@ -54,7 +54,7 @@ export function BlogPostHeader({ post }: { post: BlogPost }) {
             </span>
           </div>
         </div>
-        <BlogCover tone={post.coverTone} label={post.coverAlt} className="min-h-[360px]" />
+        <BlogCover src={post.coverImage} tone={post.coverTone} label={post.coverAlt} className="min-h-[360px]" />
       </div>
     </header>
   );

@@ -20,6 +20,7 @@ export function BlogPostCard({
     <article className="ds-card !p-[30px] flex h-full flex-col gap-5">
       <Link href={`${blogBasePath}/${post.slug}`} aria-label={`Ler ${post.title}`}>
         <BlogCover
+          src={post.coverImage}
           tone={post.coverTone}
           label={post.coverAlt}
           className={featured ? "min-h-[320px]" : "min-h-[210px]"}
