@@ -22,13 +22,23 @@ const darkSet = [
   "/logos/brands/advisor/symbol/advisor-symbol-dark.png",
 ];
 
-// Duplicating with [...set, ...set] places each pair at positions i and i+8
-// in a 16-item Fibonacci sphere, which are ~170° apart — nearly opposite sides.
+// 8 MN design system icons (black) paired with the brand symbols
+const mnIconSet = [
+  "/icons/design/logotipo.svg",
+  "/icons/design/simbolo.svg",
+  "/icons/design/paleta-de-cores.svg",
+  "/icons/design/icones.svg",
+  "/icons/design/section-e-forma.svg",
+  "/icons/design/glass.svg",
+  "/icons/design/uso.svg",
+  "/icons/gerais/chat.svg",
+];
+
 export const brandCloudImages = {
   brandColors: brandColorSet,
-  brandColors2: [...brandColorSet, ...brandColorSet],
+  brandColorsWithIcons: [...brandColorSet, ...mnIconSet],
   dark: darkSet,
-  dark2: [...darkSet, ...darkSet],
+  darkWithIcons: [...darkSet, ...mnIconSet],
 };
 
 export function IconCloudBrand({

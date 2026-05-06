@@ -51,10 +51,10 @@ export default function IconCloudPage() {
               Preview interativo
             </Typography>
             <Typography as="p" variant="body-sm" className="self-start text-muted-foreground">
-              16 símbolos — hub MASI e 7 sub-marcas nas cores de marca, duplicados e distribuídos em lados opostos da esfera. Arraste para rotacionar.
+              16 símbolos — 8 marcas do ecossistema MASI nas cores de marca e 8 ícones do design system. Arraste para rotacionar.
             </Typography>
             <div className="mt-4 flex justify-center">
-              <IconCloudBrand variant="brandColors2" />
+              <IconCloudBrand variant="brandColorsWithIcons" />
             </div>
           </div>
 
@@ -95,7 +95,7 @@ export default function IconCloudPage() {
 
       <Section
         title="Ecossistema de marcas MASI"
-        subtitle="Quatro variantes usando os símbolos das marcas disponíveis no projeto. As versões ×2 duplicam cada símbolo distribuindo os pares em lados opostos da esfera."
+        subtitle="Quatro variantes usando os símbolos das marcas disponíveis no projeto. As variantes &quot;with icons&quot; combinam os 8 símbolos de marca com 8 ícones do design system."
       >
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="ds-card !p-[30px] flex flex-col gap-4">
@@ -115,14 +115,14 @@ export default function IconCloudPage() {
           <div className="ds-card !p-[30px] flex flex-col gap-4">
             <div>
               <Typography as="p" variant="caption" className="font-bold text-primary">
-                Brand Colors ×2
+                Brand Colors + Ícones
               </Typography>
               <Typography as="p" variant="body-sm" className="mt-1 text-muted-foreground">
-                Duas de cada — 16 símbolos. Cada par distribuído em lados opostos da esfera.
+                8 símbolos coloridos de marca + 8 ícones do design system — 16 itens no total.
               </Typography>
             </div>
             <div className="flex justify-center">
-              <IconCloudBrand variant="brandColors2" />
+              <IconCloudBrand variant="brandColorsWithIcons" />
             </div>
           </div>
 
@@ -143,14 +143,14 @@ export default function IconCloudPage() {
           <div className="ds-card !p-[30px] flex flex-col gap-4">
             <div>
               <Typography as="p" variant="caption" className="font-bold text-primary">
-                Dark ×2
+                Dark + Ícones
               </Typography>
               <Typography as="p" variant="body-sm" className="mt-1 text-muted-foreground">
-                Duas de cada — 16 símbolos. Cada par distribuído em lados opostos da esfera.
+                8 símbolos dark de marca + 8 ícones do design system — 16 itens no total.
               </Typography>
             </div>
             <div className="flex justify-center">
-              <IconCloudBrand variant="dark2" />
+              <IconCloudBrand variant="darkWithIcons" />
             </div>
           </div>
         </div>
@@ -210,10 +210,10 @@ export default function IconCloudPage() {
             title="Uso com wrapper de marca"
             code={`import { IconCloudBrand } from "@/components/magicui/icon-cloud-brand"
 
-<IconCloudBrand variant="brandColors" />   // brand color × 1 (8 itens)
-<IconCloudBrand variant="brandColors2" />  // brand color × 2 (16 itens)
-<IconCloudBrand variant="dark" />          // dark × 1 (8 itens)
-<IconCloudBrand variant="dark2" />         // dark × 2 (16 itens)`}
+<IconCloudBrand variant="brandColors" />          // brand color × 1 (8 itens)
+<IconCloudBrand variant="brandColorsWithIcons" />  // brand color + ícones MN (16 itens)
+<IconCloudBrand variant="dark" />                  // dark × 1 (8 itens)
+<IconCloudBrand variant="darkWithIcons" />         // dark + ícones MN (16 itens)`}
           />
 
           <CodeBlock
@@ -235,12 +235,12 @@ const images = [
             code={`import { brandCloudImages } from "@/components/magicui/icon-cloud-brand"
 import { IconCloud } from "@/components/ui/icon-cloud"
 
-// brandCloudImages.brandColors  — brand color × 1 (8 itens)
-// brandCloudImages.brandColors2 — brand color × 2 (16 itens)
-// brandCloudImages.dark         — dark × 1 (8 itens)
-// brandCloudImages.dark2        — dark × 2 (16 itens)
+// brandCloudImages.brandColors          — brand color × 1 (8 itens)
+// brandCloudImages.brandColorsWithIcons — brand color + ícones MN (16 itens)
+// brandCloudImages.dark                 — dark × 1 (8 itens)
+// brandCloudImages.darkWithIcons        — dark + ícones MN (16 itens)
 
-<IconCloud images={brandCloudImages.brandColors2} />`}
+<IconCloud images={brandCloudImages.brandColorsWithIcons} />`}
           />
         </div>
       </Section>
@@ -290,8 +290,8 @@ import { IconCloud } from "@/components/ui/icon-cloud"
               {[
                 {
                   name: "variant",
-                  type: `"brandColors" | "brandColors2" | "dark" | "dark2"`,
-                  note: `Seleciona o subconjunto de imagens do ecossistema MASI. As variantes ×2 duplicam cada símbolo com os pares distribuídos em lados opostos da esfera. Padrão: "brandColors".`,
+                  type: `"brandColors" | "brandColorsWithIcons" | "dark" | "darkWithIcons"`,
+                  note: `Seleciona o subconjunto de imagens do ecossistema MASI. As variantes "with icons" combinam os 8 símbolos de marca com 8 ícones do design system MN. Padrão: "brandColors".`,
                 },
               ].map((item) => (
                 <div key={item.name} className="border-b border-white pb-4 last:border-0 last:pb-0">
