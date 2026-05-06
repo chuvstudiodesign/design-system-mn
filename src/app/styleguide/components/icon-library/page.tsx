@@ -21,13 +21,27 @@ function IconCard({ icon }: { icon: MNIcon }) {
   const { w, h } = scaled(icon);
 
   return (
-    // Fixed 250×250 card — never changes size with the viewport
-    <div className="ds-card !p-[20px] flex h-[250px] w-[250px] shrink-0 flex-col gap-2">
-      <div className="flex flex-1 items-center justify-center">
+    <div
+      style={{
+        width: 250,
+        height: 250,
+        minWidth: 250,
+        maxWidth: 250,
+        flexShrink: 0,
+        borderRadius: 10,
+        background: "#ffffff",
+        boxShadow: "var(--shadow-card)",
+        padding: 20,
+        display: "flex",
+        flexDirection: "column",
+        gap: 8,
+      }}
+    >
+      <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center" }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={icon.src} alt={icon.name} style={{ width: w, height: h }} />
       </div>
-      <Typography as="p" variant="body-sm" className="shrink-0 font-semibold text-foreground">
+      <Typography as="p" variant="body-sm" className="font-semibold text-foreground" style={{ flexShrink: 0 }}>
         {icon.name}
       </Typography>
     </div>
@@ -121,7 +135,7 @@ export default function IconLibraryPage() {
         subtitle="28 ícones para uso geral na interface — pessoas, objetos, ações e categorias. Cada ícone exibido nas suas proporções exatas do Figma."
         first
       >
-        <div className="flex flex-wrap gap-4">
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
           {iconsGerais.map((icon) => (
             <IconCard key={icon.id} icon={icon} />
           ))}
@@ -133,7 +147,7 @@ export default function IconLibraryPage() {
         title="Ícones Design"
         subtitle="8 ícones de sistema de design — logotipo, símbolo, paleta, tipografia, ícones, section, glass e uso."
       >
-        <div className="flex flex-wrap gap-4">
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
           {iconsDesign.map((icon) => (
             <IconCard key={icon.id} icon={icon} />
           ))}
