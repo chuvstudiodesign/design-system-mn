@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { CommercialPresentation, CommercialSlide } from "@/data/commercial-presentations";
 import { ChamferedPanel } from "@/components/chamfered-panel";
 import {
@@ -29,13 +30,13 @@ export function SlideCover({
             padding: 80,
           }}
         >
-          <div className="relative z-10 flex min-h-0 w-full flex-col pb-[30px]">
+          <div className="relative z-10 flex min-h-0 w-full flex-col">
             <div className="flex items-start justify-between">
               <SlideLogo size="large" />
               <SlideEyebrow accent={presentation.accent}>{slide.eyebrow}</SlideEyebrow>
             </div>
-            <div className="mt-[20px] grid min-h-0 flex-1 grid-cols-[1.08fr_0.92fr] gap-[5%]">
-              <div className="flex min-w-0 flex-col justify-center gap-[32px]">
+            <div className="relative mt-[20px] min-h-0 flex-1">
+              <div className="absolute left-0 top-1/2 z-20 flex w-[680px] max-w-[58%] -translate-y-1/2 flex-col items-start gap-[32px] text-left">
                 <SlideTitle
                   size="xl"
                   className="max-w-[17ch] text-[85px] leading-[0.82]"
@@ -54,12 +55,26 @@ export function SlideCover({
                   ))}
                 </div>
               </div>
-              <AbstractVisual
-                accent={presentation.accent}
-                label="Área para imagem editorial de negócios, tecnologia e transformação de mercado."
-                className="h-full min-h-[450px]"
-                variant="orbital"
-              />
+              {slide.imageSrc ? (
+                <div
+                  className="absolute left-[75%] top-1/2 z-10 w-[46%] rounded-[10px]"
+                  style={{ transform: "translate(-50%, -50%) scale(1.04)", transformOrigin: "center center" }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={slide.imageSrc.src}
+                    alt={slide.imageAlt ?? ""}
+                    style={{ width: "100%", height: "auto", display: "block" }}
+                  />
+                </div>
+              ) : (
+                <AbstractVisual
+                  accent={presentation.accent}
+                  label="Área para imagem editorial de negócios, tecnologia e transformação de mercado."
+                  className="h-full min-h-[450px]"
+                  variant="orbital"
+                />
+              )}
             </div>
           </div>
         </ChamferedPanel>
@@ -90,11 +105,24 @@ export function SlideCover({
               ))}
             </div>
           </div>
-          <AbstractVisual
-            accent={presentation.accent}
-            label={slide.imageDirection}
-            variant="orbital"
-          />
+          {slide.imageSrc ? (
+            <div className="relative min-h-0 overflow-hidden rounded-[10px]">
+              <Image
+                src={slide.imageSrc}
+                alt={slide.imageAlt ?? ""}
+                fill
+                className="object-cover"
+                sizes="700px"
+                priority
+              />
+            </div>
+          ) : (
+            <AbstractVisual
+              accent={presentation.accent}
+              label={slide.imageDirection}
+              variant="orbital"
+            />
+          )}
         </div>
       </div>
     </SlideShell>

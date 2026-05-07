@@ -43,8 +43,14 @@ export const brandCloudImages = {
 
 export function IconCloudBrand({
   variant = "brandColors",
+  size,
+  className,
+  maxBlur,
 }: {
   variant?: keyof typeof brandCloudImages;
+  size?: number;
+  className?: string;
+  maxBlur?: number;
 }) {
-  return <IconCloud images={brandCloudImages[variant]} />;
+  return <IconCloud images={brandCloudImages[variant]} size={size} className={className} maxBlur={maxBlur} />;
 }

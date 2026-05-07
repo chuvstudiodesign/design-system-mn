@@ -1,3 +1,5 @@
+import type { StaticImageData } from "next/image";
+
 export type CommercialSlideType =
   | "cover"
   | "statement"
@@ -42,6 +44,21 @@ export type CommercialSlideCard = {
   description: string;
 };
 
+export type CommercialSlideChartDatum = {
+  label: string;
+  value: number;
+  secondary?: number;
+};
+
+export type CommercialSlideChart = {
+  type: "bar" | "line";
+  valueLabel: string;
+  secondaryLabel?: string;
+  insight?: string;
+  source?: string;
+  data: CommercialSlideChartDatum[];
+};
+
 export type CommercialSlide = {
   id: string;
   type: CommercialSlideType;
@@ -54,8 +71,11 @@ export type CommercialSlide = {
   bullets?: string[];
   stats?: CommercialSlideStat[];
   cards?: CommercialSlideCard[];
+  chart?: CommercialSlideChart;
   footer?: string;
   imageDirection?: string;
+  imageSrc?: StaticImageData;
+  imageAlt?: string;
 };
 
 export type CommercialPresentation = {

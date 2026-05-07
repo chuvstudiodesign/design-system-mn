@@ -12,7 +12,8 @@ export const navigation: NavSection[] = [
   {
     title: "Foundation",
     items: [
-      { name: "Design Tokens", href: "/styleguide" },
+      { name: "Início", href: "/styleguide" },
+      { name: "Design Tokens", href: "/styleguide/design-tokens" },
       { name: "Section System", href: "/styleguide/section-system" },
       { name: "Card System", href: "/styleguide/card-system" },
       { name: "Logotipo", href: "/styleguide/logotipo" },
@@ -81,6 +82,7 @@ export const navigation: NavSection[] = [
       { name: "Toggle", href: "/styleguide/components/toggle" },
       { name: "Toggle Group", href: "/styleguide/components/toggle-group" },
       { name: "Tooltip", href: "/styleguide/components/tooltip" },
+      { name: "Typing Animation", href: "/styleguide/components/typing-animation" },
       { name: "Typography", href: "/styleguide/components/typography" },
     ],
   },

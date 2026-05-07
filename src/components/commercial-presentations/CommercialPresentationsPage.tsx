@@ -63,6 +63,12 @@ function SlideContentCard({ slide, index }: { slide: CommercialSlide; index: num
             />
           </>
         )}
+        {slide.chart && (
+          <FieldRow
+            label={`gráfico · ${slide.chart.type}`}
+            note={`${slide.chart.data.length} pontos`}
+          />
+        )}
         {slide.stats && (
           <>
             <FieldRow

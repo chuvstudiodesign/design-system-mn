@@ -19,7 +19,7 @@ export function BlogPostHeader({ post }: { post: BlogPost }) {
         </Button>
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_420px]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_420px]">
         <div className="flex flex-col justify-between gap-6">
           <div className="flex flex-wrap gap-2">
             <Badge
@@ -56,7 +56,14 @@ export function BlogPostHeader({ post }: { post: BlogPost }) {
             </span>
           </div>
         </div>
-        <BlogCover src={post.coverImage} tone={post.coverTone} label={post.coverAlt} className="min-h-[360px]" />
+        <div className="flex justify-end">
+          <BlogCover
+            src={post.coverImage}
+            tone={post.coverTone}
+            label={post.coverAlt}
+            className="min-h-[360px] w-full max-w-[420px]"
+          />
+        </div>
       </div>
     </header>
   );

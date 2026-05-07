@@ -7,6 +7,8 @@ export type {
   CommercialPresentation,
   CommercialSlide,
   CommercialSlideCard,
+  CommercialSlideChart,
+  CommercialSlideChartDatum,
   CommercialSlideStat,
   CommercialSlideType,
   CommercialSlideVisual,

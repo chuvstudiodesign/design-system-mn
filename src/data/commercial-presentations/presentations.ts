@@ -6,6 +6,10 @@ import type {
   CommercialSlideType,
   CommercialSlideVisual,
 } from "./types";
+import brasil3Image from "../../../Imagens/Brasil 3.png";
+import brasil4Image from "../../../Imagens/Brasil 4.png";
+import moinhoImage from "../../../Imagens/Brasil 2 Moinho.png";
+import brasil2Image from "../../../Imagens/Brasil 2.png";
 
 type DeckSeed = Omit<CommercialPresentation, "slides"> & {
   thesis: string;
@@ -55,7 +59,7 @@ const seeds: DeckSeed[] = [
   {
     id: "deck-01",
     slug: "futuro-negocios-brasil",
-    title: "O Futuro dos Negócios no Brasil",
+    title: "O Futuro\ndos Negócios\nno Brasil",
     subtitle: "Empreendedorismo, transformação de mercado e inovação aplicada.",
     description: "Modelo para abrir conversas estratégicas sobre novos mercados, mudanças econômicas e oportunidades para empresas brasileiras.",
     theme: "Empreendedorismo, transformação de mercado, inovação aplicada",
@@ -77,7 +81,7 @@ const seeds: DeckSeed[] = [
     benefits: ["Mais previsibilidade comercial", "Oferta mais clara", "Operação menos dependente de improviso"],
     risks: ["Crescer com margem fraca", "Perder relevância por lentidão", "Confundir tecnologia com estratégia"],
     recommendations: ["Comece pelo problema de maior recorrência", "Conecte metas a indicadores de comportamento", "Trate inovação como rotina de gestão"],
-    cta: "Escolha uma frente de mercado e transforme em plano de 90 dias.",
+    cta: "Escolha uma frente de mercado e\ntransforme em plano de 90 dias.",
   },
 ];
 
@@ -109,31 +113,72 @@ function createSlides(seed: DeckSeed): CommercialSlide[] {
       body: seed.description,
       bullets: seed.tags,
       imageDirection: `Imagem sugerida: composição editorial sobre ${seed.theme.toLowerCase()}, com arquitetura, negócios e tecnologia.`,
+      imageSrc: brasil2Image,
+      imageAlt: "Visual editorial da apresentação comercial sobre negócios e inovação.",
     },
     {
       title: seed.thesis,
       quote: seed.thesis,
       body: "Uma tese para alinhar liderança, narrativa comercial e prioridades de execução.",
+      imageSrc: moinhoImage,
+      imageAlt: "Moinho em composição editorial sobre negócios no Brasil.",
     },
     {
       title: "O mercado mudou de ritmo",
       body: seed.market,
       bullets: ["Mais comparação entre experiências", "Ciclos de decisão menos lineares", "Pressão por eficiência e diferenciação"],
+      chart: {
+        type: "line",
+        valueLabel: "Empresas usando IA",
+        insight: "A adoção saiu de maioria simples para padrão de mercado em menos de dois anos.",
+        source: "McKinsey, State of AI 2025",
+        data: [
+          { label: "2023", value: 55 },
+          { label: "Início 24", value: 72 },
+          { label: "Fim 24", value: 78 },
+        ],
+      },
     },
     {
       title: "O problema não é falta de ferramentas",
       body: seed.problem,
       bullets: ["Decisões fragmentadas", "Baixa clareza de prioridade", "Aprendizado pouco documentado"],
+      chart: {
+        type: "bar",
+        valueLabel: "Adoção em pequenos negócios",
+        insight: "A conectividade existe, mas os sistemas que transformam dados em rotina ainda ficam abaixo de 40%.",
+        source: "ABDI/Sebrae, Mapa de Maturidade Digital 2024",
+        data: [
+          { label: "Bases integradas", value: 27 },
+          { label: "E-commerce", value: 29 },
+          { label: "Cybersegurança", value: 34 },
+          { label: "CRM/dados", value: 36 },
+        ],
+      },
     },
     {
-      title: "O comportamento do cliente reorganiza o jogo",
+      title: "O comportamento\ndo cliente reorganiza\no jogo",
       body: seed.behavior,
       bullets: ["Menos paciencia para fricção", "Mais valor para confiança", "Mais expectativa por resposta clara"],
+      imageSrc: brasil3Image,
+      imageAlt: "Visual editorial para o quinto slide da apresentação comercial.",
     },
     {
       title: "A oportunidade está na conexão",
       body: seed.opportunity,
       bullets: ["Contexto real", "Oferta precisa", "Execução consistente"],
+      chart: {
+        type: "bar",
+        valueLabel: "Base digital disponível",
+        insight: "O ponto de partida é forte: canais, monitoramento e conectividade já estão presentes em boa parte do mercado.",
+        source: "ABDI/Sebrae, Mapa de Maturidade Digital 2024",
+        data: [
+          { label: "Novos canais", value: 49 },
+          { label: "Monitoramento social", value: 51 },
+          { label: "Venda social", value: 50 },
+          { label: "Internet rápida", value: 86 },
+        ],
+      },
     },
     {
       title: "Tres sinais para observar agora",
@@ -159,6 +204,19 @@ function createSlides(seed: DeckSeed): CommercialSlide[] {
       title: "Como aplicar em uma situação real",
       body: seed.example,
       bullets: ["Reduza a aposta", "Valide com sinal real", "Documente o aprendizado", "Ajuste antes de escalar"],
+      chart: {
+        type: "line",
+        valueLabel: "Práticas de escala",
+        secondaryLabel: "Adoção base",
+        insight: "O gargalo não é usar IA; é criar práticas de escala, governança e mensuração.",
+        source: "McKinsey, State of AI 2025",
+        data: [
+          { label: "KPIs", value: 19, secondary: 78 },
+          { label: "Workflows", value: 21, secondary: 78 },
+          { label: "CEO gov.", value: 28, secondary: 78 },
+          { label: "Uso IA", value: 78, secondary: 78 },
+        ],
+      },
     },
     {
       title: "Como empresas líderes fazem",
@@ -180,9 +238,11 @@ function createSlides(seed: DeckSeed): CommercialSlide[] {
       ]),
     },
     {
-      title: "O sistema por trás da narrativa",
+      title: "O sistema por\ntrás da narrativa",
       body: "Toda apresentação comercial precisa mostrar uma lógica simples: contexto, tensão, escolha e movimento.",
       bullets: seed.framework,
+      imageSrc: brasil4Image,
+      imageAlt: "Visual editorial do sistema por trás da narrativa comercial.",
     },
     {
       title: "O ponto de virada",
@@ -229,6 +289,17 @@ function createSlides(seed: DeckSeed): CommercialSlide[] {
       title: "Próximo passo",
       body: seed.cta,
       bullets: ["Definir responsável", "Estábelecer prazo", "Escolher indicador", "Agendar revisão"],
+      chart: {
+        type: "bar",
+        valueLabel: "Sinais de valor em IA",
+        insight: "Valor aparece antes do impacto financeiro amplo: inovação e experimentação já lideram a curva.",
+        source: "McKinsey, State of AI 2025",
+        data: [
+          { label: "EBIT", value: 39 },
+          { label: "Agentes", value: 62 },
+          { label: "Inovação", value: 64 },
+        ],
+      },
     },
     {
       title: "A decisão agora é transformar clareza em movimento",
