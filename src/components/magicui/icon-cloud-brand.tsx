@@ -36,9 +36,9 @@ const mnIconSet = [
 
 export const brandCloudImages = {
   brandColors: brandColorSet,
-  brandColorsWithIcons: [...brandColorSet, ...mnIconSet],
+  brandColorsWithIcons: brandColorSet.flatMap((item, i) => [item, mnIconSet[i]]),
   dark: darkSet,
-  darkWithIcons: [...darkSet, ...mnIconSet],
+  darkWithIcons: darkSet.flatMap((item, i) => [item, mnIconSet[i]]),
 };
 
 export function IconCloudBrand({
