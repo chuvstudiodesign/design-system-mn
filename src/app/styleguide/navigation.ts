@@ -93,4 +93,10 @@ export const navigation: NavSection[] = [
       { name: "Blog", href: "/styleguide/paginas/blog" },
     ],
   },
+  {
+    title: "Mídia Social",
+    items: [
+      { name: "Posts & Carrosséis", href: "/styleguide/midia-social" },
+    ],
+  },
 ];
