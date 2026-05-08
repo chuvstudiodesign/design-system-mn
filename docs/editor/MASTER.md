@@ -18,10 +18,15 @@ A seção 1 da página (`/styleguide/paginas/apresentacoes-comerciais`) é o vie
 
 O editor vive em paralelo, na seção 2 da mesma página, e usa uma representação própria de dados que **deriva** dos dados originais mas não os altera.
 
+## Para começar a implementação
+
+Leia `KICKOFF.md` antes de escrever qualquer código. Ele contém a mensagem de arranque que o agente deve apresentar ao usuário para confirmar o entendimento antes de iniciar.
+
 ## Índice de documentos
 
 | Arquivo | Conteúdo |
 |---|---|
+| [KICKOFF.md](./KICKOFF.md) | **Leia primeiro ao implementar** — mensagem de arranque e instruções iniciais |
 | [01-vision.md](./01-vision.md) | Objetivos, não-objetivos, critérios de sucesso |
 | [02-architecture.md](./02-architecture.md) | Arquitetura de componentes, árvore de arquivos |
 | [03-data-model.md](./03-data-model.md) | Tipos TypeScript completos, camada de tradução |
