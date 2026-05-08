@@ -5,7 +5,7 @@ import type { CommercialSlide } from "@/data/commercial-presentations";
 import { Typography } from "@/components/typography";
 import { FoundationFooter, FoundationPageHeader, Section } from "@/app/styleguide/foundation-sections";
 import { PresentationCarousel } from "./PresentationCarousel";
-import { EditablePresentationEditor } from "./editor/EditablePresentationEditor";
+import { EditableDocument } from "./EditableDocument";
 
 const presentation = commercialPresentations[0];
 
@@ -104,10 +104,10 @@ export function CommercialPresentationsPage() {
       </Section>
 
       <Section
-        title="Editor experimental"
-        subtitle="Duplicata independente dos 3 primeiros slides para testar edição de texto, camadas, arraste de elementos e salvamento local sem alterar a apresentação principal."
+        title="Documento de trabalho"
+        subtitle="Canvas independente para rascunhos e edição de texto. Selecione um bloco para ativar os handles de largura, edite o conteúdo e aplique cores da paleta da marca."
       >
-        <EditablePresentationEditor presentation={presentation} />
+        <EditableDocument />
       </Section>
 
       <Section
