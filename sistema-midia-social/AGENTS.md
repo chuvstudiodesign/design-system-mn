@@ -1,10 +1,10 @@
-# AI Social Post Agent System
+# Sistema De Posts Para Midia Social MN
 
-Este repositório deve operar como um fluxo conversacional guiado para criação e aprimoramento do sistema de posts de social media.
+Este diretorio opera como um fluxo conversacional guiado para criacao de posts de negocios no Design System MN.
 
 ## Startup Behavior
 
-Quando o usuário iniciar a conversa com uma mensagem curta como:
+Quando o usuario iniciar a conversa com:
 - `oi`
 - `ola`
 - `olá`
@@ -14,11 +14,11 @@ Quando o usuário iniciar a conversa com uma mensagem curta como:
 - `comece a criar`
 - `pode começar a criar`
 - `inicie a criação`
-- ou qualquer equivalente claro de início
+- ou equivalente claro de inicio
 
 o agente deve:
 
-1. carregar o contexto deste projeto
+1. carregar o contexto deste diretorio
 2. seguir `config/rules.md`
 3. seguir `config/tone.md`
 4. seguir `config/constraints.md`
@@ -26,26 +26,21 @@ o agente deve:
 6. seguir `workflows/post-creation-flow.md`
 7. iniciar diretamente no `Step 1`
 
-Não fazer onboarding amplo.
-Não pedir contexto genérico antes de começar.
-Não pular etapas.
-Interpretar comandos como `comece a criar` como início direto do fluxo completo em lote de 5 posts.
+Nao fazer onboarding amplo.
+Nao pedir contexto generico antes de comecar.
+Nao pular etapas.
+Interpretar comandos como `comece a criar` como inicio direto do fluxo de lote.
 
 ## Required Conversation Rules
 
-- sempre responder em português do Brasil, salvo pedido contrário
+- sempre responder em portugues do Brasil, salvo pedido contrario
 - sempre seguir o fluxo step by step
-- no fluxo em lote, avançar automaticamente até a conclusão, incluindo etapa visual e exportação para Figma
-- depois do início do fluxo, não pedir confirmações intermediárias ao usuário
-- nunca regenerar etapas anteriores sem pedido do usuário
-- tratar design como assunto principal do sistema:
-  - priorizar valor de produto, usabilidade, interface, linguagem visual, materiais, percepção, ergonomia e impacto prático
-  - não usar sustentabilidade, carbono ou ESG como gancho principal quando o tema puder ser tratado pelo valor de design
-  - se o tema envolver materiais ou cadeia produtiva, traduzir isso em benefício perceptível de produto, experiência ou decisão de projeto
-- evitar referências já saturadas na pauta:
-  - `Massimo Vignelli`
-  - `Bauhaus`
-  - `Dieter Rams`
+- no fluxo em lote, avancar automaticamente ate a revisao compacta
+- pausar antes da criacao visual
+- nao executar exportacao para Figma sem pedido explicito
+- nunca regenerar etapas anteriores sem pedido do usuario
+- tratar negocios como assunto principal do sistema
+- temas de tech, AI, Big Techs, inovacao e Vale do Silicio sao permitidos quando o insight central for de negocio
 - manter estado entre as etapas:
   - `current_step`
   - `topic_options`
@@ -61,7 +56,6 @@ Interpretar comandos como `comece a criar` como início direto do fluxo completo
   - `visual_creation_confirmed`
   - `visual_post_result`
   - `figma_export_confirmed`
-  - `figma_file_link`
   - `figma_page_result`
 
 ## Step Routing
@@ -70,87 +64,89 @@ Interpretar comandos como `comece a criar` como início direto do fluxo completo
 - `Step 2`: usar `agents/copy-agent.md`
 - `Step 3`: usar `agents/fact-check-agent.md`
 - `Step 4`: usar `agents/image-agent.md`
-- `Step 5`: apresentar revisão final
-- `Step 6`: usar `agents/visual-agent.md`
-- `Step 7`: usar `agents/figma-agent.md`
+- `Step 5`: apresentar revisao final compacta
+- `Step 6`: usar `agents/visual-agent.md` somente apos confirmacao
+- `Step 7`: usar `agents/figma-agent.md` somente apos pedido explicito
 
 ## Opening Message
 
-Ao iniciar, a primeira resposta deve seguir este padrão:
+Ao iniciar, a primeira resposta deve seguir este padrao:
 
-`Aqui estão 5 direções de post para desenvolver em lote. Posso ajustar a curadoria se você quiser, mas por padrão sigo com as 5.`
+`Aqui estao 5 direcoes de post para desenvolver em lote. Posso ajustar a curadoria se voce quiser, mas por padrao sigo com as 5.`
 
-Depois disso, gerar imediatamente a saída de `Step 1` no formato correto.
+Depois disso, gerar imediatamente a saida de `Step 1` no formato correto.
 
 ## Visual Creation Rule
 
 Quando chegar na etapa visual:
 
-- criar sempre uma nova página dentro de `design-system/src/app/styleguide/social-media`
-- usar um nome de rota derivado do nome do post aprovado
-- colocar o post na section `Practical Demo` dessa nova página
-- nunca sobrescrever uma página existente
-- nunca substituir uma demo anterior por um novo post
+- usar a area real `src/app/styleguide/midia-social`
+- integrar os posts ao ecossistema de `src/components/social-media`
+- criar uma pagina/rota de lote chamada `cinco-posts` quando o lote visual for solicitado
+- apresentar cada post em uma section propria
+- incluir uma visao horizontal com todas as 8 paginas lado a lado
+- incluir tambem uma versao em carrossel quando fizer sentido no componente existente
+- basear a composicao no post validado `Vale do Silicio · Section`
+- nunca sobrescrever um post existente
+- nunca criar um sistema visual paralelo
 
 ## Batch Workflow Rule
 
 - gerar sempre 5 posts por ciclo
-- selecionar internamente os 5 tópicos gerados como batch padrão
-- usar 3 temas recentes, 1 referência passada marcante e 1 insight amplo
-- os temas recentes devem priorizar recência real e pesquisa
-- não pausar entre topic, copy, fact check, imagens e revisão rápida
-- após a revisão rápida, seguir direto para a criação visual
-- após a criação visual, seguir direto para a exportação para Figma
-- usar sempre o link de arquivo Figma pré-definido no sistema
-- só interromper o avanço automático se houver falha técnica real ou se o usuário pedir mudanças
+- selecionar internamente os 5 topicos gerados como batch padrao
+- usar a composicao:
+  - 3 temas recentes do mes atual e do mes anterior
+  - pelo menos 1 tema recente idealmente das ultimas 2 semanas
+  - 1 tema de ensino sobre empreendedorismo
+  - 1 insight amplo sobre negocios ou empreendedorismo
+- nao pausar entre tema, copy, fact check, imagens e revisao rapida
+- pausar antes da criacao visual
+- exportacao para Figma e etapa posterior, manual e opcional
 
 ## Carousel Strategy Rule
 
-- o padrão atual de copy deve seguir um carrossel de `8 páginas`
-- a estrutura oficial passa a ser:
+- o padrao oficial de copy deve seguir carrossel de `8 paginas`
+- estrutura oficial:
   - `P1` capa
   - `P2` contexto com imagem
-  - `P3` tese ou leitura central
+  - `P3` dado, prova ou tensao central
   - `P4` desdobramento em lista curta
   - `P5` novo contexto com imagem
-  - `P6` nova tese ou consequência de design
-  - `P7` síntese textual sem imagem
+  - `P6` consequencia estrategica
+  - `P7` sintese aplicavel
   - `P8` fechamento
-- a revisão compacta continua existindo, mas é checkpoint interno e não pedido de aprovação
-- a copy deve privilegiar retenção, compartilhamento e salvamento:
-  - capa com hook claro
-  - uma ideia principal por página
-  - progressão narrativa com recompensa de swipe
-  - conteúdo mais explicativo e menos baseado em frases de efeito
+- cada pagina deve ter uma ideia principal
+- a progressao deve favorecer retencao, compartilhamento e salvamento
+- o texto deve caber no template visual derivado de `Vale do Silicio · Section`
 
 ## Research Rule
 
 - pesquisar temas recentes antes de fechar a curadoria
 - validar fatos de todos os posts antes de selecionar imagens
-- priorizar fontes oficiais e publicações confiáveis
+- usar fontes oficiais e publicacoes confiaveis
+- quando houver data relativa, registrar a data absoluta
 
 ## Image Rule
 
 - cada post deve usar exatamente 4 imagens
 - cada imagem deve ser entregue como URL direta do asset
-- não usar páginas de busca, Google Images ou links intermediários como saída final
-- a distribuição padrão deve privilegiar:
+- nao usar paginas de busca, Google Images ou links intermediarios como saida final
+- distribuicao padrao:
   - capa
-  - apoio inicial
-  - apoio intermediário na `Page 5`
-  - fechamento
+  - apoio inicial na `P2`
+  - apoio intermediario na `P5`
+  - fechamento ou reforco visual na `P8`
 
-## Figma Default File Rule
+## Figma Rule
 
-- usar por padrão este arquivo Figma, sem pedir o link ao usuário:
-- `https://www.figma.com/design/MtnwMcIBWw2pcXnjTbEZAo/Identidade-Chuv?node-id=0-1&t=qip2TXyAq7WTUTIV-1`
-- na exportação, criar sempre 1 nova página em `Pages` para cada post aprovado
-- em um lote de 5 posts, criar exatamente 5 novas páginas no Figma
-- cada página deve receber apenas a captura completa do post correspondente
+- nao exportar para Figma automaticamente
+- so executar `Step 7` quando o usuario pedir explicitamente
+- quando executado, capturar as paginas reais do Design System MN em localhost
+- nao reconstruir manualmente o post no Figma
 
 ## Source Files
 
-Arquivos de referência obrigatória:
+Arquivos de referencia obrigatoria:
 
 - `README.md`
 - `config/rules.md`

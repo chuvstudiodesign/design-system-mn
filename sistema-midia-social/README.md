@@ -1,62 +1,60 @@
-# AI Social Post Agent System
+# Sistema De Posts Para Midia Social MN
 
-Modular multi-agent workflow for creating high-quality design-focused social media posts inside a guided conversational flow, now optimized for autonomous batch development of 5 posts per cycle.
+Sistema modular de agentes para criar lotes de posts editoriais de negocios para o Design System MN.
 
-## Structure
-- `agents/orchestrator.md`: central controller for the full interaction
-- `agents/topic-agent.md`: generates topic options
-- `agents/copy-agent.md`: generates carousel copy
-- `agents/fact-check-agent.md`: validates factual claims before visual selection
-- `agents/image-agent.md`: selects exact image asset URLs
-- `agents/visual-agent.md`: creates the approved post inside the local Design System
-- `agents/figma-agent.md`: recreates the generated post structure inside Figma via MCP
-- `workflows/post-creation-flow.md`: defines the execution sequence
-- `config/rules.md`: global operating rules
-- `config/tone.md`: voice and tone guidance
-- `config/constraints.md`: hard limits for output and flow
+O objetivo e transformar pesquisa, copy, validacao factual, imagens e criacao visual em um fluxo consistente, sem improvisar estrutura a cada post.
 
-## How It Works
-1. User says `hi` or starts the conversation.
-2. The orchestrator triggers the topic agent.
-3. The system curates and locks 5 topics for a batch.
-4. The orchestrator triggers the copy agent for the 5 selected topics.
-5. The orchestrator triggers the fact-check agent to verify claims and correct the copy if needed.
-6. The orchestrator triggers the image agent to select exactly 3 direct image asset URLs per post.
-7. The orchestrator presents a compact internal review package.
-8. The system pauses only before visual creation in the Design System.
-9. After visual creation, the orchestrator can offer export to Figma.
+## Estrutura
+- `agents/orchestrator.md`: controlador principal do processo
+- `agents/topic-agent.md`: gera 5 direcoes de tema
+- `agents/copy-agent.md`: escreve a copy dos carrosseis
+- `agents/fact-check-agent.md`: valida fatos antes de seguir
+- `agents/image-agent.md`: escolhe URLs diretas de imagens
+- `agents/visual-agent.md`: transforma o post em pagina visual no Design System MN
+- `agents/figma-agent.md`: guia opcional para captura futura no Figma
+- `workflows/post-creation-flow.md`: sequencia completa de execucao
+- `config/rules.md`: regras globais
+- `config/tone.md`: voz editorial
+- `config/constraints.md`: limites de tema, copy, imagem e visual
+- `memory/context.md`: memoria fixa do sistema
 
-## Workflow Principles
-- step-by-step only
-- automatic progression through internal stages
-- explicit approval required only at the visual creation gate and later Figma gate
-- low token usage
-- factual research where recency or verification matters
-- no redundant generation
+## Como Funciona
+1. O usuario inicia o fluxo com `oi`, `comece a criar` ou equivalente.
+2. O orchestrator carrega as regras e chama o topic agent.
+3. O sistema gera 5 temas para um lote.
+4. O sistema escreve 5 copies em carrossel de 8 paginas.
+5. O sistema valida fatos antes de escolher imagens.
+6. O sistema escolhe exatamente 4 imagens por post.
+7. O sistema apresenta uma revisao compacta.
+8. O sistema pausa antes da criacao visual.
+9. Quando autorizado, o visual agent cria os posts no Design System MN.
+10. A captura para Figma fica como etapa separada e opcional.
 
-## Agent Contract
-Each agent file defines:
-- role
-- input
-- output format
-- behavior rules
+## Principios
+- responder em portugues do Brasil
+- operar passo a passo
+- manter estado entre etapas
+- pesquisar quando houver recencia ou risco factual
+- preservar a copy validada na etapa visual
+- usar o post `Vale do Silicio · Section` como matriz visual
+- nao criar linguagem visual paralela
+- nao usar nomes, links, arquivos ou convencoes de outra marca
 
-## Intended Output
-The system is designed for a high-end multidisciplinary design studio working across branding, visual identity, 3D, motion, VFX, and digital product design.
+## Lote Padrao
+Cada ciclo gera exatamente 5 posts:
+- 3 temas recentes do mes atual e do mes anterior
+- pelo menos 1 tema recente idealmente das ultimas 2 semanas
+- 1 tema de ensino sobre empreendedorismo
+- 1 insight amplo sobre negocios, estrategia ou empreendedorismo
 
-## Usage
-Load the orchestrator first.
+Temas de tecnologia, Big Techs, AI, inovacao ou Vale do Silicio sao permitidos quando o angulo principal for negocio, mercado, empreendedorismo, operacao, produto, crescimento ou decisao estrategica.
 
-The orchestrator should:
-- initialize the flow on greeting
-- call the correct specialist at each step
-- preserve approved state
-- batch 5 posts in one run
-- self-approve internal steps until the visual creation gate
+## Saida Visual Pretendida
+Cada post deve virar um carrossel 4:5 de 8 paginas, dentro da area de midia social do Design System MN, baseado na estrutura validada do `Vale do Silicio · Section`.
 
-## Recommended Run Order
-1. Read `config/rules.md`
-2. Read `config/tone.md`
-3. Read `config/constraints.md`
-4. Run `agents/orchestrator.md`
-5. Follow `workflows/post-creation-flow.md`
+## Ordem Recomendada De Uso
+1. Ler `config/rules.md`
+2. Ler `config/tone.md`
+3. Ler `config/constraints.md`
+4. Rodar `agents/orchestrator.md`
+5. Seguir `workflows/post-creation-flow.md`

@@ -1,33 +1,39 @@
 # Tone Guide
 
 ## Primary Tone
-- strategic
-- intelligent
-- minimalist
-- aesthetically aware
-- authoritative
+- estrategico
+- claro
+- objetivo
+- executivo
+- editorial
+- pragmatico
 
 ## Voice Characteristics
-- clear
-- refined
-- concise
-- culturally literate
-- visually intelligent
+- direto
+- inteligente
+- util
+- analitico
+- sem excesso de entusiasmo
+- com autoridade sem arrogancia
 
 ## What To Sound Like
-- a premium design studio with strong editorial judgment
-- a team fluent in both design systems and cultural relevance
-- a voice that values precision, form, and meaning
+- uma leitura de negocios bem editada
+- um parceiro que entende empreendedorismo, mercado e execucao
+- uma voz que transforma noticia, conceito ou metodo em decisao pratica
 
 ## What To Avoid
-- inspirational fluff
-- startup hype language
-- generic social media phrasing
-- vague creativity talk
-- exaggerated emotional language
+- motivacional generico
+- hype de startup
+- jargoes vazios
+- frases de autoajuda empresarial
+- exagero emocional
+- promessas absolutas
+- conteudo que pareca palestra sem substancia
 
 ## Writing Preference
-- short sentences
-- tight concepts
-- memorable phrasing
-- high signal density
+- frases curtas
+- conceitos nitidos
+- ritmo de carrossel
+- alta densidade de sinal
+- uma ideia por pagina
+- fechamento memoravel, mas nao decorativo

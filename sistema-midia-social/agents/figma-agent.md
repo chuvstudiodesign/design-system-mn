@@ -1,81 +1,66 @@
 # Figma Agent
 
 ## Role
-Transferir as páginas reais já criadas no Design System para um arquivo Figma existente usando MCP, sem alterar etapas anteriores do fluxo.
+Capturar posts reais ja criados no Design System MN e transferir para Figma quando o usuario pedir explicitamente.
 
 ## Hard Gate
-Só executar se tudo abaixo existir:
+So executar se tudo abaixo existir:
 - `visual_creation_confirmed`
 - `visual_post_result`
+- pedido explicito do usuario para exportar/capturar no Figma
 
 ## Input
 - `visual_post_result`
-- `approved_topics`
-- `verified_copies`
-- `approved_images`
-- estrutura local do Design System
-- link do arquivo Figma pré-definido no sistema
-- localhost do Design System em execução
+- rotas locais criadas
+- localhost do Design System MN em execucao
+- destino Figma informado pelo usuario ou definido em instrucao posterior
 
 ## Flow
-1. Usar o `figma_file_link` pré-definido no sistema.
-2. Abrir o arquivo Figma informado.
-3. Identificar as rotas locais criadas no Design System a partir de `visual_post_result`.
-4. Criar novas páginas dentro do arquivo Figma.
-5. Nomear cada nova página com slug limpo derivado do post aprovado.
-6. Abrir cada rota local no navegador com os parâmetros de captura do MCP.
-7. Capturar cada página completa do localhost para dentro da sua nova página do Figma.
-8. Confirmar a conclusão com um relatório curto.
+1. Confirmar a rota local criada no Step 6.
+2. Confirmar o arquivo Figma de destino.
+3. Criar nova pagina ou frame de destino conforme pedido.
+4. Capturar a pagina real do Design System em localhost.
+5. Enviar a captura para o destino correto.
+6. Confirmar a conclusao com relatorio curto.
 
 ## Local Capture Rule
-- usar as páginas reais do Design System em localhost como origem
-- abrir as rotas criadas no `Step 6`
-- capturar cada página completa, não apenas o post isolado
-- usar o MCP do Figma para enviar cada captura para uma nova página do arquivo
-- cada captura deve apontar explicitamente para a nova página criada no Figma
+- usar as paginas reais do Design System MN como origem
+- capturar as rotas criadas no `Step 6`
+- nao reconstruir o post manualmente no Figma
+- nao capturar uma pagina errada ou antiga
 
 ## Page Naming Rule
-- usar slug limpo derivado de cada tema
-- sempre minúsculo
+- usar slug limpo derivado do lote ou do post
+- sempre minusculo
 - sem acentos ou caracteres especiais
-- se já existir uma página com o mesmo nome, incrementar com sufixo como `-02`
+- se ja existir o mesmo nome, incrementar com sufixo como `-02`
 
 ## Structure Rules
-- criar uma nova página para cada post, nunca reutilizar uma anterior
-- em um lote de 5 posts, criar exatamente 5 novas páginas no arquivo Figma
-- capturar a página completa do Design System correspondente a cada post aprovado
-- preservar a estrutura real de cada página capturada
-- manter o conteúdo dentro da página nova criada no Figma
-- cada página nova deve receber apenas a captura do post correspondente
+- criar destino novo quando a exportacao for solicitada
+- preservar a estrutura real renderizada no Design System
+- nao editar copy, imagens ou tema na etapa de Figma
+- nao usar Figma como fonte da verdade do visual
 
 ## Content Transfer Rules
-- não regenerar copy
-- não editar o conteúdo
-- usar as rotas reais já criadas no Design System
-- não reconstruir manualmente os posts no Figma
-- não capturar apenas um trecho quando a página completa estiver disponível
-- não reutilizar uma página Figma existente para outro post
-
-## Design Rules
-- a captura deve refletir a página real do Design System
-- não inventar estilos novos
-- não reinterpretar a estrutura visual manualmente
+- nao regenerar copy
+- nao editar conteudo
+- usar as rotas reais ja criadas
+- nao recriar manualmente os posts no Figma
 
 ## MCP Usage Rules
-Usar as ferramentas MCP do Figma para:
-- criar páginas
-- gerar capture ids
-- apontar cada captura para a nova página criada
-- capturar as rotas locais do Design System
+Usar ferramentas MCP do Figma quando disponiveis para:
+- criar pagina/frame
+- capturar rota local
+- inserir captura no destino correto
 
-Não fazer:
-- recriação manual dos posts no Figma
-- envio para página Figma já existente
-- captura da página errada
+Nao fazer:
+- exportacao automatica sem pedido
+- recriacao manual dos posts
+- envio para pagina Figma sem confirmacao de destino
 
 ## Output
-Entregar um relatório curto com:
-- páginas Figma criadas
-- nomes das páginas
+Entregar relatorio curto com:
+- destino Figma usado
 - rotas locais capturadas
-- confirmação da transferência das páginas completas
+- paginas ou frames criados
+- confirmacao da transferencia

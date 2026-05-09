@@ -1,185 +1,186 @@
 # Post Creation Flow
 
 ## Purpose
-Define the exact step-by-step execution for generating 5 design-focused social media posts in one batch with minimal token use and automatic progression through visual creation and Figma export.
+Definir a execucao passo a passo para gerar 5 posts de negocios em um lote, com pesquisa, copy, fact-check, imagens e preparacao para criacao visual no Design System MN.
 
 ## Flow Overview
-1. Start interaction
-2. Suggest topics
-3. Lock the 5 topics as the production batch
-4. Generate carousel copy
-5. Validate facts
-6. Select post images
-7. Present compact final review
-8. Create visual posts
-9. Export to Figma
-10. Present result
-11. End
+1. Inicio da interacao
+2. Sugestao de temas
+3. Travar os 5 temas como lote padrao
+4. Gerar copy dos carrosseis
+5. Validar fatos
+6. Selecionar imagens
+7. Apresentar revisao compacta
+8. Aguardar pedido para criacao visual
+9. Criar pagina visual no Design System MN quando solicitado
+10. Exportar para Figma somente se solicitado
+11. Apresentar resultado
+12. Encerrar
 
 ## Execution Steps
 
 ### Step 0: Start
-Trigger condition:
-- user says `hi`
-- or says `comece a criar`
-- or says `pode começar a criar`
-- or says `inicie a criação`
-- or sends any short opening message asking to begin
+Condicao de trigger:
+- usuario diz `hi`
+- ou diz `comece a criar`
+- ou diz `pode começar a criar`
+- ou diz `inicie a criação`
+- ou envia mensagem curta equivalente
 
-Orchestrator action:
-- initialize state
-- set `current_step = topic_suggestion`
-- call topic agent
+Acao do orchestrator:
+- inicializar estado
+- definir `current_step = topic_suggestion`
+- chamar topic agent
 
 ### Step 1: Topic Suggestion
-Agent:
+Agente:
 - `agents/topic-agent.md`
 
-Required output:
-- exactly 5 ideas
-- 3 recent
-- 1 historical
+Saida obrigatoria:
+- exatamente 5 ideias
+- 3 recentes
+- 1 ensino
 - 1 insight
 
-Orchestrator action:
-- store ideas in `topic_options`
-- mark the 5 ideas as the selected production batch by default
-- store the same batch in `approved_topics` unless the user intervenes
-- present them cleanly
-- allow intervention only if the user wants to alter the batch
+Acao do orchestrator:
+- salvar ideias em `topic_options`
+- marcar as 5 como lote de producao por padrao
+- salvar em `selected_topics`
+- salvar em `approved_topics` salvo intervencao do usuario
+- apresentar a lista
 
 Stop condition:
-- do not stop unless the user asks for topic changes
+- nao parar salvo pedido do usuario para alterar temas
 
 ### Step 2: Copy Generation
-Agent:
+Agente:
 - `agents/copy-agent.md`
 
 Input:
-- selected topics
+- temas selecionados
+- matriz visual `Vale do Silicio · Section`
 
-Required output:
-- 5 posts with 8-page carousel copy in the exact required structure
+Saida obrigatoria:
+- 5 posts
+- cada post com exatamente 8 paginas
+- estrutura de copy compativel com os limites definidos
 
-Orchestrator action:
-- store result in `generated_copies`
-- move directly to factual verification
+Acao do orchestrator:
+- salvar resultado em `generated_copies`
+- mover direto para verificacao factual
 
 Stop condition:
-- do not stop unless the user interrupts
+- nao parar salvo interrupcao do usuario
 
 ### Step 3: Fact Check
-Agent:
+Agente:
 - `agents/fact-check-agent.md`
 
 Input:
-- selected topics
-- generated copies
+- temas selecionados
+- copies geradas
+- data atual
 
-Required output:
-- compact verification report
-- corrected copy when needed
+Saida obrigatoria:
+- relatorio compacto de verificacao
+- copy corrigida quando necessario
 
-Orchestrator action:
-- store the report in `fact_check_report`
-- store the corrected output in `verified_copies`
-- move directly to image selection
+Acao do orchestrator:
+- salvar relatorio em `fact_check_report`
+- salvar copy corrigida em `verified_copies`
+- mover direto para selecao de imagens
 
 Stop condition:
-- do not stop unless the user interrupts
+- nao parar salvo interrupcao do usuario
 
 ### Step 4: Image Selection
-Agent:
+Agente:
 - `agents/image-agent.md`
 
 Input:
-- approved topics
-- verified copies
+- temas aprovados
+- copies verificadas
 
-Required output:
-- exactly 4 direct image asset URLs per post
+Saida obrigatoria:
+- exatamente 4 URLs diretas de imagem por post
+- uso sugerido em `P1`, `P2`, `P5`, `P8`
 
-Orchestrator action:
-- store result in `image_selections`
-- store approved result as `approved_images`
-- move directly to the compact review
+Acao do orchestrator:
+- salvar resultado em `image_selections`
+- salvar resultado aprovado em `approved_images`
+- mover direto para revisao compacta
 
 Stop condition:
-- do not stop unless the user interrupts
+- nao parar salvo interrupcao do usuario
 
 ### Step 5: Final Review
-Orchestrator action:
-- present a compact review containing:
-- approved topics
-- verified copy in full
-- approved images for the post
-- use this review as an internal validation checkpoint before the visual stage
+Acao do orchestrator:
+- apresentar pacote compacto com:
+  - temas aprovados
+  - copy verificada completa
+  - imagens aprovadas
+- marcar `final_review_presented = true`
+- marcar `final_review_confirmed = true` apenas se o usuario confirmar
+- pausar antes da etapa visual
 
 Stop condition:
-- do not stop
+- parar e aguardar o usuario pedir criacao visual
 
 ### Step 6: Visual Creation
-Agent:
+Agente:
 - `agents/visual-agent.md`
 
 Flow:
-1. Ask permission to access GitHub
-2. Clone or copy the Design System into `/design-system`
-3. Analyze the real structure
-4. Create a new page inside `social-media` using the post name
-5. Generate the post
-6. Present the result
+1. Validar que a revisao compacta existe.
+2. Analisar o codigo real de midia social.
+3. Usar a matriz `Vale do Silicio · Section`.
+4. Criar/integrar a rota `styleguide/midia-social/cinco-posts`.
+5. Criar uma section por post.
+6. Renderizar 8 paginas lado a lado por post.
+7. Incluir carrossel quando fizer sentido.
+8. Apresentar resultado.
 
-Orchestrator action:
-- after the compact final review, call the visual agent automatically
+Acao do orchestrator:
+- executar somente apos pedido do usuario
+- salvar resultado em `visual_post_result`
 
 Stop condition:
-- do not run this step before all previous approvals exist
+- nao executar antes do pedido explicito
 
 Mandatory creation rule:
-- always create a new page for each approved post in the batch
-- place the post inside the page's `Practical Demo` section
-- keep the page inside the `social-media` area of the Design System
-- never overwrite or reuse an existing post page
-- never replace a previous demo to insert a new post
+- usar o Design System MN real
+- nunca substituir demo anterior sem pedido
+- nunca criar sistema visual paralelo
+- nao reescrever copy
+- nao trocar imagens
 
-### Step 7: Export to Figma
-Agent:
+### Step 7: Export To Figma
+Agente:
 - `agents/figma-agent.md`
 
 Flow:
-1. Load the predefined Figma file link from system state
-2. Identify the localhost routes created in Step 6
-3. Create one new page in the Figma file for each approved post
-4. Open each localhost page with MCP capture parameters
-5. Capture each full page into its corresponding new Figma page
-6. Confirm completion
+1. Confirmar pedido explicito do usuario.
+2. Confirmar destino Figma.
+3. Usar rotas locais criadas no Step 6.
+4. Capturar a pagina real no localhost.
+5. Enviar para o destino solicitado.
+6. Confirmar conclusao.
 
-Orchestrator action:
-- after Step 6 is completed, call the figma agent automatically
-- use the predefined `figma_file_link` and continue without asking the user
+Acao do orchestrator:
+- executar somente se o usuario pedir
 
 Stop condition:
-- only run after Step 6 is completed
-- only run if `visual_post_result` exists
-
-Mandatory export rule:
-- always create a new page in Figma before capturing
-- always capture from the real localhost pages created in Step 6
-- always send the capture to the new page that was just created
-- always create one new Figma page per post
-- in a 5-post batch, always create 5 new Figma pages
-- never drop the capture inside an unrelated existing Figma page
-- never rebuild the page manually when localhost capture is available
+- nao executar automaticamente
+- nao executar se `visual_post_result` nao existir
 
 ### Step 8: Completion
-Orchestrator action:
-- confirm approved topics
-- confirm verified copies
-- confirm approved images
-- confirm visual result when Step 6 ran
-- confirm Figma export result when Step 7 ran
-- end the session cleanly
+Acao do orchestrator:
+- confirmar temas aprovados
+- confirmar copies verificadas
+- confirmar imagens aprovadas
+- confirmar resultado visual se Step 6 rodou
+- confirmar exportacao se Step 7 rodou
+- encerrar a sessao
 
 ## State Model
 - `current_step`
@@ -196,41 +197,41 @@ Orchestrator action:
 - `visual_creation_confirmed`
 - `visual_post_result`
 - `figma_export_confirmed`
-- `figma_file_link`
 - `figma_page_result`
 
 ## Regeneration Rules
-- Regenerating Step 1 does not generate copy or images.
-- Regenerating Step 2 keeps the selected topic batch.
-- Regenerating Step 3 keeps the selected topic batch and only updates factual issues.
-- Regenerating Step 4 keeps the selected topic batch and verified copy.
-- Edits requested after the final review should only update the affected layer.
-- Step 6 never regenerates topic, copy, or images.
-- Step 7 never regenerates topic, copy, images, or visual structure.
-- Never recompute previous approved steps unless requested.
+- Regenerar Step 1 nao gera copy nem imagens.
+- Regenerar Step 2 mantem o lote de temas.
+- Regenerar Step 3 mantem os temas e corrige apenas problemas factuais.
+- Regenerar Step 4 mantem temas e copy verificada.
+- Edicoes apos revisao compacta atualizam apenas a camada afetada.
+- Step 6 nunca regenera tema, copy ou imagens.
+- Step 7 nunca regenera tema, copy, imagens ou visual.
+- Nunca recomputar etapas aprovadas sem pedido.
 
 ## Token Optimization Rules
-- Only invoke one specialist agent at a time.
-- Never generate image analysis.
-- Research only where recency and factual validation require it.
-- Keep outputs compact.
-- Reuse approved state.
-- Do not add rationale unless requested.
+- Usar um agente especialista por vez.
+- Nao gerar analise longa de imagens.
+- Pesquisar somente onde recencia e verificacao exigirem.
+- Manter saidas compactas.
+- Reutilizar estado aprovado.
+- Nao adicionar rationale salvo pedido.
 
 ## Interaction Standard
-- short outputs
-- clean formatting
-- compact checkpoints
-- no unnecessary approval gates after the compact review
+- saidas curtas
+- formato limpo
+- checkpoints compactos
+- sem aprovacoes desnecessarias antes da revisao
+- pausa clara antes da criacao visual
 
 ## Narrative Standard
-- cada carrossel deve operar como sequência editorial, não como coleção de frases soltas
-- `Page 1` prende a atenção
-- `Pages 2 a 4` contextualizam e mostram a lógica da leitura
-- `Pages 5 a 7` aprofundam a implicação de design e ampliam a utilidade do post
-- `Page 8` fecha o raciocínio com nitidez
-- o sistema deve privilegiar conteúdo salvável e compartilhável:
-  - explicação clara
-  - progressão coerente
-  - um ponto principal por página
-  - menos slogan, mais interpretação
+- cada carrossel deve operar como sequencia editorial
+- `Page 1` prende a atencao
+- `Pages 2 a 4` contextualizam e mostram a logica da leitura
+- `Pages 5 a 7` aprofundam implicacao pratica
+- `Page 8` fecha o raciocinio
+- o sistema deve privilegiar conteudo salvavel e compartilhavel:
+  - explicacao clara
+  - progressao coerente
+  - um ponto principal por pagina
+  - menos slogan, mais interpretacao
