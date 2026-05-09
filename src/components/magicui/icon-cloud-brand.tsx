@@ -52,7 +52,7 @@ export function IconCloudBrand({
   size?: number;
   className?: string;
   maxBlur?: number;
-  autoRotateAxis?: "free" | "x";
+  autoRotateAxis?: "free" | "x" | "y";
 }) {
   return (
     <IconCloud

@@ -19,7 +19,7 @@ interface IconCloudProps {
   size?: number
   className?: string
   maxBlur?: number
-  autoRotateAxis?: "free" | "x"
+  autoRotateAxis?: "free" | "x" | "y"
 }
 
 function easeOutCubic(t: number): number {
@@ -322,6 +322,8 @@ export function IconCloud({
           const autoRotation =
             autoRotateAxis === "x"
               ? { x: speed, y: 0 }
+              : autoRotateAxis === "y"
+                ? { x: 0, y: speed }
               : {
                   x: (dy / canvas.height) * speed,
                   y: (dx / canvas.width) * speed,
