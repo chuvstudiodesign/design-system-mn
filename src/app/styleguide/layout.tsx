@@ -78,8 +78,6 @@ export default function StyleguideLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const slideExportRoute =
-    pathname.startsWith("/styleguide/paginas/apresentacoes-comerciais/slide-");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [desktopOpen, setDesktopOpen] = useState(true);
   const [tabVisible, setTabVisible] = useState(false);
@@ -118,10 +116,6 @@ export default function StyleguideLayout({
   useEffect(() => () => clearTimer(), [clearTimer]);
 
   const btnLeft = SL + SW - 12;
-
-  if (slideExportRoute) {
-    return <>{children}</>;
-  }
 
   return (
     <div className="relative min-h-screen bg-background">
