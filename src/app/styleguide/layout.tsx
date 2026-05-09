@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AutoHeightReporter } from "@/components/auto-height-reporter";
 import { cn } from "@/lib/utils";
 import { navigation } from "./navigation";
 
@@ -254,7 +253,6 @@ export default function StyleguideLayout({
 
       {/* ── Main content ── */}
       <div
-        data-embed-height-root
         className={cn(
           "px-[30px] pb-4 pt-[98px] transition-[padding-left] duration-300 ease-in-out lg:pr-[30px] lg:pt-[30px] lg:pb-[30px]",
           desktopOpen
@@ -262,7 +260,6 @@ export default function StyleguideLayout({
             : "lg:pl-[30px]"
         )}
       >
-        <AutoHeightReporter />
         <main>{children}</main>
       </div>
     </div>
