@@ -245,7 +245,7 @@ export function SectionSystemBlock({
                     </Typography>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                   <div style={cardStyles}>
                     <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">Card</Typography>
                     <Typography as="p" variant="body-sm" className="mt-2 text-muted-foreground">Resumo principal do assunto.</Typography>
@@ -290,7 +290,7 @@ export function SectionSystemBlock({
                     </Typography>
                   </div>
                 </div>
-                <div className="grid grid-cols-[1.2fr_0.8fr] gap-6">
+                <div className="grid grid-cols-1 gap-6 sm:grid-cols-[1.2fr_0.8fr]">
                   <div style={cardStyles}>
                     <Typography as="p" variant="label" className="normal-case tracking-normal text-foreground">Texto</Typography>
                     <Typography as="p" variant="body-sm" className="mt-2 text-muted-foreground">Bloco principal para explicação, contexto ou narrativa.</Typography>
