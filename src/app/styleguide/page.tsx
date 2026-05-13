@@ -6,6 +6,7 @@ import { IconCloudBrand } from "@/components/magicui/icon-cloud-brand";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import { Typography } from "@/components/typography";
 import { FoundationFooter } from "./foundation-sections";
+import { BrandSelectorInline } from "./logotipo/brand-switcher";
 
 const cards = [
   {
@@ -102,6 +103,18 @@ export default function StyleguideHomePage() {
                   )}
                 </div>
               ))}
+            </div>
+
+            <div className="mt-6 w-full">
+              <div className="ds-card !p-[30px] flex flex-col gap-2">
+                <Typography as="h2" variant="h3" className="text-foreground">
+                  Selecione a marca
+                </Typography>
+                <Typography as="p" variant="body" className="text-muted-foreground">
+                  Acesse as diretrizes e downloads de logotipo de cada marca.
+                </Typography>
+                <BrandSelectorInline />
+              </div>
             </div>
           </div>
         </ChamferedPanel>

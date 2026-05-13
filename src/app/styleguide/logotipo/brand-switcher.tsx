@@ -58,6 +58,34 @@ function BrandIcon({ brand }: { brand: LogoBrand }) {
   );
 }
 
+export function BrandSelectorInline() {
+  const orderedBrands = BRAND_SWITCHER_ORDER
+    .map((slug) => LOGO_BRANDS.find((brand) => brand.slug === slug))
+    .filter((brand): brand is LogoBrand => Boolean(brand));
+
+  return (
+    <div className="flex flex-wrap items-start justify-center gap-x-[40px] gap-y-8 pt-2">
+      {orderedBrands.map((brand) => (
+        <Link
+          key={brand.slug}
+          href={brandHref(brand.slug)}
+          aria-label={`Selecionar ${brand.name}`}
+          className="group flex w-[90px] flex-col items-center gap-3 rounded-[10px] transition-opacity hover:opacity-80"
+        >
+          <BrandIcon brand={brand} />
+          <Typography
+            as="p"
+            variant="body"
+            className="pointer-events-none min-h-[1.5em] text-center font-normal text-black opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+          >
+            {brand.name}
+          </Typography>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
 export function BrandSwitcher({ currentSlug }: { currentSlug: string }) {
   const orderedBrands = BRAND_SWITCHER_ORDER
     .map((slug) => LOGO_BRANDS.find((brand) => brand.slug === slug))
