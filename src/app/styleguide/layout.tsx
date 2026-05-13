@@ -254,7 +254,7 @@ export default function StyleguideLayout({
       {/* ── Main content ── */}
       <div
         className={cn(
-          "px-[30px] pb-4 pt-[98px] transition-[padding-left] duration-300 ease-in-out lg:pr-[30px] lg:pt-[30px] lg:pb-[30px]",
+          "px-[10px] pb-[10px] pt-[98px] transition-[padding-left] duration-300 ease-in-out lg:pr-[30px] lg:pt-[30px] lg:pb-[30px]",
           desktopOpen
             ? "lg:pl-[316px]"
             : "lg:pl-[30px]"
