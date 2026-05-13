@@ -10,9 +10,9 @@ const SL = 30;  // desktop sidebar offset (px) = page spacing
 const SW = 256; // desktop sidebar width (px)
 
 // Mobile navbar constants
-const NAV_TOP = 22;    // gap from top edge (half of section padding-y 45px)
+const NAV_TOP = 10;    // gap from top edge (mobile background spacing)
 const NAV_H = 60;      // navbar height (px)
-const NAV_X = 30;      // horizontal gap from screen edges (= --spacing-page)
+const NAV_X = 10;      // horizontal gap from screen edges (mobile = 10px)
 const BRAND_LOGO_URL = "https://raw.githubusercontent.com/chuvstudiodesign/logos-masi-negocios/71ad67702f1e8fc61061ef81a2e9f372788e7dab/Negocios.svg";
 
 function SidebarContent({
@@ -168,10 +168,10 @@ export default function StyleguideLayout({
       {/* ── Mobile drawer (opens from the RIGHT) ── */}
       <aside
         className={cn(
-          "fixed right-[30px] top-[30px] z-50 w-[min(20rem,calc(100vw-60px))]",
+          "fixed right-[10px] top-[10px] z-50 w-[min(20rem,calc(100vw-20px))]",
           "flex flex-col overflow-y-auto rounded-[10px] border border-white p-5",
           "transition-transform duration-200 lg:hidden",
-          mobileOpen ? "translate-x-0" : "translate-x-[calc(100%+30px)]"
+          mobileOpen ? "translate-x-0" : "translate-x-[calc(100%+10px)]"
         )}
         style={{ backgroundColor: "#ececec", height: "calc(100vh - 60px)" }}
       >
@@ -254,7 +254,7 @@ export default function StyleguideLayout({
       {/* ── Main content ── */}
       <div
         className={cn(
-          "px-[10px] pb-[10px] pt-[98px] transition-[padding-left] duration-300 ease-in-out lg:pr-[30px] lg:pt-[30px] lg:pb-[30px]",
+          "px-[10px] pb-[10px] pt-[80px] transition-[padding-left] duration-300 ease-in-out lg:pr-[30px] lg:pt-[30px] lg:pb-[30px]",
           desktopOpen
             ? "lg:pl-[316px]"
             : "lg:pl-[30px]"
