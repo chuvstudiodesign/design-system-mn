@@ -106,14 +106,18 @@ export default function StyleguideHomePage() {
             </div>
 
             <div className="mt-6 w-full">
-              <div className="ds-card !p-[30px] flex flex-col gap-2">
-                <Typography as="h2" variant="h3" className="text-foreground">
-                  Selecione a marca
-                </Typography>
-                <Typography as="p" variant="body" className="text-muted-foreground">
-                  Acesse as diretrizes e downloads de logotipo de cada marca.
-                </Typography>
-                <BrandSelectorInline />
+              <div className="ds-card !px-[30px] !py-[60px] flex flex-col">
+                <div className="flex flex-col gap-2 text-center">
+                  <Typography as="h2" variant="h3" className="text-foreground">
+                    Selecione a marca
+                  </Typography>
+                  <Typography as="p" variant="body" className="text-muted-foreground">
+                    Acesse as diretrizes e downloads de logotipo de cada marca.
+                  </Typography>
+                </div>
+                <div className="mt-[60px]">
+                  <BrandSelectorInline />
+                </div>
               </div>
             </div>
           </div>
