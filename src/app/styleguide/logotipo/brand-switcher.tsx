@@ -67,7 +67,7 @@ function BrandDrawerList({ currentSlug }: { currentSlug?: string }) {
     .filter((brand): brand is LogoBrand => Boolean(brand));
 
   return (
-    <div className="flex flex-wrap items-start justify-center gap-x-[50px] gap-y-8 px-[30px] pb-[80px]">
+    <div className="mx-auto grid w-fit grid-cols-2 gap-x-[40px] gap-y-8 md:grid-cols-4 xl:grid-cols-8">
       {orderedBrands.map((brand) => (
         <DrawerClose key={brand.slug} asChild>
           <Link
@@ -123,13 +123,15 @@ export function BrandSwitcher({ currentSlug }: { currentSlug: string }) {
       </DrawerTrigger>
       <DrawerContent>
         <div className="w-full">
-          <DrawerHeader className="px-[30px] py-[80px]">
+          <DrawerHeader className="px-[30px] pt-[60px] pb-0">
             <DrawerTitle>Selecione a marca</DrawerTitle>
             <DrawerDescription>
               Acesse as diretrizes e downloads de logotipo de cada marca.
             </DrawerDescription>
           </DrawerHeader>
-          <BrandDrawerList currentSlug={currentSlug} />
+          <div className="mt-[60px] px-[30px] pb-[60px]">
+            <BrandDrawerList currentSlug={currentSlug} />
+          </div>
         </div>
       </DrawerContent>
     </Drawer>
@@ -170,13 +172,15 @@ export function FloatingBrandSwitcher({ currentSlug }: { currentSlug: string }) 
       </DrawerTrigger>
       <DrawerContent>
         <div className="w-full">
-          <DrawerHeader className="px-[30px] py-[80px]">
+          <DrawerHeader className="px-[30px] pt-[60px] pb-0">
             <DrawerTitle>Selecione a marca</DrawerTitle>
             <DrawerDescription>
               Acesse as diretrizes e downloads de logotipo de cada marca.
             </DrawerDescription>
           </DrawerHeader>
-          <BrandDrawerList currentSlug={currentSlug} />
+          <div className="mt-[60px] px-[30px] pb-[60px]">
+            <BrandDrawerList currentSlug={currentSlug} />
+          </div>
         </div>
       </DrawerContent>
     </Drawer>
