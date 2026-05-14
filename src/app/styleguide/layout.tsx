@@ -123,7 +123,7 @@ export default function StyleguideLayout({
 
       {/* ── Mobile floating navbar ── */}
       <header
-        className="fixed z-30 flex items-center justify-between rounded-[10px] bg-[#ececec] lg:hidden"
+        className="fixed z-30 flex items-center justify-between rounded-[10px] border-t border-white bg-[#ececec] lg:hidden"
         style={{
           top: NAV_TOP,
           left: NAV_X,
