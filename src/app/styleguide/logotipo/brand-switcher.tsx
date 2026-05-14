@@ -92,7 +92,7 @@ export function BrandSelectorInline() {
     .filter((brand): brand is LogoBrand => Boolean(brand));
 
   return (
-    <div className="flex flex-wrap items-start justify-center gap-x-[40px] gap-y-8 pt-2">
+    <div className="grid grid-cols-2 justify-items-center gap-x-[40px] gap-y-8 pt-2 sm:grid-cols-4">
       {orderedBrands.map((brand) => (
         <Link
           key={brand.slug}

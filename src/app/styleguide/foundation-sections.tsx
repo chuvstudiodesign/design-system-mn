@@ -744,11 +744,16 @@ export function CardSystemBlock({
 export function FoundationFooter() {
   return (
     <div className="px-1 pb-4 pt-2">
-      <p className="text-xs text-muted-foreground">
-        MN Design System · Primary{" "}
-        <span className="font-mono text-primary">#5FC318</span> · Brand Green{" "}
-        <span className="font-mono" style={{ color: "#AFF000" }}>#AFF000</span>{" "}
-        · Font: Inter
+      <p className="text-xs text-black">
+        © 2026 Masi Negócios —{" "}
+        <a
+          href="https://shuvi.studio"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-black no-underline transition-opacity hover:opacity-60"
+        >
+          Criado por Shuvi Studio
+        </a>
       </p>
     </div>
   );

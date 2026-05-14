@@ -27,7 +27,7 @@ const cards = [
 
 const heroTitle = "Bem-vindo ao Design System Masi Negócios.";
 const heroTitleClassName =
-  "max-w-5xl text-center text-[62px] font-extrabold leading-[1.05] tracking-normal text-foreground";
+  "max-w-5xl text-center text-[34px] font-extrabold leading-[1.05] tracking-normal text-foreground sm:text-[62px]";
 
 export default function StyleguideHomePage() {
   return (
@@ -72,7 +72,7 @@ export default function StyleguideHomePage() {
                 size={840}
                 maxBlur={5}
                 autoRotateAxis="y"
-                className="size-[min(70vw,644px)] max-h-[644px] max-w-[644px]"
+                className="size-[min(91vw,644px)] max-h-[644px] max-w-[644px] sm:size-[min(70vw,644px)]"
               />
             </div>
 

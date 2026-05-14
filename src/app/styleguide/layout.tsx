@@ -14,6 +14,7 @@ const NAV_TOP = 10;    // gap from top edge (mobile background spacing)
 const NAV_H = 60;      // navbar height (px)
 const NAV_X = 10;      // horizontal gap from screen edges (mobile = 10px)
 const BRAND_LOGO_URL = "https://raw.githubusercontent.com/chuvstudiodesign/logos-masi-negocios/71ad67702f1e8fc61061ef81a2e9f372788e7dab/Negocios.svg";
+const BRAND_SYMBOL_URL = "/logos/symbol/masi-symbol-dark.svg";
 
 function SidebarContent({
   pathname,
@@ -79,7 +80,7 @@ export default function StyleguideLayout({
 }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [desktopOpen, setDesktopOpen] = useState(true);
+  const [desktopOpen, setDesktopOpen] = useState(false);
   const [tabVisible, setTabVisible] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -128,16 +129,16 @@ export default function StyleguideLayout({
           left: NAV_X,
           right: NAV_X,
           height: NAV_H,
-          paddingLeft: NAV_X,
+          paddingLeft: 20,
           paddingRight: NAV_X,
         }}
       >
         <Link href="/styleguide" className="block">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={BRAND_LOGO_URL}
-            alt="Negocios"
-            className="h-[19px] w-auto"
+            src={BRAND_SYMBOL_URL}
+            alt="Masi Negócios"
+            className="h-6 w-6 object-contain"
           />
         </Link>
 
