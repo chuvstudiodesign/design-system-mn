@@ -715,12 +715,12 @@ export function FoundationFooter() {
       <p className="text-xs text-black">
         © 2026 Masi Negócios —{" "}
         <a
-          href="https://shuvi.studio"
+          href="https://www.chuv.studio"
           target="_blank"
           rel="noopener noreferrer"
           className="text-black no-underline transition-opacity hover:opacity-60"
         >
-          Criado por Shuvi Studio
+          Criado por Chuv Studio
         </a>
       </p>
     </div>
