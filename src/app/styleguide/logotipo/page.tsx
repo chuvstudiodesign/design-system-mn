@@ -14,6 +14,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { BrandSelectorInline, FloatingBrandSwitcher } from "./brand-switcher";
+import { InstantHashScroll } from "./instant-scroll";
 import { LOGO_BRANDS, type AssetColor, type LogoBrand } from "./brand-data";
 
 // SVGs do Figma têm fundo transparente — nenhum filtro de brilho necessário.
@@ -280,8 +281,9 @@ export function LogotipoPageContent({ brand }: { brand: LogoBrand }) {
 
   return (
     <div className="ds-page">
+      <InstantHashScroll />
       <FoundationPageHeader
-        title={`Logotipo · ${brand.name}`}
+        title={`Logotipo — ${isHubBrand ? "Masi Negócios" : brand.name}`}
         description={brand.description}
       />
 
@@ -290,12 +292,15 @@ export function LogotipoPageContent({ brand }: { brand: LogoBrand }) {
         title="Selecione a marca"
         subtitle="Acesse as diretrizes e downloads de logotipo de cada marca."
         first
+        centered
+        noDivider
       >
         <BrandSelectorInline />
       </Section>
 
       {/* ── 01 · VERSÕES DO LOGOTIPO ─────────────────────────────────────────── */}
       <Section
+        id="versoes"
         eyebrow="Fundação"
         title="Versões do logotipo"
         subtitle={`${brandDisplayName} possui quatro assinaturas visuais. Cada uma foi criada para um contexto específico — escolher a versão correta é parte essencial do uso correto da marca.`}
@@ -687,19 +692,7 @@ export function LogotipoPageContent({ brand }: { brand: LogoBrand }) {
         <div className="ds-card !p-[30px] mt-6">
           <Typography as="p" variant="label" className="mb-4 normal-case tracking-normal text-foreground">Estrutura do repositório</Typography>
           <div className="rounded-[10px] bg-muted p-5">
-            <pre className="overflow-x-auto font-mono text-[12px] leading-[1.8] text-foreground">{`public/logos/
-├── primary/
-│   ├── ${filePrefix}-primary-[cor].svg
-│   └── ${filePrefix}-primary-[cor].png
-├── vertical/
-│   ├── ${filePrefix}-vertical-[cor].svg
-│   └── ${filePrefix}-vertical-[cor].png
-├── wordmark/
-│   ├── ${filePrefix}-wordmark-[cor].svg
-│   └── ${filePrefix}-wordmark-[cor].png
-└── symbol/
-    ├── ${filePrefix}-symbol-[cor].svg
-    └── ${filePrefix}-symbol-[cor].png`}</pre>
+            <pre className="overflow-x-auto font-mono text-[12px] leading-[1.8] text-foreground">{`public/logos/\n├── primary/\n│   ├── ${filePrefix}-primary-[cor].svg\n│   └── ${filePrefix}-primary-[cor].png\n├── vertical/\n│   ├── ${filePrefix}-vertical-[cor].svg\n│   └── ${filePrefix}-vertical-[cor].png\n├── wordmark/\n│   ├── ${filePrefix}-wordmark-[cor].svg\n│   └── ${filePrefix}-wordmark-[cor].png\n└── symbol/\n    ├── ${filePrefix}-symbol-[cor].svg\n    └── ${filePrefix}-symbol-[cor].png`}</pre>
           </div>
         </div>
       </Section>

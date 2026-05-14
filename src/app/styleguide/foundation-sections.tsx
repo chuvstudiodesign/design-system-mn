@@ -22,30 +22,36 @@ export function Section({
   subtitle,
   children,
   first = false,
+  noDivider = false,
+  centered = false,
+  id,
 }: {
   title: string;
   eyebrow?: string;
   subtitle?: string;
   children: ReactNode;
   first?: boolean;
+  noDivider?: boolean;
+  centered?: boolean;
+  id?: string;
 }) {
   const content = (
     <>
-      <div className="mb-5">
+      <div className={`mb-5${centered ? " text-center" : ""}`}>
         {eyebrow && (
           <p className="ds-caption mb-2 text-primary">{eyebrow}</p>
         )}
         <h1 className="ds-section-title">{title}</h1>
         {subtitle && <p className="ds-section-subtitle">{subtitle}</p>}
       </div>
-      <Separator className="mb-6 bg-white" />
+      {!noDivider && <Separator className="mb-6 bg-white" />}
       {children}
     </>
   );
 
   if (first) {
     return (
-      <section className="w-full">
+      <section id={id} className="w-full">
         <ChamferedPanel
           strokeColor="#FFFFFF"
           strokeWidth={1}
@@ -62,7 +68,7 @@ export function Section({
   }
 
   return (
-    <section className="ds-section">
+    <section id={id} className="ds-section">
       {content}
     </section>
   );
@@ -180,12 +186,12 @@ export function SectionSystemBlock({
             {
               title: "Base Canvas",
               value: "#D4D4D4",
-              note: "Background da página. Token: --background.",
+              note: "Fundo da página. Equivale ao base canvas.",
             },
             {
               title: "Section",
               value: "#ECECEC",
-              note: "Container do assunto. Token: --background-section.",
+              note: "Fundo do container da section.",
             },
             {
               title: "Corner Radius",
@@ -358,32 +364,11 @@ export function SectionSystemBlock({
           <div className="flex flex-col gap-6 pt-2">
             <ImplementationCodeBlock
               title="Section básica"
-              code={`<section className="rounded-[10px] bg-[#ECECEC] px-[60px] py-[80px]">
-  <h2 className="text-[32px] font-bold leading-none text-black">
-    Título da section
-  </h2>
-  <p className="mt-3 max-w-3xl text-[13px] leading-6 text-[#474747]">
-    Texto introdutório da section com o conteúdo principal do assunto.
-  </p>
-</section>`}
+              code={`<section className="rounded-[10px] bg-[#ECECEC] px-[60px] py-[80px]">\n  <h2 className="text-[32px] font-bold leading-none text-black">\n    Título da section\n  </h2>\n  <p className="mt-3 max-w-3xl text-[13px] leading-6 text-[#474747]">\n    Texto introdutório da section com o conteúdo principal do assunto.\n  </p>\n</section>`}
             />
             <ImplementationCodeBlock
               title="Código base da página com sections"
-              code={`<div className="flex flex-col gap-[30px] bg-[#D4D4D4] p-[30px]">
-  <ChamferedPanel
-    innerStyle={{
-      background: "#ECECEC",
-      borderRadius: 10,
-      padding: "80px 60px",
-    }}
-  >
-    <div>{/* primeira section */}</div>
-  </ChamferedPanel>
-
-  <section className="rounded-[10px] bg-[#ECECEC] px-[60px] py-[80px]">
-    {/* section seguinte */}
-  </section>
-</div>`}
+              code={`<div className="flex flex-col gap-[30px] bg-[#D4D4D4] p-[30px]">\n  <ChamferedPanel\n    innerStyle={{\n      background: "#ECECEC",\n      borderRadius: 10,\n      padding: "80px 60px",\n    }}\n  >\n    <div>{/* primeira section */}</div>\n  </ChamferedPanel>\n\n  <section className="rounded-[10px] bg-[#ECECEC] px-[60px] py-[80px]">\n    {/* section seguinte */}\n  </section>\n</div>`}
             />
           </div>
         </div>
@@ -654,28 +639,11 @@ export function CardSystemBlock({
           <div className="flex flex-col gap-6 pt-2">
             <ImplementationCodeBlock
               title="Card básico"
-              code={`<div className="rounded-[10px] bg-[#FFFFFF] p-[30px]">
-  <h3 className="text-[18px] font-semibold text-black">
-    Título do card
-  </h3>
-  <p className="mt-2 text-[13px] leading-6 text-[#474747]">
-    Conteúdo principal do card com texto de apoio.
-  </p>
-</div>`}
+              code={`<div className="rounded-[10px] bg-[#FFFFFF] p-[30px]">\n  <h3 className="text-[18px] font-semibold text-black">\n    Título do card\n  </h3>\n  <p className="mt-2 text-[13px] leading-6 text-[#474747]">\n    Conteúdo principal do card com texto de apoio.\n  </p>\n</div>`}
             />
             <ImplementationCodeBlock
               title="Cards em grid dentro de uma section"
-              code={`<section className="rounded-[10px] bg-[#ECECEC] px-[60px] py-[80px]">
-  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-    <div className="rounded-[10px] bg-[#FFFFFF] p-[30px]">
-      {/* card 1 */}
-    </div>
-
-    <div className="rounded-[10px] bg-[#FFFFFF] p-[30px]">
-      {/* card 2 */}
-    </div>
-  </div>
-</section>`}
+              code={`<section className="rounded-[10px] bg-[#ECECEC] px-[60px] py-[80px]">\n  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">\n    <div className="rounded-[10px] bg-[#FFFFFF] p-[30px]">\n      {/* card 1 */}\n    </div>\n\n    <div className="rounded-[10px] bg-[#FFFFFF] p-[30px]">\n      {/* card 2 */}\n    </div>\n  </div>\n</section>`}
             />
           </div>
         </div>

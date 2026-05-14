@@ -18,7 +18,8 @@ import { Typography } from "@/components/typography";
 import { LOGO_BRANDS, type LogoBrand } from "./brand-data";
 
 function brandHref(slug: string) {
-  return slug === "hub" ? "/styleguide/logotipo" : `/styleguide/logotipo/${slug}`;
+  const base = slug === "hub" ? "/styleguide/logotipo" : `/styleguide/logotipo/${slug}`;
+  return `${base}#versoes`;
 }
 
 const LARGER_BRAND_ICONS = new Set(["academy", "workshop", "action", "founder"]);
@@ -156,11 +157,12 @@ export function FloatingBrandSwitcher({ currentSlug }: { currentSlug: string }) 
         <button
           aria-label="Outras marcas"
           className={cn(
-            "fixed bottom-6 right-6 z-50 flex items-center gap-2.5 rounded-full bg-white py-3 pl-3 pr-4 shadow-lg transition-all duration-300",
-            visible
-              ? "translate-y-0 opacity-100"
-              : "pointer-events-none translate-y-2 opacity-0"
+            "fixed bottom-6 left-1/2 z-50 flex items-center gap-2.5 rounded-full bg-white py-3 px-[30px] shadow-lg transition-all duration-300",
+            visible ? "opacity-100" : "pointer-events-none opacity-0"
           )}
+          style={{
+            transform: `translateX(-50%) translateY(${visible ? "0" : "8px"})`,
+          }}
         >
           <img src={hubSymbol} alt="" aria-hidden className="h-5 w-5 object-contain" />
           <span className="text-[13px] font-medium text-black">Outras marcas</span>
