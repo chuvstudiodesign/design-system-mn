@@ -10,10 +10,13 @@ const SL = 30;  // desktop sidebar offset (px) = page spacing
 const SW = 256; // desktop sidebar width (px)
 
 // Mobile navbar constants
-const NAV_TOP = 22;    // gap from top edge (half of section padding-y 45px)
+const NAV_TOP = 10;    // gap from top edge (mobile background spacing)
 const NAV_H = 60;      // navbar height (px)
-const NAV_X = 30;      // horizontal gap from screen edges (= --spacing-page)
+const NAV_X = 10;      // horizontal gap from screen edges (mobile = 10px)
 const BRAND_LOGO_URL = "https://raw.githubusercontent.com/chuvstudiodesign/logos-masi-negocios/71ad67702f1e8fc61061ef81a2e9f372788e7dab/Negocios.svg";
+const BRAND_SYMBOL_URL = "/logos/symbol/masi-symbol-dark.svg";
+const INITIAL_TAB_VISIBLE_MS = 50000;
+const TAB_REVEAL_MS = 5000;
 
 function SidebarContent({
   pathname,
@@ -78,11 +81,9 @@ export default function StyleguideLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const slideExportRoute =
-    pathname.startsWith("/styleguide/paginas/apresentacoes-comerciais/slide-");
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [desktopOpen, setDesktopOpen] = useState(true);
-  const [tabVisible, setTabVisible] = useState(false);
+  const [desktopOpen, setDesktopOpen] = useState(false);
+  const [tabVisible, setTabVisible] = useState(true);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const clearTimer = useCallback(() => {
@@ -92,7 +93,7 @@ export default function StyleguideLayout({
   const revealTab = useCallback(() => {
     setTabVisible(true);
     clearTimer();
-    timerRef.current = setTimeout(() => setTabVisible(false), 5000);
+    timerRef.current = setTimeout(() => setTabVisible(false), TAB_REVEAL_MS);
   }, [clearTimer]);
 
   const handleCollapse = useCallback(() => {
@@ -108,42 +109,44 @@ export default function StyleguideLayout({
 
   useEffect(() => {
     if (desktopOpen) return;
+    timerRef.current = setTimeout(() => setTabVisible(false), INITIAL_TAB_VISIBLE_MS);
+    return clearTimer;
+  }, [desktopOpen, clearTimer]);
+
+  useEffect(() => {
+    if (desktopOpen || tabVisible) return;
     const onMove = (e: MouseEvent) => {
       if (e.clientX < 48) revealTab();
     };
     window.addEventListener("mousemove", onMove);
     return () => window.removeEventListener("mousemove", onMove);
-  }, [desktopOpen, revealTab]);
+  }, [desktopOpen, tabVisible, revealTab]);
 
   useEffect(() => () => clearTimer(), [clearTimer]);
 
   const btnLeft = SL + SW - 12;
-
-  if (slideExportRoute) {
-    return <>{children}</>;
-  }
 
   return (
     <div className="relative min-h-screen bg-background">
 
       {/* ── Mobile floating navbar ── */}
       <header
-        className="fixed z-30 flex items-center justify-between rounded-[10px] bg-[#ececec] lg:hidden"
+        className="fixed z-30 flex items-center justify-between rounded-[10px] border border-white bg-[#ececec] lg:hidden"
         style={{
           top: NAV_TOP,
           left: NAV_X,
           right: NAV_X,
           height: NAV_H,
-          paddingLeft: NAV_X,
+          paddingLeft: 20,
           paddingRight: NAV_X,
         }}
       >
         <Link href="/styleguide" className="block">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={BRAND_LOGO_URL}
-            alt="Negocios"
-            className="h-[19px] w-auto"
+            src={BRAND_SYMBOL_URL}
+            alt="Masi Negócios"
+            className="h-6 w-6 object-contain"
           />
         </Link>
 
@@ -174,10 +177,10 @@ export default function StyleguideLayout({
       {/* ── Mobile drawer (opens from the RIGHT) ── */}
       <aside
         className={cn(
-          "fixed right-[30px] top-[30px] z-50 w-[min(20rem,calc(100vw-60px))]",
+          "fixed right-[10px] top-[10px] z-50 w-[min(20rem,calc(100vw-20px))]",
           "flex flex-col overflow-y-auto rounded-[10px] border border-white p-5",
           "transition-transform duration-200 lg:hidden",
-          mobileOpen ? "translate-x-0" : "translate-x-[calc(100%+30px)]"
+          mobileOpen ? "translate-x-0" : "translate-x-[calc(100%+10px)]"
         )}
         style={{ backgroundColor: "#ececec", height: "calc(100vh - 60px)" }}
       >
@@ -260,7 +263,7 @@ export default function StyleguideLayout({
       {/* ── Main content ── */}
       <div
         className={cn(
-          "px-[30px] pb-4 pt-[98px] transition-[padding-left] duration-300 ease-in-out lg:pr-[30px] lg:pt-[30px] lg:pb-[30px]",
+          "px-[10px] pb-[10px] pt-[80px] transition-[padding-left] duration-300 ease-in-out lg:pr-[30px] lg:pt-[30px] lg:pb-[30px]",
           desktopOpen
             ? "lg:pl-[316px]"
             : "lg:pl-[30px]"

@@ -240,7 +240,7 @@ export default function CarouselPage() {
         subtitle="Carousel com scroll vertical — útil para listas de itens em painéis laterais."
       >
         <div className="flex flex-col gap-6">
-          <div className="mx-auto w-[520px]">
+          <div className="mx-auto w-full sm:w-[520px]">
             <Carousel orientation="vertical" opts={{ align: "start" }} className="w-full">
               <CarouselContent viewportClassName="overflow-hidden" className="-mt-4 h-[560px]">
                 {SLIDES.map((slide) => (

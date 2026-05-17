@@ -50,7 +50,7 @@ export default function NavigationMenuPage() {
                   <NavigationMenuItem>
                     <NavigationMenuTrigger>Componentes</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-2">
+                      <ul className="grid w-[min(400px,calc(100vw-40px))] gap-3 p-4 md:grid-cols-2">
                         {components.map((comp) => (
                           <li key={comp.title}>
                             <NavigationMenuLink href={comp.href} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">

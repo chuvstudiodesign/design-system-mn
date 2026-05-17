@@ -6,6 +6,7 @@ import { IconCloudBrand } from "@/components/magicui/icon-cloud-brand";
 import { TypingAnimation } from "@/components/magicui/typing-animation";
 import { Typography } from "@/components/typography";
 import { FoundationFooter } from "./foundation-sections";
+import { BrandSelectorInline } from "./logotipo/brand-switcher";
 
 const cards = [
   {
@@ -26,7 +27,7 @@ const cards = [
 
 const heroTitle = "Bem-vindo ao Design System Masi Negócios.";
 const heroTitleClassName =
-  "max-w-5xl text-center text-[62px] font-extrabold leading-[1.05] tracking-normal text-foreground";
+  "max-w-5xl text-center text-[34px] font-extrabold leading-[1.05] tracking-normal text-foreground sm:text-[62px]";
 
 export default function StyleguideHomePage() {
   return (
@@ -70,7 +71,8 @@ export default function StyleguideHomePage() {
                 variant="brandColorsWithIcons"
                 size={840}
                 maxBlur={5}
-                className="size-[min(70vw,644px)] max-h-[644px] max-w-[644px]"
+                autoRotateAxis="y"
+                className="size-[min(91vw,644px)] max-h-[644px] max-w-[644px] sm:size-[min(70vw,644px)]"
               />
             </div>
 
@@ -101,6 +103,116 @@ export default function StyleguideHomePage() {
                   )}
                 </div>
               ))}
+            </div>
+
+            <div className="mt-6 w-full">
+              <div className="ds-card !px-[30px] !py-[60px] flex flex-col">
+                <div className="flex flex-col gap-2 text-center">
+                  <Typography as="h2" variant="h3" className="text-foreground">
+                    Selecione a marca
+                  </Typography>
+                  <Typography as="p" variant="body" className="text-muted-foreground">
+                    Acesse as diretrizes e downloads de logotipo de cada marca.
+                  </Typography>
+                </div>
+                <div className="mt-[60px]">
+                  <BrandSelectorInline />
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 hidden w-full">
+              <div className="ds-card !p-[30px] flex flex-col gap-[60px]">
+                <div>
+                  <Typography as="h2" variant="h3" className="mb-3 text-foreground">
+                    Foundation
+                  </Typography>
+                  <Typography as="p" variant="body" className="text-muted-foreground">
+                    A fundação visual da Masi Negócios. Reúne as decisões que tornam a marca reconhecível — de cores e tipografia até os sistemas que organizam cada interface e material produzido.
+                  </Typography>
+                </div>
+
+                <div className="grid gap-[60px] lg:grid-cols-2">
+                  {/* Design Tokens */}
+                  <div className="flex flex-col gap-5">
+                    <div>
+                      <Typography as="p" variant="label" className="mb-2 normal-case tracking-normal text-foreground">
+                        Design Tokens
+                      </Typography>
+                      <Typography as="p" variant="body-sm" className="text-muted-foreground">
+                        Variáveis que armazenam cada decisão visual da marca — cores, tipografia, espaçamentos e sombras. São a fonte única da verdade que mantém tudo consistente em qualquer material.
+                      </Typography>
+                    </div>
+                    <div className="flex flex-col overflow-hidden rounded-[10px]">
+                      {[
+                        "#F8F8F8",
+                        "#ECECEC",
+                        "#D4D4D4",
+                        "#BDBDBD",
+                        "#A3A3A3",
+                        "#8A8A8A",
+                        "#AFF000",
+                        "#5FC318",
+                        "#0C1C16",
+                      ].map((color, i) => (
+                        <div
+                          key={color}
+                          className="h-[90px] w-full rounded-[10px]"
+                          style={{
+                            backgroundColor: color,
+                            marginTop: i === 0 ? 0 : "-60px",
+                            position: "relative",
+                            zIndex: i,
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Section & Card System */}
+                  <div className="flex flex-col gap-5">
+                    <div>
+                      <Typography as="p" variant="label" className="mb-2 normal-case tracking-normal text-foreground">
+                        Section &amp; Card System
+                      </Typography>
+                      <Typography as="p" variant="body-sm" className="text-muted-foreground">
+                        O sistema que organiza qualquer página. A section estrutura o assunto e o card aprofunda o conteúdo, sempre na mesma hierarquia visual de três camadas.
+                      </Typography>
+                    </div>
+                    <div className="overflow-hidden rounded-[10px] bg-[#D4D4D4] p-5">
+                      <ChamferedPanel
+                        strokeColor="#FFFFFF"
+                        strokeWidth={1}
+                        innerStyle={{
+                          background: "#ECECEC",
+                          borderRadius: 10,
+                          padding: "30px",
+                        }}
+                      >
+                        <div className="flex w-full flex-col gap-4">
+                          <div>
+                            <p className="font-mono text-[10px] font-bold text-[#5FC318]">Section 1</p>
+                            <p className="mt-1 text-[15px] font-semibold leading-snug text-black">Abertura com chanfro</p>
+                            <p className="mt-1.5 text-[12px] leading-5 text-[#474747]">
+                              Primeira section da página com corte diagonal de 32px no canto superior esquerdo.
+                            </p>
+                          </div>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="rounded-[10px] bg-white p-3">
+                              <p className="text-[10px] font-semibold uppercase tracking-wider text-black">Card</p>
+                              <p className="mt-1 text-[11px] leading-[1.5] text-[#474747]">Resumo principal do assunto.</p>
+                            </div>
+                            <div className="rounded-[10px] bg-white p-3">
+                              <p className="text-[10px] font-semibold uppercase tracking-wider text-black">Card</p>
+                              <p className="mt-1 text-[11px] leading-[1.5] text-[#474747]">Complemento visual ou dado de apoio.</p>
+                            </div>
+                          </div>
+                        </div>
+                      </ChamferedPanel>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </ChamferedPanel>

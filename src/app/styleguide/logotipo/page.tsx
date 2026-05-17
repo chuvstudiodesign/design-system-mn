@@ -13,7 +13,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { BrandSwitcher } from "./brand-switcher";
+import { BrandSelectorInline, FloatingBrandSwitcher } from "./brand-switcher";
+import { InstantHashScroll } from "./instant-scroll";
 import { LOGO_BRANDS, type AssetColor, type LogoBrand } from "./brand-data";
 
 // SVGs do Figma têm fundo transparente — nenhum filtro de brilho necessário.
@@ -280,22 +281,31 @@ export function LogotipoPageContent({ brand }: { brand: LogoBrand }) {
 
   return (
     <div className="ds-page">
-      <div className="flex items-start justify-between gap-4 px-1">
-        <FoundationPageHeader
-          title={`Logotipo · ${brand.name}`}
-          description={brand.description}
-        />
-        <div className="shrink-0 pt-1">
-          <BrandSwitcher currentSlug={brand.slug} />
+      <InstantHashScroll />
+      <FoundationPageHeader
+        title={`Logotipo — ${isHubBrand ? "Masi Negócios" : brand.name}`}
+        description={brand.description}
+      />
+
+      {/* ── 00 · SELETOR DE MARCA ────────────────────────────────────────────── */}
+      <Section
+        title="Selecione a marca"
+        subtitle="Acesse as diretrizes e downloads de logotipo de cada marca."
+        first
+        centered
+        noDivider
+      >
+        <div className="mt-[60px]">
+          <BrandSelectorInline />
         </div>
-      </div>
+      </Section>
 
       {/* ── 01 · VERSÕES DO LOGOTIPO ─────────────────────────────────────────── */}
       <Section
+        id="versoes"
         eyebrow="Fundação"
         title="Versões do logotipo"
         subtitle={`${brandDisplayName} possui quatro assinaturas visuais. Cada uma foi criada para um contexto específico — escolher a versão correta é parte essencial do uso correto da marca.`}
-        first
       >
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
 
@@ -717,6 +727,7 @@ export function LogotipoPageContent({ brand }: { brand: LogoBrand }) {
         </div>
       </Section>
 
+      <FloatingBrandSwitcher currentSlug={brand.slug} />
       <FoundationFooter />
     </div>
   );

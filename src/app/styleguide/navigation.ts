@@ -86,19 +86,4 @@ export const navigation: NavSection[] = [
       { name: "Typography", href: "/styleguide/components/typography" },
     ],
   },
-  {
-    title: "Páginas",
-    items: [
-      { name: "Apresentações Comerciais", href: "/styleguide/paginas/apresentacoes-comerciais" },
-      { name: "Blog", href: "/styleguide/paginas/blog" },
-    ],
-  },
-  {
-    title: "Mídia Social",
-    items: [
-      { name: "Posts & Carrosséis", href: "/styleguide/midia-social" },
-      { name: "Cinco posts V1", href: "/styleguide/midia-social/cinco-posts" },
-      { name: "Cinco posts V2", href: "/styleguide/midia-social/cinco-posts-v2" },
-    ],
-  },
 ];

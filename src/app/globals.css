@@ -364,3 +364,41 @@
     display: none;
   }
 }
+
+/* ── Mobile responsive overrides ── */
+@media (max-width: 767px) {
+  :root {
+    --section-padding-x: 20px;
+    --section-padding-y: 30px;
+    --gap-lg: 20px;
+    --gap-md: 16px;
+  }
+
+  .ds-page-title {
+    font-size: 28px;
+  }
+
+  .ds-page-description {
+    font-size: 15px;
+  }
+
+  .ds-section-title {
+    font-size: 22px;
+  }
+
+  .ds-section-subtitle {
+    font-size: 15px;
+  }
+
+  .ds-display {
+    font-size: 32px;
+  }
+
+  .ds-h1 {
+    font-size: 24px;
+  }
+
+  .ds-card {
+    padding: 20px;
+  }
+}
