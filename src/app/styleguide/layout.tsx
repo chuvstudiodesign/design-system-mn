@@ -15,6 +15,8 @@ const NAV_H = 60;      // navbar height (px)
 const NAV_X = 10;      // horizontal gap from screen edges (mobile = 10px)
 const BRAND_LOGO_URL = "https://raw.githubusercontent.com/chuvstudiodesign/logos-masi-negocios/71ad67702f1e8fc61061ef81a2e9f372788e7dab/Negocios.svg";
 const BRAND_SYMBOL_URL = "/logos/symbol/masi-symbol-dark.svg";
+const INITIAL_TAB_VISIBLE_MS = 50000;
+const TAB_REVEAL_MS = 5000;
 
 function SidebarContent({
   pathname,
@@ -81,7 +83,7 @@ export default function StyleguideLayout({
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [desktopOpen, setDesktopOpen] = useState(false);
-  const [tabVisible, setTabVisible] = useState(false);
+  const [tabVisible, setTabVisible] = useState(true);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const clearTimer = useCallback(() => {
@@ -91,7 +93,7 @@ export default function StyleguideLayout({
   const revealTab = useCallback(() => {
     setTabVisible(true);
     clearTimer();
-    timerRef.current = setTimeout(() => setTabVisible(false), 5000);
+    timerRef.current = setTimeout(() => setTabVisible(false), TAB_REVEAL_MS);
   }, [clearTimer]);
 
   const handleCollapse = useCallback(() => {
@@ -107,12 +109,18 @@ export default function StyleguideLayout({
 
   useEffect(() => {
     if (desktopOpen) return;
+    timerRef.current = setTimeout(() => setTabVisible(false), INITIAL_TAB_VISIBLE_MS);
+    return clearTimer;
+  }, [desktopOpen, clearTimer]);
+
+  useEffect(() => {
+    if (desktopOpen || tabVisible) return;
     const onMove = (e: MouseEvent) => {
       if (e.clientX < 48) revealTab();
     };
     window.addEventListener("mousemove", onMove);
     return () => window.removeEventListener("mousemove", onMove);
-  }, [desktopOpen, revealTab]);
+  }, [desktopOpen, tabVisible, revealTab]);
 
   useEffect(() => () => clearTimer(), [clearTimer]);
 

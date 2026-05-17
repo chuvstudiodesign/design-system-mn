@@ -121,7 +121,7 @@ export default function StyleguideHomePage() {
               </div>
             </div>
 
-            <div className="mt-6 w-full">
+            <div className="mt-6 hidden w-full">
               <div className="ds-card !p-[30px] flex flex-col gap-[60px]">
                 <div>
                   <Typography as="h2" variant="h3" className="mb-3 text-foreground">
