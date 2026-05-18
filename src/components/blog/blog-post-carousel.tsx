@@ -19,7 +19,7 @@ export function BlogPostCarousel({
 }) {
   return (
     <div className="overflow-hidden">
-      <div className="relative px-20">
+      <div className="relative py-0 pl-0 pr-20">
         <Carousel opts={{ align: "start", loop: true }} className="w-full">
           <CarouselContent viewportClassName="overflow-visible" className="-ml-4">
             {posts.map((post) => (
