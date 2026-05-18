@@ -18,10 +18,10 @@ export function BlogPostCarousel({
   basePath?: string;
 }) {
   return (
-    <div className="overflow-hidden">
+    <div>
       <div className="relative">
         <Carousel opts={{ align: "start", loop: true }} className="w-full">
-          <CarouselContent viewportClassName="overflow-visible" className="-ml-4">
+          <CarouselContent className="-ml-4">
             {posts.map((post) => (
               <CarouselItem
                 key={post.id}
