@@ -109,7 +109,7 @@ export function CMSPostTable({
                 <TableCell>{formatBlogDate(post.updatedAt)}</TableCell>
                 <TableCell className="text-right">
                   <div className="flex justify-end gap-2">
-                    <Button render={<Link href={`/styleguide/paginas/blog/${post.slug}`} />} size="xs" variant="ghost">
+                    <Button nativeButton={false} render={<Link href={`/styleguide/paginas/blog/${post.slug}`} />} size="xs" variant="ghost">
                       <Eye data-icon="inline-start" className="size-3" />
                       Preview
                     </Button>

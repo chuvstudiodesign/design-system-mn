@@ -43,7 +43,7 @@ export default function BlogCMSPage() {
           title="CMS Blog"
           description="Protótipo local-first para gerenciar posts, status, taxonomia, SEO e preview editorial."
         />
-        <Button render={<Link href="/styleguide/paginas/blog" />} variant="secondary" size="sm" className="shrink-0">
+        <Button nativeButton={false} render={<Link href="/styleguide/paginas/blog" />} variant="secondary" size="sm" className="shrink-0">
           <ArrowLeft data-icon="inline-start" className="size-4" />
           Voltar
         </Button>

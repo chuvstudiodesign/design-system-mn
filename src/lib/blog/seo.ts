@@ -32,20 +32,24 @@ export const blogHomeMetadata: Metadata = {
   },
 };
 
-export function createPostMetadata(post: BlogPost): Metadata {
+export function createPostMetadata(post: BlogPost, basePath = blogBasePath): Metadata {
+  const url = basePath === blogBasePath
+    ? post.canonicalUrl ?? `${basePath}/${post.slug}`
+    : `${basePath}/${post.slug}`;
+
   return {
     title: post.seoTitle,
     description: post.seoDescription,
     keywords: post.seoKeywords,
     alternates: {
-      canonical: post.canonicalUrl ?? `${blogBasePath}/${post.slug}`,
+      canonical: url,
     },
     openGraph: {
       title: post.seoTitle,
       description: post.seoDescription,
       type: "article",
       siteName,
-      url: post.canonicalUrl ?? `${blogBasePath}/${post.slug}`,
+      url,
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
       authors: [post.author],

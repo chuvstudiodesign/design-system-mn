@@ -7,15 +7,23 @@ import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/typography";
 import { BlogCover } from "./blog-cover";
 
-export function BlogPostHeader({ post }: { post: BlogPost }) {
+export function BlogPostHeader({
+  post,
+  backHref = "/styleguide/paginas/blog",
+  backLabel = "Voltar para Blog",
+}: {
+  post: BlogPost;
+  backHref?: string;
+  backLabel?: string;
+}) {
   const categoryStyle = getBlogCategoryStyle(post.categorySlug);
 
   return (
     <header className="flex flex-col gap-6">
       <div>
-        <Button render={<Link href="/styleguide/paginas/blog" />} variant="ghost" size="sm" className="-ml-3 font-bold text-primary">
+        <Button nativeButton={false} render={<Link href={backHref} />} variant="ghost" size="sm" className="-ml-3 font-bold text-primary">
           <ArrowLeft data-icon="inline-start" className="size-3.5" />
-          Voltar para Blog
+          {backLabel}
         </Button>
       </div>
 

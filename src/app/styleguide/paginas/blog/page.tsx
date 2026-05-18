@@ -46,7 +46,7 @@ export default function BlogPage() {
           title="Blog"
           description="Plataforma editorial para negócios, inovação, tecnologia, liderança, estratégia e crescimento."
         />
-        <Button render={<Link href="/styleguide/paginas/blog/cms" />} variant="secondary" size="sm" className="shrink-0">
+        <Button nativeButton={false} render={<Link href="/styleguide/paginas/blog/cms" />} variant="secondary" size="sm" className="shrink-0">
           <LayoutDashboard data-icon="inline-start" className="size-4" />
           CMS
         </Button>

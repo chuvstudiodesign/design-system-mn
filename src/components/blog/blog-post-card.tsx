@@ -7,22 +7,24 @@ import { Button } from "@/components/ui/button";
 import { Typography } from "@/components/typography";
 import { BlogCover } from "./blog-cover";
 
-const blogBasePath = "/styleguide/paginas/blog";
+const defaultBlogBasePath = "/styleguide/paginas/blog";
 
 export function BlogPostCard({
   post,
   featured = false,
   compact = false,
+  basePath = defaultBlogBasePath,
 }: {
   post: BlogPost;
   featured?: boolean;
   compact?: boolean;
+  basePath?: string;
 }) {
   const categoryStyle = getBlogCategoryStyle(post.categorySlug);
 
   return (
     <article className="ds-card !p-[30px] flex h-full flex-col gap-5">
-      <Link href={`${blogBasePath}/${post.slug}`} aria-label={`Ler ${post.title}`}>
+      <Link href={`${basePath}/${post.slug}`} aria-label={`Ler ${post.title}`}>
         <BlogCover
           src={post.coverImage}
           tone={post.coverTone}
@@ -46,7 +48,7 @@ export function BlogPostCard({
       </div>
 
       <div className="flex flex-1 flex-col gap-3">
-        <Link href={`${blogBasePath}/${post.slug}`} className="group">
+        <Link href={`${basePath}/${post.slug}`} className="group">
           <Typography
             as="h3"
             variant={featured ? "h2" : compact ? "body" : "h3"}
@@ -70,7 +72,7 @@ export function BlogPostCard({
             {formatReadingTime(post.readingTime)}
           </span>
         </div>
-        <Button render={<Link href={`${blogBasePath}/${post.slug}`} />} variant="ghost" size="sm" className="-mr-3 font-bold text-primary">
+        <Button nativeButton={false} render={<Link href={`${basePath}/${post.slug}`} />} variant="ghost" size="sm" className="-mr-3 font-bold text-primary">
           Ler artigo
           <ArrowRight data-icon="inline-end" className="size-3.5" />
         </Button>

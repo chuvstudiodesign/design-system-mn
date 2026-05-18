@@ -10,7 +10,13 @@ import {
 } from "@/components/ui/carousel";
 import { BlogPostCard } from "./blog-post-card";
 
-export function BlogPostCarousel({ posts }: { posts: BlogPost[] }) {
+export function BlogPostCarousel({
+  posts,
+  basePath,
+}: {
+  posts: BlogPost[];
+  basePath?: string;
+}) {
   return (
     <div className="overflow-hidden">
       <div className="relative px-20">
@@ -21,7 +27,7 @@ export function BlogPostCarousel({ posts }: { posts: BlogPost[] }) {
                 key={post.id}
                 className="pl-4 basis-full md:basis-1/2 xl:basis-1/3 shrink-0"
               >
-                <BlogPostCard post={post} />
+                <BlogPostCard post={post} basePath={basePath} />
               </CarouselItem>
             ))}
           </CarouselContent>

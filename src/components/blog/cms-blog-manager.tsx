@@ -323,7 +323,7 @@ export function CMSBlogManager({
               </div>
 
               <div className="flex flex-wrap gap-2 lg:justify-end">
-                <Button render={<Link href={`/styleguide/paginas/blog/${post.slug}`} />} size="xs" variant="ghost">
+                <Button nativeButton={false} render={<Link href={`/styleguide/paginas/blog/${post.slug}`} />} size="xs" variant="ghost">
                   <Eye data-icon="inline-start" className="size-3" />
                   Preview
                 </Button>

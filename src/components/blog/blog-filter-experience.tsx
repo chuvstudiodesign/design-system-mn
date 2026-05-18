@@ -14,10 +14,12 @@ export function BlogFilterExperience({
   posts,
   categories,
   tags,
+  basePath,
 }: {
   posts: BlogPost[];
   categories: BlogCategory[];
   tags: BlogTag[];
+  basePath?: string;
 }) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
@@ -129,7 +131,7 @@ export function BlogFilterExperience({
       {filteredPosts.length > 0 ? (
         <div className="ds-grid-3">
           {filteredPosts.map((post) => (
-            <BlogPostCard key={post.id} post={post} />
+            <BlogPostCard key={post.id} post={post} basePath={basePath} />
           ))}
         </div>
       ) : (

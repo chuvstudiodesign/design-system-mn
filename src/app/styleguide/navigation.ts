@@ -91,6 +91,7 @@ export const navigation: NavSection[] = [
     items: [
       { name: "Apresentações Comerciais", href: "/styleguide/paginas/apresentacoes-comerciais" },
       { name: "Blog", href: "/styleguide/paginas/blog" },
+      { name: "Blog ML", href: "/blog-ml" },
     ],
   },
   {
