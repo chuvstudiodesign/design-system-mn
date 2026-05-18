@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import {
   BlogFilterExperience,
@@ -117,7 +118,12 @@ export default function BlogMLPage() {
         >
           <div className="ds-grid-3">
             {categories.map((category) => (
-              <div id={`categoria-${category.slug}`} key={category.slug} className="ds-card !p-[30px] scroll-mt-28">
+              <Link
+                id={`categoria-${category.slug}`}
+                key={category.slug}
+                href={`/blog-ml/categorias/${category.slug}`}
+                className="ds-card !p-[30px] block scroll-mt-28 transition-transform hover:-translate-y-0.5"
+              >
                 <div className="mb-5">
                   <div
                     className="h-3 w-16 rounded-full"
@@ -133,7 +139,7 @@ export default function BlogMLPage() {
                 <Typography as="p" variant="code" className="mt-4 font-bold text-primary">
                   {getBlogCategoryCount(category.slug)} artigos publicados
                 </Typography>
-              </div>
+              </Link>
             ))}
           </div>
         </Section>
