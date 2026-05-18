@@ -17,7 +17,6 @@ import {
   getPublishedBlogPosts,
 } from "@/lib/blog";
 import {
-  FoundationFooter,
   Section,
 } from "@/app/styleguide/foundation-sections";
 
@@ -118,7 +117,7 @@ export default function BlogMLPage() {
         >
           <div className="ds-grid-3">
             {categories.map((category) => (
-              <div key={category.slug} className="ds-card !p-[30px]">
+              <div id={`categoria-${category.slug}`} key={category.slug} className="ds-card !p-[30px] scroll-mt-28">
                 <div className="mb-5">
                   <div
                     className="h-3 w-16 rounded-full"
@@ -157,8 +156,6 @@ export default function BlogMLPage() {
           <NewsletterCTA />
         </Section>
       </div>
-
-      <FoundationFooter />
     </div>
   );
 }

@@ -14,7 +14,6 @@ import {
   getRelatedBlogPosts,
 } from "@/lib/blog";
 import {
-  FoundationFooter,
   Section,
 } from "@/app/styleguide/foundation-sections";
 
@@ -84,8 +83,6 @@ export default async function BlogMLPostPage({ params }: BlogMLPostPageProps) {
       >
         <NewsletterCTA />
       </Section>
-
-      <FoundationFooter />
     </div>
   );
 }
