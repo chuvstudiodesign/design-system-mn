@@ -35,7 +35,7 @@ export function BlogPublicShell({ children }: { children: React.ReactNode }) {
   }));
 
   return (
-    <div className="relative min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background [--section-padding-x:30px] md:[--section-padding-x:120px] xl:[--section-padding-x:240px]">
       <header className="fixed left-[30px] right-[30px] top-[22px] z-30 flex h-[60px] items-center rounded-[10px] border border-white bg-[#ececec] px-[30px]">
         <Link href="/blog-ml" className="block shrink-0" onClick={() => setOpen(false)}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
