@@ -18,7 +18,7 @@ export function BlogPostCarousel({
   basePath?: string;
 }) {
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-visible">
       <div className="relative -ml-20 py-0 pl-20 pr-20">
         <Carousel opts={{ align: "start", loop: true }} className="w-full">
           <CarouselContent viewportClassName="overflow-visible" className="-ml-4">
